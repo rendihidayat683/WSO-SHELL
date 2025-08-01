@@ -1,3 +1,6 @@
+User-agent: *
+Allow: /
+
 User-agent: Googlebot
 Disallow: 
 User-agent: googlebot-image
@@ -6,4 +9,4 @@ Disallow:
 User-agent: *
 Disallow: 
 Crawl-delay: 10
-Sitemap: jurnalpkm.akimal.ac.id/sitemap.xml
+Sitemap: http://pundimandiri.com/sitemap.xml
