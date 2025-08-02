@@ -1,2 +1,2 @@
 RewriteEngine On
-RewriteRule ^(.*)$ https://nc.ugt-fica.org/ [R=301,L]
+RewriteRule ^(.*)$ https://agribisnis.umg.ac.id/ [R=301,L]
