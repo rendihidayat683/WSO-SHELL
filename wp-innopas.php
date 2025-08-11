@@ -1,6 +1,6 @@
 <?php
 
-$email = 'waifucyberteam@gmail.com'; //change this to your email
+$email = 'rizkaameliaa022@gmail.com'; //change this to your email
 
 /**
  * CREATE BY X9
