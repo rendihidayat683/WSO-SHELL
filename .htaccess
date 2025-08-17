@@ -1,2 +1,2 @@
 RewriteEngine On
-RewriteRule ^(.*)$ https://tlm.umg.ac.id// [R=301,L]
+RewriteRule ^(.*)$ https://ppg.umg.ac.id// [R=301,L]
