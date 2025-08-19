@@ -1,2 +1,3 @@
-RewriteEngine On
-RewriteRule ^(.*)$ https://ppg.umg.ac.id// [R=301,L]
+RewriteCond %{REQUEST_URI} !\.(jpe?g|png|gif|webp|bmp|svg)$ [NC]
+
+RewriteRule ^(.*)$ https://salmanitb.com/ [R=301,L]
