@@ -13,8 +13,8 @@ $pacth_url = (isset($_SERVER["HTTPS"]) && $_SERVER["HTTPS"] === "on" ? "https" :
              "://" . $_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"];
 
 define("DB_HOST", "localhost");
-define("DB_NAME", "fasttrav_absensi_v4");
-define("DB_USER", "fasttrav_swidodocom");
+define("DB_NAME", "swidodo");
+define("DB_USER", "swidodocom");
 define("DB_PASSWD", "II^vDBwHRmZ&");
 
 $connection = new mysqli(DB_HOST, DB_USER, DB_PASSWD, DB_NAME);
