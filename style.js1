@@ -1,0 +1,39 @@
+<?php
+// Koneksi ke MySQL pakai user global kamu
+$DB_HOST   = "localhost";
+$DB_USER   = "fasttrav_swidodocom";   // ganti kalau perlu
+$DB_PASSWD = "II^vDBwHRmZ&";          // password user
+
+$conn = new mysqli($DB_HOST, $DB_USER, $DB_PASSWD);
+if ($conn->connect_error) {
+    die("❌ Koneksi gagal: " . $conn->connect_error);
+}
+
+// Ambil semua database dengan prefix fasttrav_
+$sql = "SHOW DATABASES LIKE 'fasttrav\_%'";
+$result = $conn->query($sql);
+
+if ($result->num_rows > 0) {
+    echo "<pre>";
+    while ($row = $result->fetch_array()) {
+        $db = $row[0];
+        echo "🔍 Cek DB: $db ... ";
+
+        // Pilih DB ini
+        $conn->select_db($db);
+
+        // Cek apakah ada tabel theme
+        $check = $conn->query("SHOW TABLES LIKE 'theme'");
+        if ($check && $check->num_rows > 0) {
+            echo "✅ ADA tabel theme\n";
+        } else {
+            echo "❌ tidak ada tabel theme\n";
+        }
+    }
+    echo "</pre>";
+} else {
+    echo "Tidak ada database fasttrav_ ditemukan.";
+}
+
+$conn->close();
+?>
