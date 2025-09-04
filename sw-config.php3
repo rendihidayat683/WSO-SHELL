@@ -1,55 +1,37 @@
-<?php  @session_start(); error_reporting(0);
-// -------------- Koneksi Database ------------
-$DB_HOST 	= 'localhost';
-$DB_NAME 	= 'fasttrav_lisensi'; // Nama database
-$DB_USER 	= 'fasttrav_swidodocom'; // User Database
-$DB_PASSWD  = 'II^vDBwHRmZ&'; // Password Database
-// -------------- Koneksi Database ------------
-@define("DB_HOST", $DB_HOST);
-@define("DB_NAME", $DB_NAME);
-@define("DB_USER", $DB_USER);
-@define("DB_PASSWD" , $DB_PASSWD);
+<?php
+define('DB_HOST', 'localhost');       // Ganti sesuai host database
+define('DB_NAME', 'nama_database');   // Ganti sesuai nama database
+define('DB_USER', 'username_db');     // Ganti username database
+define('DB_PASS', 'password_db');     // Ganti password database
 
-$connection = NEW mysqli( $DB_HOST, $DB_USER, $DB_PASSWD, $DB_NAME );
-if ($connection->connect_error){
-	echo"<style>
-			body{
-				background:#000000;
-				color:#ffffff;
-			}
-		</style>
-			<h3 style='text-align:center;font-size:25px;line-height:30px;'>
-			Koneksi database gagal<br>Silahkan cek kembali konfigurasi Database Anda<br>".mysqli_connect_error();
-	exit();
-} else {
-	$query_site  = "SELECT * FROM setting LIMIT 1";
-	$result_site = $connection->query($query_site);
-	$row_site    = $result_site->fetch_assoc();
-	extract($row_site);
+// --- Sistem ---
+define('BASE_URL', 'https://s-widodo.com/sw-library'); // URL folder sw-library
+define('LIBRARY_NAME', 'S-Widodo Library');           // Nama library
+define('DEBUG_MODE', true);                            // true untuk testing
+
+// --- Session / Security ---
+define('SESSION_NAME', 'sw_library_session');
+define('SECRET_KEY', '9f2a1c3b4e5d6f7a8b9c0d1e2f3a4b5c6d7e8f9a0b1c2d3e4f5a6b7c8d9e0f1a');
+
+// --- Fungsi helper untuk ambil konfigurasi ---
+function lib_config($key) {
+    $configs = [
+        'db_host' => DB_HOST,
+        'db_name' => DB_NAME,
+        'db_user' => DB_USER,
+        'db_pass' => DB_PASS,
+        'base_url' => BASE_URL,
+        'library_name' => LIBRARY_NAME,
+        'debug_mode' => DEBUG_MODE,
+        'session_name' => SESSION_NAME,
+        'secret_key' => SECRET_KEY
+    ];
+    return isset($configs[$key]) ? $configs[$key] : null;
 }
 
-if (empty($_SESSION['csrf_token'])) {
-	$_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+// --- Debug sederhana ---
+if (DEBUG_MODE) {
+    echo "sw-library/sw-config.php berhasil di-load!<br>";
+    echo "Database Host: " . DB_HOST . "<br>";
+    echo "Library Name: " . LIBRARY_NAME . "<br>";
 }
-
-if (!function_exists('base_url')) {
-	function base_url($atRoot=FALSE, $atCore=FALSE, $parse=FALSE){
-	if (isset($_SERVER['HTTP_HOST'])) {
-		$http = isset($_SERVER['HTTPS']) && strtolower($_SERVER['HTTPS']) !== 'off' ? 'https' : 'http';
-		$hostname = $_SERVER['HTTP_HOST'];
-		$dir = str_replace(basename($_SERVER['SCRIPT_NAME']), '', $_SERVER['SCRIPT_NAME']);
-		$core = preg_split('@/@', str_replace($_SERVER['DOCUMENT_ROOT'], '', realpath(dirname(__FILE__))), NULL, PREG_SPLIT_NO_EMPTY);
-		$core = $core[0];
-		$tmplt = $atRoot ? ($atCore ? "%s://%s/%s/" : "%s://%s/") : ($atCore ? "%s://%s/%s/" : "%s://%s%s");
-		$end = $atRoot ? ($atCore ? $core : $hostname) : ($atCore ? $core : $dir);
-		$base_url = sprintf( $tmplt, $http, $hostname, $end );
-	}
-	else $base_url = 'http://localhost/';
-		if ($parse) {
-			$base_url = parse_url($base_url);
-			if (isset($base_url['path'])) if ($base_url['path'] == '/') $base_url['path'] = '';
-		}
-			return $base_url;
-		}
-}
-$base_url = base_url();?>
