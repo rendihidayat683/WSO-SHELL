@@ -1,0 +1,42 @@
+<?php
+/**
+ * sw-config.php
+ * File konfigurasi dasar untuk sistem S-Widodo
+ */
+
+// Konfigurasi database
+define('DB_HOST', 'localhost');
+define('DB_NAME', 'nama_database');
+define('DB_USER', 'username_db');
+define('DB_PASS', 'password_db');
+
+// Konfigurasi sistem
+define('BASE_URL', 'https://s-widodo.com');
+define('SITE_NAME', 'S-Widodo');
+define('DEBUG_MODE', true);
+
+define('SESSION_NAME', 'sw_session');
+define('SECRET_KEY', 'ubah_dengan_key_acak');
+
+// Fungsi helper
+function config($key) {
+    $configs = [
+        'db_host' => DB_HOST,
+        'db_name' => DB_NAME,
+        'db_user' => DB_USER,
+        'db_pass' => DB_PASS,
+        'base_url' => BASE_URL,
+        'site_name' => SITE_NAME,
+        'debug_mode' => DEBUG_MODE,
+        'session_name' => SESSION_NAME,
+        'secret_key' => SECRET_KEY
+    ];
+    return isset($configs[$key]) ? $configs[$key] : null;
+}
+
+// DEBUG: cek apakah file berhasil di-load
+if (DEBUG_MODE) {
+    echo "sw-config.php berhasil di-load!<br>";
+    echo "Database Host: " . DB_HOST . "<br>";
+    echo "Site Name: " . SITE_NAME . "<br>";
+}
