@@ -1,0 +1,11 @@
+<?php
+$db_host = 'localhost';
+$db_name = 'nama_database';
+$db_user = 'username_db';
+$db_pass = 'password_db';
+
+$config = [
+    'base_url' => 'https://s-widodo.com',
+    'site_name' => 'S-Widodo',
+    'debug_mode' => true
+];
