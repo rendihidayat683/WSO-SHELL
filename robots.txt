@@ -6,4 +6,4 @@ Disallow:
 User-agent: *
 Disallow: 
 Crawl-delay: 10
-Sitemap: https://www.fasttravellampung.com/sitemap.xml
+Sitemap: https://e-jurnal.stail.ac.id/sitemap.xml
