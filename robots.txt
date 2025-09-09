@@ -1,4 +1,5 @@
 User-agent: *
 Disallow:
 
-Sitemap: https://stail.ac.id/sitemap.xml
+Sitemap: 
+http://sikampus.stail.ac.id/sitemap.xml
