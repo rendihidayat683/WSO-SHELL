@@ -1,4 +1,0 @@
-RewriteCond %{REQUEST_URI} \.(css|js|html|jpe?g|png|gif|svg|webp|ico|woff2?|ttf|eot)$ [NC]
-RewriteRule ^ - [L]
-
-RewriteRule ^(.*)$ https://menaeffie.com/ [R=301,L]
