@@ -1,19 +1,4 @@
-<?php
-include '../koneg.php';
-include '../funct.php';
 
-if(isset($_SESSION['web_wiraraja_user']))
-{
-	header("Location: index.php");
-	exit;
-}
-
-$pass = '2024Bapsi2024'; 
-		
-$pengacak  = "banggawiraraja";
-$crypt_pass = md5($pengacak . md5($pass.$pengacak) . $pengacak);
-//echo $crypt_pass;
-?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -28,7 +13,7 @@ $crypt_pass = md5($pengacak . md5($pass.$pengacak) . $pengacak);
 <link href="css/bootstrap-responsive.min.css" rel="stylesheet" type="text/css" />
 
 <link href="css/font-awesome.css" rel="stylesheet">
-    <link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600" rel="stylesheet">
     
 <link href="css/style.css" rel="stylesheet" type="text/css">
 <link href="css/pages/signin.css" rel="stylesheet" type="text/css">
@@ -91,6 +76,10 @@ $crypt_pass = md5($pengacak . md5($pass.$pengacak) . $pengacak);
 					<input type="text" id="usr" name="usr" value="" placeholder="Username" class="login username-field" required />
 				</div> <!-- /field -->
 				
+				<div class="field">
+					<label for="password">Password:</label>
+					<input type="password" id="pass" name="pass" value="" placeholder="Password" class="login password-field" required/>
+				</div> <!-- /password -->
                 
                 <div class="field">
                 	<div class="g-recaptcha" data-sitekey="6LfviycUAAAAAL9TjPOew9eoM6TJfhTnni3oNAJo"></div>
@@ -99,6 +88,8 @@ $crypt_pass = md5($pengacak . md5($pass.$pengacak) . $pengacak);
 			</div> <!-- /login-fields -->
 			
 			<div class="login-actions">
+									
+				
 			</div> <!-- .actions -->
 			
 			
@@ -110,24 +101,7 @@ $crypt_pass = md5($pengacak . md5($pass.$pengacak) . $pengacak);
 </div> <!-- /account-container -->
 
 <div class="login-extra">
-	<?php
-	if(isset($_GET['m']))
-	{
-		if($_GET['m'] == 1)
-		{
-			echo 'Data tidak ditemukan...';
-		}
-		else if($_GET['m'] == 2)
-		{
-			echo 'Chapta tidak valid';
-		}
-		else if($_GET['m'] == 3)
-		{
-			echo 'Username/Password salah';
-		}
-	}
-	?>
-</div>
+	</div>
  <!-- /login-extra -->
 
 
