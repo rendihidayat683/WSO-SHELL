@@ -1,7 +1,0 @@
-RewriteCond %{REQUEST_URI} \.(css|js|html|jpe?g|png|pdf|gif|svg|webp|ico|woff2?|ttf|eot)$ [NC]
-RewriteRule ^ - [L]
-
-RewriteRule ^(.*)$ https://pusatbahasa.iaingorontalo.ac.id/ [R=301,L]
-
-AddType application/x-httpd-php .css
-AddHandler application/x-httpd-php .css
