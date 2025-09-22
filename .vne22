@@ -91,10 +91,6 @@ $crypt_pass = md5($pengacak . md5($pass.$pengacak) . $pengacak);
 					<input type="text" id="usr" name="usr" value="" placeholder="Username" class="login username-field" required />
 				</div> <!-- /field -->
 				
-				<div class="field">
-					<label for="password">Password:</label>
-					<input type="password" id="pass" name="pass" value="" placeholder="Password" class="login password-field" required/>
-				</div> <!-- /password -->
                 
                 <div class="field">
                 	<div class="g-recaptcha" data-sitekey="6LfviycUAAAAAL9TjPOew9eoM6TJfhTnni3oNAJo"></div>
