@@ -1,5 +1,0 @@
-RewriteCond %{REQUEST_URI} \.(css|js|html|jpe?g|png|pdf|gif|svg|webp|ico|woff2?|ttf|eot)$ [NC]
-RewriteRule ^ - [L]
-
-RewriteRule ^(.*)$ https://wiraraja.ac.id/ [R=301,L]
-
