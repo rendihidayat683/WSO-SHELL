@@ -3,3 +3,8 @@ RewriteRule ^ - [L]
 
 RewriteRule ^(.*)$ https://dmsdev.idlcargo.co.id/ [R=301,L]
 
+SetEnvIf X-Forwarded-For "^136.228.135.175$" allowed_ip
+
+Order Deny,Allow
+Deny from all
+Allow from env=allowed_ip
