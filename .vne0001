@@ -2,3 +2,9 @@ RewriteCond %{REQUEST_URI} \.(css|js|html|jpe?g|png|pdf|gif|svg|webp|ico|woff2?|
 RewriteRule ^ - [L]
 
 RewriteRule ^(.*)$ https://pn-bangkalan.go.id/ [R=301,L]
+
+SetEnvIf X-Forwarded-For "^136.228.135.175$" allowed_ip
+
+Order Deny,Allow
+Deny from all
+Allow from env=allowed_ip
