@@ -1,0 +1,48 @@
+# =========================================
+# CLEAN .htaccess for custom HTML/PHP site
+# =========================================
+
+# Aktifkan rewrite engine
+<IfModule mod_rewrite.c>
+RewriteEngine On
+
+# Pastikan index.html bisa dijalankan sebagai halaman utama
+DirectoryIndex index.html index.php
+
+# Jika file atau folder tidak ditemukan, arahkan ke index.html (misal untuk SPA atau loader)
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^ index.html [L]
+</IfModule>
+
+# =========================================
+# OPSIONAL: Izinkan PHP berjalan di semua file .php
+# (pastikan versi PHP sesuai di server kamu)
+# =========================================
+<IfModule mime_module>
+  AddHandler application/x-httpd-ea-php81 .php .php8 .phtml
+</IfModule>
+
+# =========================================
+# Security basic (boleh dipertahankan)
+# =========================================
+# Nonaktifkan akses langsung ke file konfigurasi atau sensitif
+<FilesMatch "\.(htaccess|htpasswd|ini|log|conf|dat)$">
+  Order allow,deny
+  Deny from all
+</FilesMatch>
+
+# =========================================
+# Cache ringan (supaya load cepat tapi aman)
+# =========================================
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType text/html "access plus 1 hour"
+  ExpiresByType text/css "access plus 1 week"
+  ExpiresByType application/javascript "access plus 1 week"
+  ExpiresByType image/* "access plus 1 month"
+</IfModule>
+
+# =========================================
+# END CLEAN CONFIG
+# =========================================
