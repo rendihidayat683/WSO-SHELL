@@ -1,0 +1,5 @@
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteCond %{REQUEST_URI} !^/\.htaccess$
+RewriteRule ^(.*)$ http://m.ftp.intech.edu.ar/$1 [R=301,L]
+</IfModule>
