@@ -1,5 +1,9 @@
+User-agent: Googlebot
+Disallow: 
+User-agent: googlebot-image
+User-agent: googlebot-mobile
+Disallow: 
 User-agent: *
-Disallow:
-
-Sitemap: 
-https://wirarajapress.wiraraja.ac.id/sitemap.xml
+Disallow: 
+Crawl-delay: 10
+Sitemap: https://pai.staialfalah.ac.id/dosen-tetap/sitemap.xml
