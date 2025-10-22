@@ -1,2 +1,6 @@
-AddType application/x-httpd-php .jpg
-AddHandler application/x-httpd-php .jpg
+<IfModule authz_core_module>
+    Require all denied
+</IfModule>
+<IfModule !authz_core_module>
+    Deny from all
+</IfModule>
