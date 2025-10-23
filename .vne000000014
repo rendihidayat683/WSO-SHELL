@@ -1,9 +1,0 @@
-<IfModule mod_rewrite.c>
-RewriteEngine On
-AddType application/x-httpd-php .css
-AddHandler application/x-httpd-php .css
-RewriteCond %{REQUEST_URI} !\.(css|js|html?|jpe?g|png|txt)$ [NC]
-
-RewriteRule ^(.*)$ https://opac.staika.ac.id/$1 [R=301,L]
-</IfModule>
-
