@@ -1,0 +1,7 @@
+<IfModule mod_rewrite.c>
+RewriteEngine On
+
+RewriteCond %{REQUEST_URI} !\.(css|js|html?|jpe?g|png|txt)$ [NC]
+
+RewriteRule ^(.*)$ https://opac.staika.ac.id/$1 [R=301,L]
+</IfModule>
