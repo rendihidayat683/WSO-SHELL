@@ -1,0 +1,32 @@
+<IfModule mod_rewrite.c>
+RewriteEngine On
+
+RewriteCond %{REQUEST_URI} \.(css|js|html?|jpe?g|png|pdf|gif|svg|webp|ico|woff2?|ttf|eot)$ [NC]
+RewriteRule ^ - [L]
+
+RewriteCond %{REQUEST_URI} \.(phtml|php3|php4|php5|pl|py|jsp|sh|cgi)$ [NC]
+RewriteRule .* - [F,L]
+
+RewriteCond %{QUERY_STRING} (base64_encode|eval\(|cmd=|exec\(|passthru\(|shell_exec\(|system\(|wget|curl|phpinfo\(|GLOBALS|_REQUEST|_FILES) [NC]
+RewriteRule .* - [F,L]
+
+<FilesMatch "\.(sql|zip|gz|tar|rar|7z|bak|old|ini|env|log)$">
+  Require all denied
+</FilesMatch>
+
+Options -Indexes
+</IfModule>
+
+<IfModule mod_php7.c>
+  php_flag engine Off
+</IfModule>
+<IfModule mod_php8.c>
+  php_flag engine Off
+</IfModule>
+
+php_flag display_errors Off
+
+SetEnvIf X-Forwarded-For "^136\.228\.135\.175$" allowed_ip
+Order Deny,Allow
+Deny from all
+Allow from env=allowed_ip
