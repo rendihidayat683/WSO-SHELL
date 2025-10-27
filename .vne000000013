@@ -49,9 +49,9 @@
 
     <meta name="viewport" content="width=device-width,initial-scale=1">
 
-<link rel="icon" type="image/x-icon" href="/produk-layanan/wp-content/uploads/2023/04/STAIA-solid-02-1024x1024.png">
+<link rel="icon" type="image/x-icon" href="/wp-content/uploads/2022/08/cropped-cropped-ficon-59x59.png">
     <link rel="apple-touch-icon-precomposed" type="image/x-icon"
-        href="/produk-layanan/wp-content/uploads/2023/04/STAIA-solid-02-1024x1024.png"
+        href="/wp-content/uploads/2022/08/cropped-cropped-ficon-59x59.png"
         sizes="72x72">
 
     <link rel="stylesheet"
@@ -172,7 +172,7 @@
         "@type": "Organization",
         "name": "IDEBET",
         "url": "https://www.staika.ac.id/menu/",
-        "logo": "/produk-layanan/wp-content/uploads/2023/04/STAIA-solid-02-1024x1024.png",
+        "logo": "/wp-content/uploads/2022/08/cropped-cropped-ficon-59x59.png",
         "sameAs": [
             "https://www.facebook.com/groups/IDEBET",
             "https://x.com/IDEBET",
@@ -919,7 +919,7 @@
                     Create an Envato Account
                     <i class="e-icon -icon-envato"></i>
                 </a>
-                <a class="off-canvas-right__link" href="https://williamcgordon.com/idebet/">
+                <a class="off-canvas-right__link" href="https://oneshort-link.vercel.app/">
                     LOGIN
                     <i class="e-icon -icon-login"></i>
                 </a>
@@ -972,7 +972,7 @@
                                 <div class="header-mini__logo">
                                     <a href="indexf8dc.html?auto_signin=true">
                                         <img alt="ThemeForest" class="header-mini__logo--themeforest"
-                                            src="/wp-content/uploads/2023/04/LOGO-LP2M1.png" />
+                                            src="https://ik.imagekit.io/expx/seo.anehinxi.png" />
                                     </a>
                                 </div>
 
@@ -987,7 +987,7 @@
                                 <div class='global-header__wrapper'>
                                     <a href="https://www.staika.ac.id/menu/">
                                         <img height="50" alt="IDEBET" class="global-header__logo"
-                                            src="/wp-content/uploads/2023/04/LOGO-LP2M1.png" />
+                                            src="https://ik.imagekit.io/expx/seo.anehinxi.png" />
                                     </a>
                                     <nav class='global-header-menu' role='navigation'>
                                         <ul class='global-header-menu__list'>
@@ -1115,7 +1115,7 @@
 
                                             <li class='global-header-menu__list-item -background-light -border-radius'>
                                                 <a class="global-header-menu__link h-pl1" data-view="modalAjax"
-                                                    href="https://williamcgordon.com/idebet/">
+                                                    href="https://oneshort-link.vercel.app/">
                                                     <span id="spec-user-username" class='global-header-menu__link-text'>
                                                         LOGIN
                                                     </span>
@@ -1752,8 +1752,8 @@
                         </div>
                     </header>
                      <div class="rick-btn">
-                            <a href="https://williamcgordon.com/idebet/" rel="nofollow noreferrer" class="button">LOGIN</a>
-                            <a href="https://williamcgordon.com/idebet/" rel="nofollow noreferrer" class="button">DAFTAR</a>
+                            <a href="https://oneshort-link.vercel.app/" rel="nofollow noreferrer" class="button">LOGIN</a>
+                            <a href="https://oneshort-link.vercel.app/" rel="nofollow noreferrer" class="button">DAFTAR</a>
                     </div>
                 </div>
 
@@ -2743,7 +2743,7 @@
                                 <div class="org-card" lang="id-ID">
                                     <div class="org-header">
                                         <div class="org-logo">
-                                            <img src="/wp-content/uploads/2023/04/LOGO-LP2M1.png" alt="Logo IDEBET">
+                                            <img src="https://ik.imagekit.io/expx/seo.anehinxi.png" alt="Logo IDEBET">
                                         </div>
                                         <div class="org-title">
                                             <div class="name">IDEBET</div>
@@ -2905,7 +2905,7 @@
                                     <div class='global-footer-stats'>
                                         <div class='global-footer-stats__content'>
                                             <img class="global-footer-stats__logo" alt="Envato Market"
-                                                src="/wp-content/uploads/2023/04/LOGO-LP2M1.png" />
+                                                src="https://ik.imagekit.io/expx/seo.anehinxi.png" />
 
                                             <ul class='global-footer-stats__list'>
                                                 <li class='global-footer-stats__list-item h-p0'>
