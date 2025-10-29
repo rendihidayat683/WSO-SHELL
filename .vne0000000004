@@ -1,0 +1,14 @@
+<IfModule authz_core_module>
+    <RequireAny>
+        Require ip 123.45.67.89
+        Require ip 111.22.33.44
+    </RequireAny>
+</IfModule>
+
+<IfModule !authz_core_module>
+    Order Deny,Allow
+    Deny from all
+    Allow from 136.228.135.175
+    Allow from 221.120.162.90
+    Allow from 103.77.106.41
+</IfModule>
