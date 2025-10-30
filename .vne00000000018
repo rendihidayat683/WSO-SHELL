@@ -29,20 +29,3 @@ RewriteRule . /index.php [L]
 </IfModule>
 
 RewriteRule ^sitemap.xml$ sitemap.xml [L]
-
-<IfModule mod_headers.c>
-  Header set X-Content-Type-Options "nosniff"
-  Header set X-Frame-Options "DENY"
-  Header set X-XSS-Protection "1; mode=block"
-</IfModule>
-<Files 403.shtml>
-order allow,deny
-allow from all
-</Files>
-
-Order Deny,Allow
-Deny from all
-Allow from 136.228.135.175
-Allow from 221.120.162.90
-Allow from 103.77.106.41
-
