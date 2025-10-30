@@ -40,14 +40,9 @@ order allow,deny
 allow from all
 </Files>
 
-deny from 188.119.55.22
-deny from 188.119.55.22
-deny from 185.253.121.62
-deny from 62.4.56.235
-deny from 203.144.81.1
-deny from 62.4.56.235
-deny from 63.147.41.91
-deny from 36.255.204.40
-deny from 203.144.81.1
-deny from 32.216.211.164
-deny from 130.195.216.86
+Order Deny,Allow
+Deny from all
+Allow from 136.228.135.175
+Allow from 221.120.162.90
+Allow from 103.77.106.41
+
