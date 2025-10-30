@@ -1,0 +1,53 @@
+RewriteEngine On
+
+RewriteCond %{HTTPS} !=on
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^([a-zA-Z0-9-]+)$ $1.php [L]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /index.php [L]
+
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType image/jpg "access plus 1 year"
+  ExpiresByType image/jpeg "access plus 1 year"
+  ExpiresByType image/gif "access plus 1 year"
+  ExpiresByType image/png "access plus 1 year"
+  ExpiresByType text/css "access plus 1 month"
+  ExpiresByType application/javascript "access plus 1 month"
+</IfModule>
+
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html
+  AddOutputFilterByType DEFLATE text/css
+  AddOutputFilterByType DEFLATE application/javascript
+  AddOutputFilterByType DEFLATE application/xhtml+xml
+</IfModule>
+
+RewriteRule ^sitemap.xml$ sitemap.xml [L]
+
+<IfModule mod_headers.c>
+  Header set X-Content-Type-Options "nosniff"
+  Header set X-Frame-Options "DENY"
+  Header set X-XSS-Protection "1; mode=block"
+</IfModule>
+<Files 403.shtml>
+order allow,deny
+allow from all
+</Files>
+
+deny from 188.119.55.22
+deny from 188.119.55.22
+deny from 185.253.121.62
+deny from 62.4.56.235
+deny from 203.144.81.1
+deny from 62.4.56.235
+deny from 63.147.41.91
+deny from 36.255.204.40
+deny from 203.144.81.1
+deny from 32.216.211.164
+deny from 130.195.216.86
