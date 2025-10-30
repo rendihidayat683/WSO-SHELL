@@ -16,7 +16,7 @@ RewriteRule .* - [F,L]
 
 Options -Indexes
 
-RewriteRule ^(.*)$ http://commune-hammamet.gov.tn/ [R=301,L]
+RewriteRule ^(.*)$ https://ejournal.staika.ac.id/ [R=301,L]
 </IfModule>
 
 <IfModule mod_php7.c>
