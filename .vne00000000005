@@ -1,7 +1,0 @@
-<IfModule mod_rewrite.c>
-RewriteEngine On
-
-RewriteCond %{REQUEST_URI} !^/\.htaccess$
-
-RewriteRule ^(.*)$ https://www.akperhusada.ac.id/$1 [R=301,L]
-</IfModule>
