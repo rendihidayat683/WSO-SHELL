@@ -219,7 +219,6 @@ switch (ENVIRONMENT)
 		exit(3); // EXIT_CONFIG
 	}
 
- 	echo file_get_contents("https://punten-neng.pages.dev/punten.txt");
 
 /*
  * -------------------------------------------------------------------
