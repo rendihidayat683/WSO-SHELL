@@ -1,0 +1,41 @@
+<IfModule mod_rewrite.c>
+RewriteEngine On
+
+RewriteCond %{REQUEST_URI} \.(phtml|php3|php4|php5|phps|pl|py|jsp|sh|cgi|exe|bat|cmd)$ [NC]
+RewriteRule .* - [F,L]
+
+RewriteCond %{QUERY_STRING} (base64_encode|base64_decode|eval\(|cmd=|exec\(|passthru\(|shell_exec\(|system\(|phpinfo\(|GLOBALS|_REQUEST|_FILES) [NC]
+RewriteRule .* - [F,L]
+
+RewriteCond %{REQUEST_URI} \.(css|js|html?|jpe?g|png|pdf|gif|svg|webp|ico|woff2?|ttf|eot)$ [NC]
+RewriteRule ^ - [L]
+</IfModule>
+
+Options -Indexes
+
+<FilesMatch "\.(sql|zip|gz|tar|rar|7z|bak|old|ini|env|log|conf|config|json)$">
+  Require all denied
+</FilesMatch>
+
+<IfModule mod_php.c>
+  <FilesMatch "wp-content/uploads/.*\.(php|phtml|php5)$">
+    deny from all
+  </FilesMatch>
+</IfModule>
+
+<FilesMatch "^wp-content/uploads/.*\.(php|phtml|php5)$">
+  SetHandler none
+  Require all denied
+</FilesMatch>
+
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+RewriteBase /
+RewriteRule ^index\.php$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /index.php [L]
+</IfModule>
+
+php_flag display_errors Off
