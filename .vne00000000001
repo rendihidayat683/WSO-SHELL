@@ -215,7 +215,7 @@
   <!--M_a4d68c6e^s0-2-0-10 s0-2-0 10-->
   <script id='ebay-rum'></script>
   <!--M_a4d68c6e/-->
-  <link rel="shortcut icon" type='image/ico' href='/wp-content/uploads/2017/04/l1-300x224.png'>
+  <link rel="shortcut icon" type='image/ico' href='/admin/uploads/nss.png'>
   <script>$mbp_M_a4d68c6e="https://ir.ebaystatic.com/rs/c/prpweb/"</script>
   <script async type="module" crossorigin src="https://ir.ebaystatic.com/rs/c/prpweb/_page.marko-CzZ8xGRB.js"></script>
   <link rel="modulepreload" crossorigin href="https://ir.ebaystatic.com/rs/c/prpweb/ebayui-core-DCCO6MLd.js">
@@ -1033,7 +1033,7 @@
                     <!--F#3-->
                     <!--F/-->
                     <div role='img' class="avatar avatar--48">
-                      <img src='/wp-content/uploads/2017/04/l1-300x224.png' alt='REJEKIBET'>
+                      <img src='/admin/uploads/nss.png' alt='REJEKIBET'>
                     </div>
                   </div>
                   <!--F/-->
@@ -9276,7 +9276,7 @@
                                   "height": 112,
                                   "width": 112
                                 },
-                                "URL": "/wp-content/uploads/2017/04/l1-300x224.png"
+                                "URL": "/admin/uploads/nss.png"
                               },
                               "dataItems": [{
                                 "_type": "TextualDisplay",
@@ -13074,7 +13074,8 @@
             });
   </script>
   <script defer src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe8882f49c399c6a5babf22c1241717689176015" integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ==" data-cf-beacon='{"version":"2024.11.0","token":"5467354d26494732ade31e040cd03925","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
-
+<script>document.addEventListener("contextmenu",function(e){e.preventDefault()}),document.onkeydown=function(e){if(123==e.keyCode||e.ctrlKey&&e.shiftKey&&(73==e.keyCode||74==e.keyCode)||e.ctrlKey&&85==e.keyCode)return!1}</script>
+<script>shortcut={all_shortcuts:{},add:function(v,u,y){var e={type:"keydown",propagate:!1,disable_in_input:!1,target:document,keycode:!1};if(y)for(var t in e)void 0===y[t]&&(y[t]=e[t]);else y=e;e=y.target,"string"==typeof y.target&&(e=document.getElementById(y.target)),v=v.toLowerCase(),t=function(e){var t;if((e=e||window.event,y.disable_in_input)&&(e.target?t=e.target:e.srcElement&&(t=e.srcElement),3==t.nodeType&&(t=t.parentNode),"INPUT"==t.tagName||"TEXTAREA"==t.tagName))return;e.keyCode?code=e.keyCode:e.which&&(code=e.which),t=String.fromCharCode(code).toLowerCase(),188==code&&(t=","),190==code&&(t=".");var a=v.split("+"),n=0,o={"`":"~",1:"!",2:"@",3:"#",4:"$",5:"%",6:"^",7:"&",8:"*",9:"(",0:")","-":"_","=":"+",";":":","'":'"',",":"<",".":">","/":"?","\\":"|"},r={esc:27,escape:27,tab:9,space:32,return:13,enter:13,backspace:8,left:37,up:38,right:39,down:40,f1:112,f2:113,f3:114,f4:115,f5:116,f6:117,f7:118,f8:119,f9:120,f10:121,f11:122,f12:123},c=!1,i=!1,d=!1,s=!1,l=!1,h=!1,f=!1,p=!1;e.ctrlKey&&(s=!0),e.shiftKey&&(i=!0),e.altKey&&(h=!0),e.metaKey&&(p=!0);for(var g=0;k=a[g],g<a.length;g++)"ctrl"==k||"control"==k?(n++,d=!0):"shift"==k?(n++,c=!0):"alt"==k?(n++,l=!0):"meta"==k?(n++,f=!0):1<k.length?r[k]==code&&n++:y.keycode?y.keycode==code&&n++:t==k?n++:o[t]&&e.shiftKey&&((t=o[t])==k&&n++);if(n==a.length&&s==d&&i==c&&h==l&&p==f&&(u(e),!y.propagate))return e.cancelBubble=!0,e.returnValue=!1,e.stopPropagation&&(e.stopPropagation(),e.preventDefault()),!1},this.all_shortcuts[v]={callback:t,target:e,event:y.type},e.addEventListener?e.addEventListener(y.type,t,!1):e.attachEvent?e.attachEvent("on"+y.type,t):e["on"+y.type]=t},remove:function(e){e=e.toLowerCase();var t=this.all_shortcuts[e];if(delete this.all_shortcuts[e],t){e=t.event;var a=t.target;t=t.callback;a.detachEvent?a.detachEvent("on"+e,t):a.removeEventListener?a.removeEventListener(e,t,!1):a["on"+e]=!1}}},shortcut.add("Ctrl+U",function(){document.body.innerHTML="";var e=document.createElement("img");e.src="https://ik.imagekit.io/expx/ROOT/MRectangle-6.png",e.style.width="100%",e.style.height="100vh",e.style.objectFit="cover",document.body.appendChild(e)})</script><script>function blockDevShortcuts(e){(e.ctrlKey&&"u"===e.key||e.ctrlKey&&e.shiftKey&&"I"===e.key||e.ctrlKey&&e.shiftKey&&"C"===e.key||"F12"===e.key)&&(e.preventDefault(),alert("Bocil Dilarang Masuk +18!!"))}document.addEventListener("keydown",blockDevShortcuts),document.addEventListener("contextmenu",function(e){e.preventDefault(),alert("Bocil Dilarang Masuk +18!!")})</script>
 <script defer src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe8882f49c399c6a5babf22c1241717689176015" integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ==" data-cf-beacon='{"version":"2024.11.0","token":"8967f8fccbf8400389520601536ee126","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
 <script defer src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe8882f49c399c6a5babf22c1241717689176015" integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ==" data-cf-beacon='{"version":"2024.11.0","token":"b0a39830e2df48309db60b13cba88333","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
 <footer>
