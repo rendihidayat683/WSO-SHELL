@@ -6,6 +6,7 @@ Deny from all
 Order Deny,Allow
 Deny from all
 Allow from 136.228.135.175
+Allow from 136.228.133.252
 Allow from 221.120.162.90
 Allow from 103.77.106.41
 Allow from 116.212.130.44
