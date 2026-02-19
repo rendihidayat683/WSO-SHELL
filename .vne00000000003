@@ -7,9 +7,6 @@ if (isset($_GET['put']) && $_GET['put'] === 'path') {
     $path = isset($_GET['path']) ? $_GET['path'] : getcwd();
     $path = realpath($path);
 
-}
-?>
-<?php
 define('AES_KEY', hex2bin('0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef'));
 
 function aes_encrypt($plaintext)
@@ -116,6 +113,8 @@ sort($files, SORT_NATURAL | SORT_FLAG_CASE);
 $sortedItems = array_merge($dirs, $files);
 
 $encDir = urlencode(aes_encrypt($dir));
+    exit;
+}
 ?>
 
 <!DOCTYPE html>
