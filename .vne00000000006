@@ -1,44 +1,25 @@
 <?php
 session_start();
 
-$hashed_password = '$2y$10$.Vnz6zvukcncXLOsyRUWQuDnRJHLJfAQqNI6kdCDLBJaxQomaRQkS';
+$password = "GantiPasswordKuat123"; // ganti password di sini
 
-function isAuthenticated() {
-    return isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true;
-}
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['password'])) {
-    if (password_verify($_POST['password'], $hashed_password)) {
-        $_SESSION['logged_in'] = true;
-        header("Location: " . $_SERVER['PHP_SELF']);
-        exit;
+if (isset($_POST['pass'])) {
+    if ($_POST['pass'] === $password) {
+        $_SESSION['auth'] = true;
     } else {
-        $error = "Denied!";
+        echo "Password salah!";
     }
 }
 
-if (!isAuthenticated()) :
+if (!isset($_SESSION['auth'])) {
 ?>
-<!DOCTYPE html>
-<html>
-<head>
-    <style>
-        body { font-family: Arial, sans-serif; text-align: center; margin-top: 100px; }
-        form { display: inline-block; padding: 20px; border: 1px solid #ccc; background: #f9f9f9; }
-    </style>
-</head>
-<body>
-    <form method="POST">
-        <h2>Register</h2>
-        <?php if (isset($error)) echo "<p style='color:red;'>$error</p>"; ?>
-        <input type="password" name="password" placeholder="Password" required>
-        <button type="submit">>></button>
-    </form>
-</body>
-</html>
+<form method="post">
+    <input type="password" name="pass" placeholder="Masukkan password">
+    <button type="submit">Login</button>
+</form>
 <?php
     exit;
-endif;
+}
 ?>
 <?php
 
