@@ -236,7 +236,7 @@
             <h2 id="pathName"><em></em></h2>
         </div>
         <div class="row message">
-            <p>Website <span id="website" style="word-break:break-all;"></span> has been successfully installed on server! Please delete the file <span style="font-weight: bold;">default.php</span> from the public_html folder and then upload your website by using FTP or File Manager.</p>
+            <p>Website <span id="website" style="word-break:break-all;"></span> has been successfully installed on server! Please delete the file <span style="font-weight: bold;">domain.php</span> from the public_html folder and then upload your website by using FTP or File Manager.</p>
         </div>
         <div class="col-xs-12">
             <h2>What's next?</h2>
