@@ -1,8 +1,8 @@
 <?php
 session_start();
 
-$USERNAME = 'adminunb';
-$PASSWORD = 'whois@us456';
+$USERNAME = 'admin';
+$PASSWORD = 'whous@465';
 
 if (isset($_POST['login'])) {
     if ($_POST['username'] === $USERNAME && $_POST['password'] === $PASSWORD) {
