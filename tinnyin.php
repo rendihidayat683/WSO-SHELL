@@ -92,7 +92,7 @@ $use_auth = true;
 // Users: array('Username' => 'Password', 'Username2' => 'Password2', ...)
 // Generate secure password hash - https://tinyfilemanager.github.io/docs/pwd.html
 $auth_users = array(
-    '0918' => '$2b$12$KjswPuuZPeX7MK2QrWwH6O8zJUtUNxnZWmVvYfHawi5O.QXe13tdG'
+    '0918' => '$2y$10$.O6twUlplsu8FEmJW8rUfOKTj3urlQeOHYzCvF20s02LijW6H.EEm'
 );
 
 // Readonly users
@@ -104,7 +104,7 @@ $readonly_users = array(
 // Global readonly, including when auth is not being used
 $global_readonly = false;
 
-// user specific directories
+// user specific directories@B35tGr0up1ng#
 // array('Username' => 'Directory path', 'Username2' => 'Directory path', ...)
 $directories_users = array();
 
