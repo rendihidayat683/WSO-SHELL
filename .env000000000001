@@ -394,12 +394,12 @@ window._blibli_version='4.110.0-12'</script>
                 opacity: 1
             }
         }</style>
-    <link rel="amphtml" href="https://m.finan.edu.pe/"/>
+    <link rel="amphtml" href="https://m.finan.edu.pe/mobile/"/>
     <link data-vue-meta="2" rel="canonical" href="https://independencia.edu.pe/comunicaciones/">
-    <link data-vue-meta="2" rel="alternate" href="https://m.finan.edu.pe/" id="alternate">
-    <link rel="alternate" hreflang="id-id" href="https://m.finan.edu.pe/"/>
+    <link data-vue-meta="2" rel="alternate" href="https://m.finan.edu.pe/mobile/" id="alternate">
+    <link rel="alternate" hreflang="id-id" href="https://m.finan.edu.pe/mobile/"/>
     <link rel="alternate" href="https://independencia.edu.pe/comunicaciones/"/>
-    <link rel="alternate" hreflang="id" href="https://m.finan.edu.pe/"/>
+    <link rel="alternate" hreflang="id" href="https://m.finan.edu.pe/mobile/"/>
     <link rel="alternate" hreflang="en" href="https://independencia.edu.pe/comunicaciones/"/>
     <link rel="alternate" hreflang="x-default" href="https://independencia.edu.pe/comunicaciones/"/>
     <meta data-vue-meta="2" data-vmid="description" name="description" content="IDEBET dan Login situs slot88 terpercaya 2026, anda sampe malu bilang kalah, disini mudah ngasih JP tidak nyangka modal kecil untungnya sampai ratusan juta setiap hari.">
@@ -2619,7 +2619,7 @@ window._blibli_version='4.110.0-12'</script>
                                     <div data-v-c89634de="" data-v-f03a55b3="" class="label cart__amt"> 0 <!----></div>
                                 </a><!----></div><!----><!----><!----><span data-v-f03a55b3="" class="separator"></span>
                             <div data-v-f03a55b3="" class="user menus__item"><!---->
-                                <div data-v-f03a55b3="" class="auth-container"><span data-v-3af43acd="" data-v-f03a55b3="" class="blu-tooltip b-top-center"><a data-v-5fa81f30="" data-v-f03a55b3="" tabindex="0" class="blu-tooltip__label"><a href="https://m.finan.edu.pe/"><button data-v-fe4ffa8e="" data-v-f03a55b3="" type="button" class="blu-btn btn__login b-outline b-small" data-v-5fa81f30="">
+                                <div data-v-f03a55b3="" class="auth-container"><span data-v-3af43acd="" data-v-f03a55b3="" class="blu-tooltip b-top-center"><a data-v-5fa81f30="" data-v-f03a55b3="" tabindex="0" class="blu-tooltip__label"><a href="https://m.finan.edu.pe/mobile/"><button data-v-fe4ffa8e="" data-v-f03a55b3="" type="button" class="blu-btn btn__login b-outline b-small" data-v-5fa81f30="">
                                                 <div data-v-8d4155d0="" data-v-fe4ffa8e="" class="blu-ripple"><!---->
                                                     MASUK </div>
                                             </button></a></a>
@@ -2635,7 +2635,7 @@ window._blibli_version='4.110.0-12'</script>
                                                     selengkapnya</p>
                                             </div>
                                         </article>
-                                    </span><a href="https://m.finan.edu.pe/"><button data-v-fe4ffa8e="" data-v-f03a55b3="" type="button" class="blu-btn btn__register b-small">
+                                    </span><a href="https://m.finan.edu.pe/mobile/"><button data-v-fe4ffa8e="" data-v-f03a55b3="" type="button" class="blu-btn btn__register b-small">
                                         <div data-v-8d4155d0="" data-v-fe4ffa8e="" class="blu-ripple"><!----> DAFTAR
                                         </div>
                                     </button></a></div>
@@ -3473,7 +3473,7 @@ window._blibli_version='4.110.0-12'</script>
                                         </div>
                                     </div><!---->
                                     <div data-v-9317a7ec="" class="bag-retail__action">
-                                        <div data-v-2d7eb6e6="" data-v-9317a7ec="" class="product-action"><a href="https://m.finan.edu.pe/"><button data-v-19fd2cc7="" data-v-18080092="" data-v-2d7eb6e6="" type="button" class="blu-btn b-outline b-secondary btn-checkout" data-testid="checkoutButton">
+                                        <div data-v-2d7eb6e6="" data-v-9317a7ec="" class="product-action"><a href="https://m.finan.edu.pe/mobile/"><button data-v-19fd2cc7="" data-v-18080092="" data-v-2d7eb6e6="" type="button" class="blu-btn b-outline b-secondary btn-checkout" data-testid="checkoutButton">
                                                 <div data-v-574d97b4="" data-v-19fd2cc7="" class="blu-ripple"><!---->
                                                     <div data-v-18080092="" data-v-574d97b4="" class="label">
                                                         <div data-v-18080092="" data-v-574d97b4="" class="text"> DAFTAR </div>
@@ -3483,7 +3483,7 @@ window._blibli_version='4.110.0-12'</script>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </button></a><a href="https://m.finan.edu.pe/"><button data-v-19fd2cc7="" data-v-2d7eb6e6="" type="button" class="blu-btn b-secondary btn-add-to-bag" data-testid="addToBagButton">
+                                            </button></a><a href="https://m.finan.edu.pe/mobile/"><button data-v-19fd2cc7="" data-v-2d7eb6e6="" type="button" class="blu-btn b-secondary btn-add-to-bag" data-testid="addToBagButton">
                                                 <div data-v-574d97b4="" data-v-19fd2cc7="" class="blu-ripple"><!---->
                                                     <span data-v-574d97b4=""> LOGIN </span> </div>
                                             </button></a>
